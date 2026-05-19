@@ -1,0 +1,15 @@
+{
+  "name": "travel-guide-generator",
+  "version": "1.0.0",
+  "description": "自动生成精美旅游攻略HTML文档。支持搜索小红书/马蜂窝真实攻略、高德API计算路线距离用时、生成PC/移动端自适应精美HTML，包含每日详细行程、酒店推荐、美食推荐、避坑指南。",
+  "author": "QClaw User",
+  "tags": ["travel", "guide", "html", "vacation", "romantic"],
+  "dependencies": {
+    "python": ">=3.8",
+    "pip": ["requests"]
+  },
+  "env": {
+    "AMAP_KEY": "高德Web服务API Key（可选）"
+  },
+  "minQclawVersion": "1.0.0"
+}
