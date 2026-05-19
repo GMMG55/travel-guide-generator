@@ -16,6 +16,135 @@ body {
   line-height: 1.7;
 }
 
+/* ===== 右侧快速导航 ===== */
+.quick-nav {
+  position: fixed;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  opacity: 0.65;
+  transition: opacity 0.3s ease;
+}
+.quick-nav:hover {
+  opacity: 1;
+}
+.quick-nav .nav-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 2px 0;
+}
+.quick-nav .nav-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #888;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+.quick-nav .nav-item:hover .nav-dot {
+  background: #555;
+}
+.quick-nav .nav-item.active .nav-dot {
+  background: #7c6ef0;
+}
+.quick-nav .nav-label {
+  font-size: 11px;
+  color: #666;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+.quick-nav .nav-item:hover .nav-label {
+  color: #333;
+}
+.quick-nav .nav-item.active .nav-label {
+  color: #7c6ef0;
+  font-weight: 500;
+}
+
+/* ===== 可折叠模块 ===== */
+.collapsible {
+  cursor: pointer;
+  user-select: none;
+}
+.collapsible .collapse-icon {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: .7em;
+  transition: transform 0.3s ease;
+  opacity: 0.5;
+}
+.collapsible.collapsed .collapse-icon {
+  transform: rotate(-90deg);
+}
+.collapse-content {
+  max-height: 5000px;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+}
+.collapse-content.collapsed {
+  max-height: 0;
+}
+
+/* Day卡片的折叠 */
+.day-card .day-header {
+  cursor: pointer;
+}
+.day-card .day-header::after {
+  content: '▼';
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: .7em;
+  opacity: 0.5;
+  transition: transform 0.3s ease;
+}
+.day-card.collapsed .day-header::after {
+  transform: translateY(-50%) rotate(-90deg);
+}
+.day-card .spots-wrapper {
+  transition: max-height 0.4s ease-out;
+  max-height: 10000px;
+  overflow: hidden;
+}
+.day-card.collapsed .spots-wrapper {
+  max-height: 0;
+}
+
+/* 时间表折叠 */
+.timeline-card .timeline-header {
+  cursor: pointer;
+  position: relative;
+}
+.timeline-card .timeline-header::after {
+  content: '▼';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: .7em;
+  opacity: 0.5;
+  transition: transform 0.3s ease;
+}
+.timeline-card.collapsed .timeline-header::after {
+  transform: translateY(-50%) rotate(-90deg);
+}
+.timeline-card .timeline-content {
+  transition: max-height 0.4s ease-out;
+  max-height: 5000px;
+  overflow: hidden;
+}
+.timeline-card.collapsed .timeline-content {
+  max-height: 0;
+}
+
 /* ===== Hero ===== */
 .hero {
   position: relative;
@@ -704,6 +833,13 @@ html {
   }
 }
 
+/* 移动端隐藏右侧导航 */
+@media (max-width: 1024px) {
+  .quick-nav {
+    display: none;
+  }
+}
+
 /* ===== 每日住宿推荐（晚餐推荐下方） ===== */
 .hotel-rec-section {
   background: linear-gradient(90deg, #fff8f0, #fff5f0);
@@ -843,6 +979,129 @@ html {
 </div>
 
 </div><!-- /container -->
+
+<!-- 右侧快速导航 -->
+<div class="quick-nav" id="quickNav">
+  <!-- 由JS动态生成 -->
+</div>
+
+<script>
+// ===== 快速导航生成 =====
+(function() {
+  const sections = [];
+  // 收集所有可导航区域
+  document.querySelectorAll('.highlights, .transport-card, .timeline-card, .day-card, .avoid-section, .budget-card, .tips-card, .hotel-section, .food-section').forEach((el, i) => {
+    const id = el.id || ('section-' + i);
+    el.id = id;
+    let label = '';
+    if (el.classList.contains('highlights')) {
+      label = '亮点';
+    } else if (el.classList.contains('transport-card')) {
+      label = '交通';
+    } else if (el.classList.contains('timeline-card')) {
+      label = '时间表';
+    } else if (el.classList.contains('day-card')) {
+      const dayNum = el.querySelector('.day-num');
+      label = dayNum ? dayNum.textContent.split('·')[0].trim() : 'Day ' + (i+1);
+    } else if (el.classList.contains('avoid-section')) {
+      label = '避坑';
+    } else if (el.classList.contains('budget-card')) {
+      label = '预算';
+    } else if (el.classList.contains('tips-card')) {
+      label = 'Tips';
+    } else if (el.classList.contains('hotel-section')) {
+      label = '酒店';
+    } else if (el.classList.contains('food-section')) {
+      label = '美食';
+    }
+    sections.push({ id, label, el });
+  });
+  
+  // 生成导航项
+  const nav = document.getElementById('quickNav');
+  sections.forEach(s => {
+    const item = document.createElement('div');
+    item.className = 'nav-item';
+    item.innerHTML = '<span class="nav-dot"></span><span class="nav-label">' + s.label + '</span>';
+    item.onclick = () => {
+      s.el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+    nav.appendChild(item);
+  });
+  
+  // 滚动时高亮当前区域
+  const items = nav.querySelectorAll('.nav-item');
+  window.addEventListener('scroll', () => {
+    let current = 0;
+    sections.forEach((s, i) => {
+      const rect = s.el.getBoundingClientRect();
+      if (rect.top < window.innerHeight / 2) current = i;
+    });
+    items.forEach((item, i) => item.classList.toggle('active', i === current));
+  });
+})();
+
+// ===== 折叠功能 =====
+(function() {
+  // Day卡片折叠 - 动态包装内容
+  document.querySelectorAll('.day-card').forEach(card => {
+    const header = card.querySelector('.day-header');
+    const wrapper = document.createElement('div');
+    wrapper.className = 'spots-wrapper';
+    let sibling = header.nextElementSibling;
+    while (sibling) {
+      const next = sibling.nextElementSibling;
+      wrapper.appendChild(sibling);
+      sibling = next;
+    }
+    card.appendChild(wrapper);
+  });
+  
+  document.querySelectorAll('.day-card .day-header').forEach(header => {
+    header.addEventListener('click', function() {
+      const card = this.closest('.day-card');
+      card.classList.toggle('collapsed');
+    });
+  });
+  
+  // 时间表折叠 - 动态包装内容
+  document.querySelectorAll('.timeline-card').forEach(card => {
+    const header = card.querySelector('h2');
+    if (header) {
+      header.classList.add('timeline-header');
+      const wrapper = document.createElement('div');
+      wrapper.className = 'timeline-content';
+      let sibling = header.nextElementSibling;
+      while (sibling) {
+        const next = sibling.nextElementSibling;
+        wrapper.appendChild(sibling);
+        sibling = next;
+      }
+      card.appendChild(wrapper);
+    }
+  });
+  
+  document.querySelectorAll('.timeline-card .timeline-header').forEach(header => {
+    header.addEventListener('click', function() {
+      const card = this.closest('.timeline-card');
+      card.classList.toggle('collapsed');
+    });
+  });
+  
+  // 其他模块折叠（点击标题）
+  document.querySelectorAll('.avoid-section h2, .budget-card h2, .tips-card h2, .hotel-section h2, .food-section h2').forEach(h2 => {
+    h2.classList.add('collapsible');
+    h2.innerHTML += '<span class="collapse-icon">▼</span>';
+    h2.addEventListener('click', function() {
+      const content = this.nextElementSibling;
+      if (content) {
+        content.classList.toggle('collapsed');
+        this.classList.toggle('collapsed');
+      }
+    });
+  });
+})();
+</script>
 
 </body>
 </html>

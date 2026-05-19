@@ -56,6 +56,8 @@ Just tell the AI your destination, departure city, number of days, and preferenc
 | 🍜 美食推荐 | Food Recommendations | 每餐推荐具体餐厅+人均价格+必点菜 |
 | 📱 自适应HTML | Responsive HTML | 同一文件，PC和手机都有完美阅读体验 |
 | 🌸 浪漫风格 | Romantic Style | 配色温暖、排版精美，专为情侣休闲设计 |
+| 🧭 右侧快速导航 | Quick Navigation | PC端右侧固定导航，弱化设计不喧宾夺主 |
+| 📂 可折叠模块 | Collapsible Sections | 点击标题/Day头部可折叠，默认全部展开 |
 
 ---
 
@@ -178,6 +180,12 @@ Fork → Branch → PR，我们会尽快审核 🙌
 ---
 
 ## 📝 更新日志 | Changelog
+
+### v1.0.1（2026-05-19）
+- 🧭 新增右侧快速导航（PC端）
+- 📂 支持模块折叠（Day卡片、时间表、其他模块）
+- 🎨 优化导航颜色和样式
+- 🐛 修复Day卡片折叠不生效的问题
 
 ### v1.0.0（2026-05-19）
 - 🎉 首次发布
