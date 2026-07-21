@@ -17,12 +17,12 @@
 
 **中文**
 
-旅游攻略生成器是一个 QClaw Skill，能够**自动生成精美、详细、可交互的旅游攻略 HTML 页面**。
+旅游攻略生成器是一个 Claw Skill，能够**自动生成精美、详细、可交互的旅游攻略 HTML 页面**。
 
 只需要告诉 AI 你的目的地、出发地、天数和偏好，它就会：
 
 - 🗺️ 自动规划每日详细行程（精确到分钟）
-- 🚗 用高德 API 计算景点到景点之间的距离和用时
+- 🚗 用高德 API 计算景点到景点之间的距离和用时（可选增强，不配也能用）
 - 🏨 推荐最合适的住宿区域和酒店
 - 🍜 推荐当地地道美食餐厅
 - ⚠️ 整理避坑清单（含正确做法 vs 错误做法）
@@ -36,7 +36,7 @@ Travel Guide Generator is a QClaw Skill that **automatically generates beautiful
 Just tell the AI your destination, departure city, number of days, and preferences. It will:
 
 - 🗺️ Auto-plan daily itinerary (accurate to the minute)
-- 🚗 Calculate distances and travel times between spots via Amap API
+- 🚗 Calculate distances and travel times between spots via Amap API (optional enhancement)
 - 🏨 Recommend the best accommodation areas and hotels
 - 🍜 Recommend authentic local restaurants
 - ⚠️ Compile a pitfall avoidance list (with right vs wrong practices)
@@ -116,12 +116,21 @@ AI 会自动搜索真实攻略信息，生成精美的 HTML 文件并提供下�
 
 ---
 
-## ⚙️ 高级配置 | Advanced Configuration
+## ⚙️ 高级配置（可选增强 · 不配置也能用）| Advanced Configuration (Optional)
+
+> 💡 **先放宽心**：高德 API 是**可选的增强项**，不是必做步骤。即使完全不配置，攻略照常生成——景点间距离和用时会自动用**估算值**代替，行程、酒店、美食、避坑、预算等模块都不受影响。只有你想让路线距离/用时更精准时才需要配置它。
 
 ### 高德 API（可选）| Amap API (Optional)
 
-配置高德 Web 服务 API Key 后，可以**自动计算景点到景点之间的真实距离和驾车/步行用时**，路线规划更精准：
+配置高德 Web 服务 API Key 后，可以**自动计算景点到景点之间的真实距离和驾车/步行用时**，路线规划更精准。
 
+**推荐：让 AI 帮你一键配置**
+你不需要自己敲命令。拿到 Key 后直接在对话里告诉 AI：
+> 我的高德 Key 是 `你的key`，帮我配置好
+
+AI 会自动把 `AMAP_KEY` 写入你的系统环境变量（永久生效），之后直接说"生成 XX 攻略"即可。
+
+**手动配置（想自己弄时）：**
 ```bash
 # 设置环境变量
 export AMAP_KEY="你的高德API Key"

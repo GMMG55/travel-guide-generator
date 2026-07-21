@@ -422,6 +422,21 @@ body {
   font-weight: 400;
 }
 
+/* ===== 估算标签（降级数据标识） ===== */
+/* 当路线距离/用时为估算值（API 不可用、超时或失败时）使用，明确告知用户非实测数据 */
+.estimate-tag {
+  display: inline-flex;
+  align-items: center;
+  background: #f5f5f5;
+  color: #999;
+  border: 1px dashed #ccc;
+  font-size: .7em;
+  padding: 1px 8px;
+  border-radius: 8px;
+  margin-left: 4px;
+  font-weight: 400;
+}
+
 /* ===== 避坑 ===== */
 .pitfall {
   margin-top: 8px;

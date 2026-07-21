@@ -92,6 +92,21 @@ border-radius: 8px;
 box-shadow: 0 2px 8px rgba(102,126,234,.3);
 ```
 
+### 估算标签（降级数据标识）
+```css
+/* 当路线距离/用时为估算值（API 不可用、超时或失败时）使用，明确告知用户非实测数据 */
+.estimate-tag {
+  background: #f5f5f5;
+  color: #999;
+  border: 1px dashed #ccc;
+  font-size: .7em;
+  padding: 1px 8px;
+  border-radius: 8px;
+  margin-left: 4px;
+}
+```
+> 用法：在路线条 / 交通提示的距离用时文本后追加 `<span class="estimate-tag">估算</span>`。详见 `daily-itinerary-spec.md`。
+
 ### 浪漫提示
 ```css
 background: linear-gradient(90deg, #fff5f5, #fff0fb);

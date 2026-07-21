@@ -136,6 +136,11 @@ def get_multi_point_route(locations, key):
     
     return all_coords
 
+def fail_json(message):
+    """以结构化 JSON 输出错误并正常退出（exit 0），便于调用方降级处理，避免中断整条流程。"""
+    print(json.dumps({"status": "error", "message": message, "fallback": True}, ensure_ascii=False))
+    sys.exit(0)
+
 def main():
     parser = argparse.ArgumentParser(description="高德地图路线规划")
     parser.add_argument("--origin", help="起点地址")
@@ -147,61 +152,62 @@ def main():
     
     args = parser.parse_args()
     
-    # 获取API key
-    key = args.key or get_amap_key()
-    
-    # 多点路线模式
-    if args.multi_point:
-        if len(args.multi_point) < 2:
-            print("错误: --multi-point 需要至少2个地址", file=sys.stderr)
+    try:
+        # 获取API key
+        key = args.key or get_amap_key()
+        
+        # 多点路线模式
+        if args.multi_point:
+            if len(args.multi_point) < 2:
+                print("错误: --multi-point 需要至少2个地址", file=sys.stderr)
+                sys.exit(1)
+            
+            print(f"正在查询多点路线: {' -> '.join(args.multi_point)}", file=sys.stderr)
+            
+            # 地理编码所有点
+            locations = []
+            for addr in args.multi_point:
+                coord = geocode(addr, args.city, key)
+                if not coord:
+                    fail_json(f"无法找到地址: {addr}")
+                locations.append(coord)
+            
+            # 获取多点路线坐标
+            all_coords = get_multi_point_route(locations, key)
+            
+            print(json.dumps({"status": "ok", "polyline": all_coords}, ensure_ascii=False, indent=2))
+            sys.exit(0)
+        
+        # 单点路线模式（原有逻辑）
+        if not args.origin or not args.destination:
+            parser.print_help()
             sys.exit(1)
         
-        print(f"正在查询多点路线: {' -> '.join(args.multi_point)}", file=sys.stderr)
+        # 地理编码
+        print(f"正在查询: {args.origin} -> {args.destination}", file=sys.stderr)
         
-        # 地理编码所有点
-        locations = []
-        for addr in args.multi_point:
-            coord = geocode(addr, args.city, key)
-            if not coord:
-                print(f"错误: 无法找到地址 '{addr}'", file=sys.stderr)
-                sys.exit(1)
-            locations.append(coord)
+        origin_coord = geocode(args.origin, args.city, key)
+        if not origin_coord:
+            fail_json(f"无法找到起点: {args.origin}")
         
-        # 获取多点路线坐标
-        all_coords = get_multi_point_route(locations, key)
+        dest_coord = geocode(args.destination, args.city, key)
+        if not dest_coord:
+            fail_json(f"无法找到终点: {args.destination}")
         
-        print(json.dumps({"polyline": all_coords}, ensure_ascii=False, indent=2))
-        sys.exit(0)
-    
-    # 单点路线模式（原有逻辑）
-    if not args.origin or not args.destination:
-        parser.print_help()
-        sys.exit(1)
-    
-    # 地理编码
-    print(f"正在查询: {args.origin} -> {args.destination}", file=sys.stderr)
-    
-    origin_coord = geocode(args.origin, args.city, key)
-    if not origin_coord:
-        print(f"错误: 无法找到起点 '{args.origin}'", file=sys.stderr)
-        sys.exit(1)
-    
-    dest_coord = geocode(args.destination, args.city, key)
-    if not dest_coord:
-        print(f"错误: 无法找到终点 '{args.destination}'", file=sys.stderr)
-        sys.exit(1)
-    
-    # 路线规划
-    result = get_driving_route(origin_coord, dest_coord, key)
-    
-    if result:
-        # 如果不要求输出polyline，则删除该字段
-        if not args.output_polyline:
-            result.pop("polyline", None)
-        print(json.dumps(result, ensure_ascii=False, indent=2))
-    else:
-        print("错误: 路线规划失败", file=sys.stderr)
-        sys.exit(1)
+        # 路线规划
+        result = get_driving_route(origin_coord, dest_coord, key)
+        
+        if result:
+            # 如果不要求输出polyline，则删除该字段
+            result["status"] = "ok"
+            if not args.output_polyline:
+                result.pop("polyline", None)
+            print(json.dumps(result, ensure_ascii=False, indent=2))
+        else:
+            fail_json("路线规划失败（API 不可用、配额耗尽或返回错误）")
+    except Exception as e:
+        # 顶层兜底：任何意外异常都转为结构化错误，绝不抛出 traceback 中断流程
+        fail_json(f"路线规划异常: {e}")
 
 if __name__ == "__main__":
     main()
