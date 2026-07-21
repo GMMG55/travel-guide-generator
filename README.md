@@ -58,6 +58,7 @@ Just tell the AI your destination, departure city, number of days, and preferenc
 | 🌸 浪漫风格 | Romantic Style | 配色温暖、排版精美，专为情侣休闲设计 |
 | 🧭 右侧快速导航 | Quick Navigation | PC端右侧固定导航，弱化设计不喧宾夺主 |
 | 📂 可折叠模块 | Collapsible Sections | 点击标题/Day头部可折叠，默认全部展开 |
+| 🌍 多语言支持 | Multi-language Support | 支持中/英/日/韩/法/德/西等13种语言输出，专有名词保留原文 |
 
 ---
 
@@ -145,6 +146,38 @@ export AMAP_KEY="你的高德API Key"
 - 🖨️ **可打印**：浏览器"打印"即可保存为 PDF
 
 直接双击 HTML 文件在浏览器中打开，或分享给同行伙伴。
+
+---
+
+## 🌍 多语言支持 | Multi-language Support
+
+无论是中文用户还是海外游客，都能用母语生成攻略。本 Skill 支持 **13 种语言**输出，所有界面文本（标题、按钮、标签、提示）都会翻译为目标语言；专有名词（景点名、酒店名、店名）保留原文，可在括号中附注翻译。
+
+**支持的语言 | Supported Languages**
+
+| 语言代码 | 语言 | 示例请求 |
+|----------|------|----------|
+| `zh-CN` | 简体中文（默认） | "帮我生成一个威海4天旅游攻略" |
+| `en` | 英语 | "Generate a 4-day travel guide for Tokyo" |
+| `ja` | 日语 | "東京の4日間旅行ガイドを作成して" |
+| `ko` | 韩语 | "부산 4일 여행 가이드 만들어줘" |
+| `fr` | 法语 | "Génère un guide de voyage de 4 jours à Paris" |
+| `de` | 德语 | "Erstelle einen 4-Tage-Reiseführer für München" |
+| `es` | 西班牙语 | "Genera una guía de viaje de 4 días para Barcelona" |
+| `it` | 意大利语 | "Genera una guida di viaggio di 4 giorni per Roma" |
+| `pt` | 葡萄牙语 | "Gere um guia de viagem de 4 dias para Lisboa" |
+| `ru` | 俄语 | "Создай путеводитель на 4 дня по Москве" |
+| `th` | 泰语 | "สร้างคู่มือเที่ยวโตเกียว 4 วัน" |
+| `vi` | 越南语 | "Tạo hướng dẫn du lịch 4 ngày ở Đà Nẵng" |
+| `ar` | 阿拉伯语 | "أنشئ دليلاً سياحياً لمدة 4 أيام في دبي" |
+
+**语言如何自动识别？ | How the language is detected**
+
+- 🗣️ 你用某种语言提问 → 自动用该语言生成攻略
+- 🎯 你明确指定语言（如"用英语生成"、"in English"）→ 按指定语言生成
+- 🇨🇳 未指定且使用中文 → 默认简体中文
+
+> 💡 阿拉伯语等 RTL（从右到左）语言会自动在 HTML 中添加 `dir="rtl"` 属性，排版自动适配。
 
 ---
 
