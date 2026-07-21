@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>{{TITLE}}</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #f5f5f5;
+  color: #333;
+  line-height: 1.7;
+}
+
+/* ===== 右侧快速导航 ===== */
+.quick-nav {
+  position: fixed;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  opacity: 0.65;
+  transition: opacity 0.3s ease;
+}
+.quick-nav:hover {
+  opacity: 1;
+}
+.quick-nav .nav-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 2px 0;
+}
+.quick-nav .nav-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #888;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+.quick-nav .nav-item:hover .nav-dot {
+  background: #555;
+}
+.quick-nav .nav-item.active .nav-dot {
+  background: #7c6ef0;
+}
+.quick-nav .nav-label {
+  font-size: 11px;
+  color: #666;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+.quick-nav .nav-item:hover .nav-label {
+  color: #333;
+}
+.quick-nav .nav-item.active .nav-label {
+  color: #7c6ef0;
+  font-weight: 500;
+}
+
+/* ===== 可折叠模块 ===== */
+.collapsible {
+  cursor: pointer;
+  user-select: none;
+}
+.collapsible .collapse-icon {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: .7em;
+  transition: transform 0.3s ease;
+  opacity: 0.5;
+}
+.collapsible.collapsed .collapse-icon {
+  transform: rotate(-90deg);
+}
+.collapse-content {
+  max-height: 5000px;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+}
+.collapse-content.collapsed {
+  max-height: 0;
+}
+
+/* Day卡片的折叠 */
+.day-card .day-header {
+  cursor: pointer;
+}
+.day-card .day-header::after {
+  content: '▼';
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: .7em;
+  opacity: 0.5;
+  transition: transform 0.3s ease;
+}
+.day-card.collapsed .day-header::after {
+  transform: translateY(-50%) rotate(-90deg);
+}
+.day-card .spots-wrapper {
+  transition: max-height 0.4s ease-out;
+  max-height: 10000px;
+  overflow: hidden;
+}
+.day-card.collapsed .spots-wrapper {
+  max-height: 0;
+}
+
+/* 时间表折叠 */
+.timeline-card .timeline-header {
+  cursor: pointer;
+  position: relative;
+}
+.timeline-card .timeline-header::after {
+  content: '▼';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: .7em;
+  opacity: 0.5;
+  transition: transform 0.3s ease;
+}
+.timeline-card.collapsed .timeline-header::after {
+  transform: translateY(-50%) rotate(-90deg);
+}
+.timeline-card .timeline-content {
+  transition: max-height 0.4s ease-out;
+  max-height: 5000px;
+  overflow: hidden;
+}
+.timeline-card.collapsed .timeline-content {
+  max-height: 0;
+}
+
+/* ===== Hero ===== */
+.hero {
+  position: relative;
+  height: 380px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: #f5f5f5;
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+.hero-inner { position: relative; z-index:1; }
+.hero h1 {
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 2px 20px rgba(0,0,0,.2);
+  margin-bottom: 6px;
+}
+.hero .subtitle {
+  font-size: 1.05em;
+  color: rgba(255,255,255,.9);
+  font-weight: 300;
+}
+.hero .tag-row {
+  margin-top: 14px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.hero .tag {
+  background: rgba(255,255,255,.2);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: .82em;
+}
+.hero .emojis {
+  font-size: 2.8em;
+  margin-bottom: 10px;
+}
+
+/* ===== 通用容器 ===== */
+.container {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 20px 16px 60px;
+}
+
+/* ===== 交通卡片 ===== */
+.transport-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+.transport-card h2 {
+  font-size: 1.2em;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.transport-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.t-item {
+  background: #f8f9ff;
+  border-radius: 12px;
+  padding: 14px;
+  position: relative;
+}
+.t-item.recommend {
+  background: linear-gradient(135deg, #e8f0ff, #f0e6ff);
+  border: 2px solid #7c6ef0;
+}
+.t-item .badge {
+  position: absolute;
+  top: -8px;
+  right: 10px;
+  background: #7c6ef0;
+  color: #fff;
+  font-size: .7em;
+  padding: 2px 10px;
+  border-radius: 10px;
+}
+.t-item .t-title {
+  font-weight: 700;
+  font-size: .95em;
+  margin-bottom: 4px;
+}
+.t-item .t-detail {
+  font-size: .82em;
+  color: #888;
+}
+.t-item .t-price {
+  font-size: 1.1em;
+  font-weight: 700;
+  color: #e05a3a;
+  margin-top: 6px;
+}
+
+/* ===== 天卡片 ===== */
+.day-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+.day-header {
+  padding: 20px 24px 16px;
+  color: #fff;
+  position: relative;
+}
+.day-header.d1 { background: linear-gradient(135deg, #f6a085, #f2719c); }
+.day-header.d2 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+.day-header.d3 { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+.day-header.d4 { background: linear-gradient(135deg, #fddb92, #d1fdff); color: #666; }
+.day-header.d5 { background: linear-gradient(135deg, #667eea, #764ba2); }
+.day-header .day-num {
+  font-size: 1.6em;
+  font-weight: 700;
+}
+.day-header .day-title {
+  font-size: 1.1em;
+  font-weight: 500;
+  margin-top: 2px;
+}
+.day-header .day-route {
+  font-size: .82em;
+  opacity: .85;
+  margin-top: 6px;
+}
+
+/* ===== 景点 ===== */
+.spot {
+  padding: 18px 24px;
+  border-bottom: 1px solid #f0f0f0;
+  position: relative;
+}
+.spot:last-child { border-bottom: none; }
+.spot-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.spot-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4em;
+  flex-shrink: 0;
+}
+.spot:nth-child(odd) .spot-icon { background: #fff0f0; }
+.spot:nth-child(even) .spot-icon { background: #f0f4ff; }
+.spot-name {
+  font-weight: 700;
+  font-size: 1.05em;
+}
+.spot-price {
+  display: inline-block;
+  background: #fff3e0;
+  color: #e65100;
+  font-size: .75em;
+  padding: 1px 8px;
+  border-radius: 8px;
+  margin-left: 6px;
+  font-weight: 500;
+}
+/* ===== 景点间交通提示 ===== */
+.spot-transit {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: linear-gradient(135deg, #e8f0ff, #f0e6ff);
+  color: #5b7fdb;
+  font-size: .72em;
+  padding: 2px 10px;
+  border-radius: 8px;
+  margin-left: 6px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.spot-transit .transit-icon {
+  font-size: .9em;
+}
+.spot-transit .transit-time {
+  color: #7c6ef0;
+  font-weight: 700;
+}
+.spot-desc {
+  font-size: .88em;
+  color: #666;
+  margin-top: 6px;
+  line-height: 1.6;
+}
+.spot-romance {
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: linear-gradient(90deg, #fff5f5, #fff0fb);
+  border-radius: 10px;
+  font-size: .84em;
+  color: #c06;
+  border-left: 3px solid #f2719c;
+}
+
+/* ===== 路线条 ===== */
+.route-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 24px;
+  background: linear-gradient(90deg, #e8f0ff, #f0e6ff);
+  font-size: .82em;
+  color: #5b7fdb;
+  overflow-x: auto;
+  flex-wrap: wrap;
+  border-left: 4px solid #7c6ef0;
+  font-weight: 500;
+}
+.route-bar .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #7c6ef0;
+  flex-shrink: 0;
+}
+.route-bar .r-item { white-space: nowrap; }
+
+/* ===== 高德API标签 ===== */
+.amap-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  font-size: .7em;
+  padding: 3px 10px;
+  border-radius: 8px;
+  margin-left: 6px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(102,126,234,.3);
+}
+
+/* ===== 距离标签 ===== */
+.dist-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: #f0f4ff;
+  color: #5b7fdb;
+  font-size: .72em;
+  padding: 2px 8px;
+  border-radius: 6px;
+  margin-left: 6px;
+  font-weight: 400;
+}
+
+/* ===== 避坑 ===== */
+.pitfall {
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: #fffbe6;
+  border-radius: 10px;
+  font-size: .82em;
+  color: #ad6800;
+  border-left: 3px solid #faad14;
+}
+
+/* ===== 避坑清单 ===== */
+.avoid-section {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+.avoid-section h2 {
+  font-size: 1.2em;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.avoid-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+.avoid-item {
+  display: flex;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #fff5f5;
+  font-size: .86em;
+}
+.avoid-item .a-num {
+  background: #ff4d4f;
+  color: #fff;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .75em;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.avoid-item .a-wrong {
+  color: #ff4d4f;
+  font-weight: 700;
+  text-decoration: line-through;
+}
+.avoid-item .a-right {
+  color: #52c41a;
+  font-weight: 500;
+}
+
+/* ===== 酒店推荐 ===== */
+.hotel-section {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+.hotel-section h2 {
+  font-size: 1.2em;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.hotel-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.hotel-item {
+  background: linear-gradient(135deg, #f8f9ff, #f0f4ff);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #e8ecff;
+}
+.hotel-item .h-name {
+  font-weight: 700;
+  font-size: .95em;
+  margin-bottom: 6px;
+  color: #333;
+}
+.hotel-item .h-price {
+  font-size: .82em;
+  color: #e05a3a;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.hotel-item .h-desc {
+  font-size: .8em;
+  color: #666;
+  line-height: 1.5;
+}
+.hotel-item .h-rec {
+  font-size: .78em;
+  color: #5b7fdb;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed #d0d8ff;
+}
+.hotel-item .h-stars {
+  color: #f7ba2a;
+  font-size: .85em;
+}
+
+/* 每日住宿提示 */
+.hotel-tip {
+  background: linear-gradient(90deg, #fff8f0, #fff5f0);
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin: 16px 0;
+  border-left: 4px solid #f2719c;
+  font-size: .88em;
+  color: #666;
+  line-height: 1.6;
+}
+.hotel-tip .ht-title {
+  font-weight: 700;
+  color: #f2719c;
+  font-size: 1.05em;
+  margin-bottom: 4px;
+}
+
+/* ===== 美食 ===== */
+.food-section {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+.food-section h2 {
+  font-size: 1.2em;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.food-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.food-item {
+  background: #fef9f0;
+  border-radius: 12px;
+  padding: 14px;
+}
+.food-item .f-name {
+  font-weight: 700;
+  font-size: .92em;
+}
+.food-item .f-shop {
+  font-size: .78em;
+  color: #999;
+  margin-top: 2px;
+}
+.food-item .f-price {
+  color: #e05a3a;
+  font-weight: 700;
+  font-size: .9em;
+  margin-top: 4px;
+}
+.food-item .f-note {
+  font-size: .78em;
+  color: #666;
+  margin-top: 2px;
+}
+
+/* ===== 预算 ===== */
+.budget-card {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  color: #fff;
+}
+.budget-card h2 {
+  font-size: 1.2em;
+  margin-bottom: 16px;
+}
+.budget-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: .9em;
+  border-bottom: 1px solid rgba(255,255,255,.15);
+}
+.budget-row:last-child { border: none; }
+.budget-total {
+  text-align: center;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 2px solid rgba(255,255,255,.3);
+  font-size: 1.3em;
+  font-weight: 700;
+}
+
+/* ===== 浪漫Tips ===== */
+.tips-card {
+  background: linear-gradient(135deg, #fff0f5, #fff5f0);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+.tips-card h2 {
+  font-size: 1.2em;
+  margin-bottom: 14px;
+}
+.tips-card .tip-item {
+  padding: 8px 0;
+  font-size: .9em;
+  display: flex;
+  gap: 8px;
+}
+
+.footer {
+  text-align: center;
+  padding: 30px 0 20px;
+  color: #bbb;
+  font-size: .82em;
+}
+
+/* ==================== 移动端优化 ==================== */
+@media (max-width: 768px) {
+  /* Hero区域 */
+  .hero {
+    height: auto;
+    min-height: 280px;
+    padding: 40px 16px 70px;
+  }
+  .hero h1 {
+    font-size: 1.5em;
+    padding: 0 8px;
+    word-break: break-word;
+  }
+  .hero .subtitle {
+    font-size: .85em;
+    padding: 0 8px;
+  }
+  .hero .emojis {
+    font-size: 2em;
+    margin-bottom: 8px;
+  }
+  .hero .tag-row {
+    gap: 6px;
+    padding: 0 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+  .hero .tag {
+    font-size: .72em;
+    padding: 3px 8px;
+    white-space: nowrap;
+  }
+
+  /* 容器 */
+  .container {
+    padding: 16px 12px 40px;
+  }
+
+  /* 交通卡片 */
+  .transport-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .transport-card {
+    padding: 16px;
+  }
+  .transport-card h2 {
+    font-size: 1.1em;
+  }
+
+  /* 天卡片 */
+  .day-header {
+    padding: 16px 16px 14px;
+  }
+  .day-header .day-num {
+    font-size: 1.3em;
+  }
+  .day-header .day-title {
+    font-size: .95em;
+  }
+  .day-header .day-route {
+    font-size: .78em;
+  }
+
+  /* 景点 */
+  .spot {
+    padding: 14px 16px;
+  }
+  .spot-head {
+    gap: 10px;
+  }
+  .spot-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 1.2em;
+  }
+  .spot-name {
+    font-size: .95em;
+  }
+  .spot-transit {
+    font-size: .68em;
+    padding: 2px 8px;
+  }
+  .spot-desc {
+    font-size: .82em;
+  }
+  .spot-romance {
+    font-size: .8em;
+    padding: 6px 10px;
+  }
+
+  /* 路线条 */
+  .route-bar {
+    padding: 8px 16px;
+    font-size: .78em;
+    gap: 3px;
+  }
+
+  /* 美食网格 */
+  .food-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .food-section {
+    padding: 16px;
+  }
+
+  /* 避坑清单 */
+  .avoid-section {
+    padding: 16px;
+  }
+  .avoid-item {
+    padding: 8px 12px;
+    font-size: .82em;
+  }
+
+  /* 预算 */
+  .budget-card {
+    padding: 16px;
+  }
+  .budget-card h2 {
+    font-size: 1.1em;
+  }
+
+  /* 浪漫Tips */
+  .tips-card {
+    padding: 16px;
+  }
+  .tips-card .tip-item {
+    font-size: .85em;
+  }
+
+  /* 酒店 */
+  .hotel-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .hotel-section {
+    padding: 16px;
+  }
+}
+
+/* 移动端触摸优化 */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 平滑滚动 */
+html {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* 超小屏幕进一步优化 */
+@media (max-width: 375px) {
+  .hero h1 {
+    font-size: 1.3em;
+  }
+  .hero {
+    min-height: 260px;
+    padding: 30px 12px 60px;
+  }
+  .hero .tag {
+    font-size: .68em;
+    padding: 2px 6px;
+  }
+  .day-header .day-num {
+    font-size: 1.1em;
+  }
+  .spot-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 1.1em;
+  }
+}
+
+/* 移动端隐藏右侧导航 */
+@media (max-width: 1024px) {
+  .quick-nav {
+    display: none;
+  }
+}
+
+/* ===== 每日住宿推荐（晚餐推荐下方） ===== */
+.hotel-rec-section {
+  background: linear-gradient(90deg, #fff8f0, #fff5f0);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 16px 24px;
+  border-left: 4px solid #f2719c;
+}
+.hotel-rec-section .hr-title {
+  font-weight: 700;
+  color: #f2719c;
+  font-size: 1em;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.hotel-rec-section .hr-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+.hotel-rec-section .hr-item {
+  background: #fff;
+  border-radius: 10px;
+  padding: 12px;
+  border: 1px solid #ffe0e0;
+}
+.hotel-rec-section .hr-item .hr-name {
+  font-weight: 700;
+  font-size: .9em;
+  margin-bottom: 4px;
+  color: #333;
+}
+.hotel-rec-section .hr-item .hr-price {
+  font-size: .82em;
+  color: #e05a3a;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.hotel-rec-section .hr-item .hr-desc {
+  font-size: .78em;
+  color: #666;
+  line-height: 1.5;
+}
+.hotel-rec-section .hr-tip {
+  font-size: .82em;
+  color: #f2719c;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed #f5c0c0;
+}
+
+/* ===== 酒店→景点路线条（Day2+ 开头） ===== */
+.hotel-route-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 24px;
+  background: linear-gradient(90deg, #fff0f5, #ffe8f5);
+  font-size: .82em;
+  color: #d4408c;
+  overflow-x: auto;
+  flex-wrap: wrap;
+  border-left: 4px solid #f2719c;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+.hotel-route-bar .hdot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f2719c;
+  flex-shrink: 0;
+}
+.hotel-route-bar .hroute-item {
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .hotel-rec-section {
+    margin: 12px 16px;
+    padding: 14px 16px;
+  }
+  .hotel-rec-section .hr-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .hotel-route-bar {
+    padding: 8px 16px;
+    font-size: .78em;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<!-- Hero区域 -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="emojis">{{EMOJIS}}</div>
+    <h1>{{TITLE}}</h1>
+    <div class="subtitle">{{SUBTITLE}}</div>
+    <div class="tag-row">
+      {{TAGS}}
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- 交通信息 -->
+{{TRANSPORT_SECTION}}
+
+<!-- 酒店推荐 -->
+{{HOTEL_SECTION}}
+
+<!-- 每日行程 -->
+{{DAILY_ITINERARY}}
+
+<!-- 美食推荐 -->
+{{FOOD_SECTION}}
+
+<!-- 避坑清单 -->
+{{AVOID_SECTION}}
+
+<!-- 预算估算 -->
+{{BUDGET_SECTION}}
+
+<!-- 浪漫Tips -->
+{{TIPS_SECTION}}
+
+<div class="footer">
+  {{FOOTER_TEXT}}
+</div>
+
+</div><!-- /container -->
+
+<!-- 右侧快速导航 -->
+<div class="quick-nav" id="quickNav">
+  <!-- 由JS动态生成 -->
+</div>
+
+<script>
+// ===== 快速导航生成 =====
+(function() {
+  const sections = [];
+  // 收集所有可导航区域
+  document.querySelectorAll('.highlights, .transport-card, .timeline-card, .day-card, .avoid-section, .budget-card, .tips-card, .hotel-section, .food-section').forEach((el, i) => {
+    const id = el.id || ('section-' + i);
+    el.id = id;
+    let label = '';
+    if (el.classList.contains('highlights')) {
+      label = '亮点';
+    } else if (el.classList.contains('transport-card')) {
+      label = '交通';
+    } else if (el.classList.contains('timeline-card')) {
+      label = '时间表';
+    } else if (el.classList.contains('day-card')) {
+      const dayNum = el.querySelector('.day-num');
+      label = dayNum ? dayNum.textContent.split('·')[0].trim() : 'Day ' + (i+1);
+    } else if (el.classList.contains('avoid-section')) {
+      label = '避坑';
+    } else if (el.classList.contains('budget-card')) {
+      label = '预算';
+    } else if (el.classList.contains('tips-card')) {
+      label = 'Tips';
+    } else if (el.classList.contains('hotel-section')) {
+      label = '酒店';
+    } else if (el.classList.contains('food-section')) {
+      label = '美食';
+    }
+    sections.push({ id, label, el });
+  });
+  
+  // 生成导航项
+  const nav = document.getElementById('quickNav');
+  sections.forEach(s => {
+    const item = document.createElement('div');
+    item.className = 'nav-item';
+    item.innerHTML = '<span class="nav-dot"></span><span class="nav-label">' + s.label + '</span>';
+    item.onclick = () => {
+      s.el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+    nav.appendChild(item);
+  });
+  
+  // 滚动时高亮当前区域
+  const items = nav.querySelectorAll('.nav-item');
+  window.addEventListener('scroll', () => {
+    let current = 0;
+    sections.forEach((s, i) => {
+      const rect = s.el.getBoundingClientRect();
+      if (rect.top < window.innerHeight / 2) current = i;
+    });
+    items.forEach((item, i) => item.classList.toggle('active', i === current));
+  });
+})();
+
+// ===== 折叠功能 =====
+(function() {
+  // Day卡片折叠 - 动态包装内容
+  document.querySelectorAll('.day-card').forEach(card => {
+    const header = card.querySelector('.day-header');
+    const wrapper = document.createElement('div');
+    wrapper.className = 'spots-wrapper';
+    let sibling = header.nextElementSibling;
+    while (sibling) {
+      const next = sibling.nextElementSibling;
+      wrapper.appendChild(sibling);
+      sibling = next;
+    }
+    card.appendChild(wrapper);
+  });
+  
+  document.querySelectorAll('.day-card .day-header').forEach(header => {
+    header.addEventListener('click', function() {
+      const card = this.closest('.day-card');
+      card.classList.toggle('collapsed');
+    });
+  });
+  
+  // 时间表折叠 - 动态包装内容
+  document.querySelectorAll('.timeline-card').forEach(card => {
+    const header = card.querySelector('h2');
+    if (header) {
+      header.classList.add('timeline-header');
+      const wrapper = document.createElement('div');
+      wrapper.className = 'timeline-content';
+      let sibling = header.nextElementSibling;
+      while (sibling) {
+        const next = sibling.nextElementSibling;
+        wrapper.appendChild(sibling);
+        sibling = next;
+      }
+      card.appendChild(wrapper);
+    }
+  });
+  
+  document.querySelectorAll('.timeline-card .timeline-header').forEach(header => {
+    header.addEventListener('click', function() {
+      const card = this.closest('.timeline-card');
+      card.classList.toggle('collapsed');
+    });
+  });
+  
+  // 其他模块折叠（点击标题）
+  document.querySelectorAll('.avoid-section h2, .budget-card h2, .tips-card h2, .hotel-section h2, .food-section h2').forEach(h2 => {
+    h2.classList.add('collapsible');
+    h2.innerHTML += '<span class="collapse-icon">▼</span>';
+    h2.addEventListener('click', function() {
+      const content = this.nextElementSibling;
+      if (content) {
+        content.classList.toggle('collapsed');
+        this.classList.toggle('collapsed');
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
