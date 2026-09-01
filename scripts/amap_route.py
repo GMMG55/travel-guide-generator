@@ -12,13 +12,7 @@ import os
 
 def get_amap_key():
     """获取高德API key"""
-    key = os.environ.get('AMAP_KEY')
-    if not key:
-        print("错误: 未设置AMAP_KEY环境变量", file=sys.stderr)
-        print("请设置: export AMAP_KEY=your_key (Linux/Mac)", file=sys.stderr)
-        print("或设置: set AMAP_KEY=your_key (Windows)", file=sys.stderr)
-        sys.exit(1)
-    return key
+    return os.environ.get('AMAP_KEY')
 
 def geocode(address, city=None, key=None):
     """地址转经纬度"""
@@ -155,6 +149,8 @@ def main():
     try:
         # 获取API key
         key = args.key or get_amap_key()
+        if not key:
+            fail_json("未设置 AMAP_KEY 环境变量，请使用估算路线数据")
         
         # 多点路线模式
         if args.multi_point:

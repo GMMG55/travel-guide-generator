@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html {{LANG_ATTR}}>
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>{{TITLE}}</title>
+<title>泰山周末轻徒步攻略</title>
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 
@@ -1117,11 +1117,11 @@ html {
 <!-- Hero区域 -->
 <div class="hero">
   <div class="hero-inner">
-    <div class="emojis">{{EMOJIS}}</div>
-    <h1>{{TITLE}}</h1>
-    <div class="subtitle">{{SUBTITLE}}</div>
+    <div class="emojis">⛰️🌅🥾</div>
+    <h1>泰山周末轻徒步攻略</h1>
+    <div class="subtitle">日出、山风与一段不赶时间的旅程</div>
     <div class="tag-row">
-      {{TAGS}}
+      <span class="tag">1天</span><span class="tag">2人</span><span class="tag">情侣</span><span class="tag">relaxed</span>
     </div>
   </div>
 </div>
@@ -1129,31 +1129,31 @@ html {
 <div class="container">
 
 <!-- 偏好、天气、质量检查、来源与本地工具 -->
-{{META_SECTIONS}}
+<section class="tool-card"><div class="toolbar"><button type="button" id="printGuide">🖨️ 打印/PDF</button><button type="button" id="exportState">💾 导出修改</button><button type="button" id="resetState">↺ 清除本地修改</button><span id="saveStatus">修改仅保存在本浏览器</span></div></section><section class="preferences-section"><h2>🎛️ 本次旅行偏好</h2><div class="meta-chips"><span class="meta-chip"><b>预算</b> comfortable</span><span class="meta-chip"><b>节奏</b> relaxed</span><span class="meta-chip"><b>人群</b> 情侣</span><span class="meta-chip"><b>兴趣</b> 自然、摄影、日出</span><span class="meta-chip"><b>饮食</b> 不吃太辣</span><span class="meta-chip"><b>交通偏好</b> walk</span></div></section><section class="weather-section"><h2>🌦️ 天气与季节</h2><div><div class="weather-item"><b>2026-09-20</b><span>多云，山区天气需临近核实</span><span>12–23℃</span><span class="source-badge">通用旅行知识，出发前建议核实 · 2026-09-01</span><div class="weather-backup">室内备选：如遇持续降雨，改为岱庙与泰安市内文化路线</div></div></div></section><section class="sources-section"><h2>🔎 信息来源与核实日期</h2><ul><li><span class="source-type">official</span><a class="source-badge" href="https://www.mount-tai.com.cn/" target="_blank" rel="noopener noreferrer">泰山景区官方信息 · 2026-09-01</a></li><li><span class="source-type">estimate</span><span class="source-badge">离线路线估算 · 2026-09-01</span></li><li><span class="source-type">general</span><span class="source-badge">通用旅行知识，出发前建议核实 · 2026-09-01</span></li></ul></section>
 
 <!-- 交通信息 -->
-{{TRANSPORT_SECTION}}
+<section class="transport-card"><h2>🚄 到达与当地交通</h2><div class="transport-grid"><div class="t-item recommend"><span class="badge">推荐</span><div class="t-title">高铁到泰安站</div><div class="t-detail">抵达后换乘公交或打车前往红门游客中心</div><div class="t-price">以购票平台实时价格为准</div><span class="source-badge">通用旅行知识，出发前建议核实 · 2026-09-01</span></div></div></section>
 
 <!-- 酒店推荐 -->
-{{HOTEL_SECTION}}
+<section class="hotel-section"><h2>🏨 住宿推荐</h2><div class="hotel-grid"><div class="hotel-item"><div class="h-name">红门附近</div><div class="h-price">约 200–450 元/晚</div><div class="h-desc">适合从红门步行登山，减少清晨接驳</div><div class="h-rec">次日可快速前往登山入口</div><span class="source-badge">通用旅行知识，出发前建议核实 · 2026-09-01</span></div></div></section>
 
 <!-- 每日行程 -->
-{{DAILY_ITINERARY}}
+<section class="day-card" data-day="1"><div class="day-header d1"><div class="day-num">Day 1 · 2026-09-20</div><div class="day-title">红门经典线 · 山顶日落</div><div class="day-route">红门游客中心 → 中天门 → 南天门与天街</div></div><div class="route-bar"><span class="dot"></span>红门游客中心 → 中天门 → 南天门与天街</div><article class="spot itinerary-item" data-item-key="day-1-item-1" data-coords="117.1298,36.2001"><div class="spot-head"><label class="item-toggle" title="标记完成"><input type="checkbox" class="item-check" data-key="day-1-item-1"></label><div class="spot-icon">🥾</div><div class="spot-main"><div class="spot-name"><span class="spot-title">红门游客中心<span class="spot-price">票价请以官方为准</span></span><span class="spot-actions"><button type="button" class="favorite-btn" data-key="day-1-item-1" title="收藏">♡</button><button type="button" class="edit-btn" data-key="day-1-item-1" aria-expanded="false">编辑</button></span></div><div class="editable-schedule"><span class="schedule-display">08:00–08:30</span><span class="item-edit-controls" hidden><input type="time" class="time-input start-time" data-key="day-1-item-1" value="08:00" aria-label="开始时间">–<input type="time" class="time-input end-time" data-key="day-1-item-1" value="08:30" aria-label="结束时间"></span><span class="spot-transit"></span></div><div class="spot-desc">整理装备、核验门票和天气后开始登山。</div><a class="source-badge" href="https://www.mount-tai.com.cn/" target="_blank" rel="noopener noreferrer">泰山景区官方信息 · 2026-09-01</a><label class="cost-editor item-edit-controls" hidden>预算 <input type="number" min="0" step="1" class="cost-input" data-key="day-1-item-1" value="115"> 元/人</label></div></div></article><article class="spot itinerary-item" data-item-key="day-1-item-2" data-coords="117.1015,36.2353"><div class="spot-head"><label class="item-toggle" title="标记完成"><input type="checkbox" class="item-check" data-key="day-1-item-2"></label><div class="spot-icon">⛰️</div><div class="spot-main"><div class="spot-name"><span class="spot-title">中天门<span class="spot-price">补给约 30–60 元</span></span><span class="spot-actions"><button type="button" class="favorite-btn" data-key="day-1-item-2" title="收藏">♡</button><button type="button" class="edit-btn" data-key="day-1-item-2" aria-expanded="false">编辑</button></span></div><div class="editable-schedule"><span class="schedule-display">11:30–12:20</span><span class="item-edit-controls" hidden><input type="time" class="time-input start-time" data-key="day-1-item-2" value="11:30" aria-label="开始时间">–<input type="time" class="time-input end-time" data-key="day-1-item-2" value="12:20" aria-label="结束时间"></span><span class="spot-transit">步行 5.4km / 72分钟 <span class="estimate-tag">估算</span></span></div><div class="spot-desc">补给和午间休息，根据体力决定继续步行或换乘索道。</div><a class="source-badge" href="https://www.mount-tai.com.cn/" target="_blank" rel="noopener noreferrer">泰山景区官方信息 · 2026-09-01</a><span class="source-badge">通用旅行知识，出发前建议核实 · 2026-09-01</span><label class="cost-editor item-edit-controls" hidden>预算 <input type="number" min="0" step="1" class="cost-input" data-key="day-1-item-2" value="45"> 元/人</label></div></div></article><article class="spot itinerary-item" data-item-key="day-1-item-3" data-coords="117.1036,36.2574"><div class="spot-head"><label class="item-toggle" title="标记完成"><input type="checkbox" class="item-check" data-key="day-1-item-3"></label><div class="spot-icon">🌤️</div><div class="spot-main"><div class="spot-name"><span class="spot-title">南天门与天街<span class="spot-price">免费游览</span></span><span class="spot-actions"><button type="button" class="favorite-btn" data-key="day-1-item-3" title="收藏">♡</button><button type="button" class="edit-btn" data-key="day-1-item-3" aria-expanded="false">编辑</button></span></div><div class="editable-schedule"><span class="schedule-display">15:30–17:00</span><span class="item-edit-controls" hidden><input type="time" class="time-input start-time" data-key="day-1-item-3" value="15:30" aria-label="开始时间">–<input type="time" class="time-input end-time" data-key="day-1-item-3" value="17:00" aria-label="结束时间"></span><span class="spot-transit">步行 2.8km / 38分钟 <span class="estimate-tag">估算</span></span></div><div class="spot-desc">放慢节奏游览天街，提前寻找安全、开阔的观景位置。</div><a class="source-badge" href="https://www.mount-tai.com.cn/" target="_blank" rel="noopener noreferrer">泰山景区官方信息 · 2026-09-01</a><label class="cost-editor item-edit-controls" hidden>预算 <input type="number" min="0" step="1" class="cost-input" data-key="day-1-item-3" value="0"> 元/人</label></div></div><div class="spot-romance">💕 在山风里一起等待天色变化，记得给彼此留一张合照。</div><div class="pitfall">⚠️ 山顶温差明显，不要只按山下温度准备衣物。</div></article></section>
 
 <!-- 美食推荐 -->
-{{FOOD_SECTION}}
+<section class="food-section"><h2>🍜 美食推荐</h2><div class="food-grid"><div class="food-item"><div class="f-name">泰山豆腐宴</div><div class="f-shop">选择明码标价、近期评价稳定的门店</div><div class="f-price">约 60–100 元/人</div><div class="f-note">适合下山后补充热量</div><span class="source-badge">通用旅行知识，出发前建议核实 · 2026-09-01</span></div></div></section>
 
 <!-- 避坑清单 -->
-{{AVOID_SECTION}}
+<section class="avoid-section"><h2>⚠️ 避坑清单</h2><div class="avoid-list"><div class="avoid-item"><div class="a-num">1</div><div><span class="a-wrong">只穿短袖上山</span> → <span class="a-right">携带防风外层，并根据实时天气增减衣物</span><a class="source-badge" href="https://www.mount-tai.com.cn/" target="_blank" rel="noopener noreferrer">泰山景区官方信息 · 2026-09-01</a></div></div><div class="avoid-item"><div class="a-num">2</div><div><span class="a-wrong">把估算时间当作固定到达时间</span> → <span class="a-right">至少预留 20% 机动时间，按体力调整</span><span class="source-badge">离线路线估算 · 2026-09-01</span></div></div></div></section>
 
 <!-- 预算估算 -->
-{{BUDGET_SECTION}}
+<section class="budget-card"><h2>💰 预算估算 · comfortable</h2><div><div class="budget-row"><span>交通</span><span>240</span></div><div class="budget-row"><span>门票</span><span>230</span></div><div class="budget-row"><span>餐饮</span><span>260</span></div><div class="budget-row"><span>住宿</span><span>360</span></div><div class="budget-row"><span>其他</span><span>120</span></div><div class="budget-total">计划预算：<span id="baseBudget">1210</span> <span class="currency-label">CNY</span><br><small>本地编辑合计：<span id="liveBudget">0</span> <span class="currency-label">CNY</span></small></div></div></section>
 
 <!-- 浪漫Tips -->
-{{TIPS_SECTION}}
+<section class="tips-card"><h2>🧳 出行 Tips</h2><div><div class="tip-item"><span>✓</span><span>夜间或日出行程需携带头灯，不用手机闪光灯代替持续照明。</span></div><div class="tip-item"><span>✓</span><span>山岳景区开放与交通可能因天气临时调整，出发前查看官方通知。</span></div><div class="tip-item"><span>✓</span><span>当前行程处于秋季，出发前请再次核实临近天气。</span></div><div class="tip-item"><span>✓</span><span>早晚偏凉，建议携带薄外套并关注景区季节性开放时间。</span></div></div></section>
 
 <div class="footer">
-  {{FOOTER_TEXT}}
+  信息会变化，预订与出发前请再次核实。
 </div>
 
 </div><!-- /container -->
@@ -1164,7 +1164,7 @@ html {
 </div>
 
 <script>
-const GUIDE_DATA = {{GUIDE_DATA}};
+const GUIDE_DATA = {"schema_version": "1.0", "meta": {"title": "泰山周末轻徒步攻略", "subtitle": "日出、山风与一段不赶时间的旅程", "destination": "泰山", "origin": "济南", "language": "zh-CN", "start_date": "2026-09-20", "days": 1, "travelers": 2, "currency": "CNY", "timezone": "Asia/Shanghai", "destination_coords": [117.102, 36.255], "emojis": "⛰️🌅🥾"}, "preferences": {"budget_level": "comfortable", "pace": "relaxed", "group_type": "情侣", "interests": ["自然", "摄影", "日出"], "dietary": ["不吃太辣"], "accessibility": [], "transport": ["walk"], "earliest_start": "05:30", "latest_end": "21:30"}, "sources": [{"id": "official-taishan", "title": "泰山景区官方信息", "url": "https://www.mount-tai.com.cn/", "type": "official", "checked_at": "2026-09-01"}, {"id": "route-estimate", "title": "离线路线估算", "type": "estimate", "checked_at": "2026-09-01"}, {"id": "general-knowledge", "title": "通用旅行知识，出发前建议核实", "type": "general", "checked_at": "2026-09-01"}], "weather": [{"date": "2026-09-20", "condition": "多云，山区天气需临近核实", "temp_low": 12, "temp_high": 23, "backup_plan": "如遇持续降雨，改为岱庙与泰安市内文化路线", "source_ids": ["general-knowledge"]}], "transport": [{"mode": "train", "title": "高铁到泰安站", "detail": "抵达后换乘公交或打车前往红门游客中心", "price": "以购票平台实时价格为准", "recommended": true, "source_ids": ["general-knowledge"]}], "hotels": [{"area": "红门附近", "price": "约 200–450 元/晚", "reason": "适合从红门步行登山，减少清晨接驳", "connection": "次日可快速前往登山入口", "source_ids": ["general-knowledge"]}], "days": [{"day": 1, "date": "2026-09-20", "title": "红门经典线 · 山顶日落", "items": [{"type": "spot", "name": "红门游客中心", "icon": "🥾", "start": "08:00", "end": "08:30", "description": "整理装备、核验门票和天气后开始登山。", "price": "票价请以官方为准", "cost": 115, "currency": "元/人", "coords": [117.1298, 36.2001], "opening_hours": {"open": "05:00", "close": "23:00"}, "source_ids": ["official-taishan"]}, {"type": "spot", "name": "中天门", "icon": "⛰️", "start": "11:30", "end": "12:20", "description": "补给和午间休息，根据体力决定继续步行或换乘索道。", "price": "补给约 30–60 元", "cost": 45, "currency": "元/人", "coords": [117.1015, 36.2353], "transport_mode": "walk", "source_ids": ["official-taishan", "general-knowledge"], "route_from_previous": {"mode": "walk", "distance_km": 5.4, "duration_min": 72, "estimated": true, "method": "haversine_x_1.15"}}, {"type": "spot", "name": "南天门与天街", "icon": "🌤️", "start": "15:30", "end": "17:00", "description": "放慢节奏游览天街，提前寻找安全、开阔的观景位置。", "price": "免费游览", "cost": 0, "currency": "元/人", "coords": [117.1036, 36.2574], "transport_mode": "walk", "romance": "在山风里一起等待天色变化，记得给彼此留一张合照。", "pitfall": "山顶温差明显，不要只按山下温度准备衣物。", "source_ids": ["official-taishan"], "route_from_previous": {"mode": "walk", "distance_km": 2.8, "duration_min": 38, "estimated": true, "method": "haversine_x_1.15"}}]}], "foods": [{"name": "泰山豆腐宴", "shop": "选择明码标价、近期评价稳定的门店", "price": "约 60–100 元/人", "reason": "适合下山后补充热量", "source_ids": ["general-knowledge"]}], "avoid": [{"wrong": "只穿短袖上山", "right": "携带防风外层，并根据实时天气增减衣物", "source_ids": ["official-taishan"]}, {"wrong": "把估算时间当作固定到达时间", "right": "至少预留 20% 机动时间，按体力调整", "source_ids": ["route-estimate"]}], "budget": {"selected": "comfortable", "profiles": {"economy": {"categories": {"交通": 120, "门票": 230, "餐饮": 160, "其他": 80}, "total": 590}, "comfortable": {"categories": {"交通": 240, "门票": 230, "餐饮": 260, "住宿": 360, "其他": 120}, "total": 1210}}}, "tips": ["夜间或日出行程需携带头灯，不用手机闪光灯代替持续照明。", "山岳景区开放与交通可能因天气临时调整，出发前查看官方通知。"], "season_tips": ["当前行程处于秋季，出发前请再次核实临近天气。", "早晚偏凉，建议携带薄外套并关注景区季节性开放时间。"]};
 
 // ===== 快速导航生成 =====
 (function() {

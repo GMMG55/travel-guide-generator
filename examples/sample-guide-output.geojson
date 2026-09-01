@@ -1,0 +1,59 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          117.1298,
+          36.2001
+        ]
+      },
+      "properties": {
+        "name": "红门游客中心",
+        "day": 1,
+        "date": "2026-09-20",
+        "start": "08:00",
+        "end": "08:30",
+        "type": "spot"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          117.1015,
+          36.2353
+        ]
+      },
+      "properties": {
+        "name": "中天门",
+        "day": 1,
+        "date": "2026-09-20",
+        "start": "11:30",
+        "end": "12:20",
+        "type": "spot"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          117.1036,
+          36.2574
+        ]
+      },
+      "properties": {
+        "name": "南天门与天街",
+        "day": 1,
+        "date": "2026-09-20",
+        "start": "15:30",
+        "end": "17:00",
+        "type": "spot"
+      }
+    }
+  ]
+}
