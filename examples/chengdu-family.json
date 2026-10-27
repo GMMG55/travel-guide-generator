@@ -1,0 +1,297 @@
+{
+  "schema_version": "1.0",
+  "meta": {
+    "title": "成都2天亲子慢游",
+    "subtitle": "产品演示案例：日期、费用与营业安排为说明性数据，请勿直接用于预订。",
+    "destination": "成都",
+    "origin": "北京",
+    "language": "zh-CN",
+    "start_date": "2026-09-10",
+    "days": 2,
+    "travelers": 3,
+    "currency": "CNY",
+    "timezone": "Asia/Shanghai",
+    "footer": "演示案例，不是当前出行建议。交通、天气、票价需在实际出发前重新核实。"
+  },
+  "preferences": {
+    "pace": "relaxed",
+    "group_type": "亲子",
+    "transport": [
+      "transit"
+    ],
+    "interests": [
+      "美食",
+      "休闲"
+    ],
+    "budget_level": "comfortable"
+  },
+  "sources": [
+    {
+      "id": "demo",
+      "title": "演示规划与预算估算（非实时报价）",
+      "type": "estimate"
+    }
+  ],
+  "transport": [
+    {
+      "title": "北京往返成都",
+      "detail": "先确认可用班次，再根据抵达时间调整首末日；本案例交通费用仅作预算演示。",
+      "price": "已纳入双人/家庭总预算",
+      "recommended": true,
+      "source_ids": [
+        "demo"
+      ]
+    }
+  ],
+  "hotels": [
+    {
+      "area": "天府广场—人民公园",
+      "price": "家庭房预算350–500元/晚",
+      "reason": "靠近地铁与餐馆，便于午休",
+      "connection": "订房前确认床型、早餐、退改规则和真实步行距离",
+      "source_ids": [
+        "demo"
+      ]
+    }
+  ],
+  "weather": [
+    {
+      "date": "2026-09-10",
+      "condition": "季节示例，未查询实时天气",
+      "temp_low": 15,
+      "temp_high": 26,
+      "backup_plan": "公园改为室内展馆，提前确认预约与开放",
+      "source_ids": [
+        "demo"
+      ]
+    },
+    {
+      "date": "2026-09-11",
+      "condition": "季节示例，未查询实时天气",
+      "temp_low": 15,
+      "temp_high": 26,
+      "backup_plan": "公园改为室内展馆，提前确认预约与开放",
+      "source_ids": [
+        "demo"
+      ]
+    }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "date": "2026-09-10",
+      "title": "公园与城市文化",
+      "items": [
+        {
+          "type": "spot",
+          "name": "抵达与酒店寄存",
+          "icon": "📍",
+          "start": "09:30",
+          "end": "11:00",
+          "description": "2大1小示例，交通按全家计算。",
+          "cost": 0,
+          "price": "公共区域或已计入其他预算",
+          "currency": "元/家庭",
+          "source_ids": [
+            "demo"
+          ]
+        },
+        {
+          "type": "meal",
+          "name": "清淡川味午餐",
+          "icon": "🍜",
+          "start": "11:30",
+          "end": "12:30",
+          "description": "辣椒单放，儿童餐先上。",
+          "cost": 180,
+          "price": "双人/家庭预算180元",
+          "currency": "元/家庭",
+          "source_ids": [
+            "demo"
+          ]
+        },
+        {
+          "type": "spot",
+          "name": "酒店午休",
+          "icon": "📍",
+          "start": "13:30",
+          "end": "15:00",
+          "description": "午睡优先，醒来再出门。",
+          "cost": 0,
+          "price": "公共区域或已计入其他预算",
+          "currency": "元/家庭",
+          "source_ids": [
+            "demo"
+          ]
+        },
+        {
+          "type": "spot",
+          "name": "人民公园",
+          "icon": "📍",
+          "start": "16:00",
+          "end": "18:00",
+          "description": "散步喝茶，不追求打卡数量。",
+          "cost": 80,
+          "price": "双人/家庭预算80元",
+          "currency": "元/家庭",
+          "source_ids": [
+            "demo"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2026-09-11",
+      "title": "看熊猫，慢慢回家",
+      "items": [
+        {
+          "type": "spot",
+          "name": "熊猫基地",
+          "icon": "📍",
+          "start": "08:30",
+          "end": "11:30",
+          "description": "提前实名预约，步行结合园区交通，随体力缩短路线。",
+          "cost": 200,
+          "price": "双人/家庭预算200元",
+          "currency": "元/家庭",
+          "source_ids": [
+            "demo"
+          ]
+        },
+        {
+          "type": "meal",
+          "name": "午餐与休息",
+          "icon": "🍜",
+          "start": "12:00",
+          "end": "13:30",
+          "description": "清汤抄手、豆花或家常菜。",
+          "cost": 160,
+          "price": "双人/家庭预算160元",
+          "currency": "元/家庭",
+          "source_ids": [
+            "demo"
+          ]
+        },
+        {
+          "type": "spot",
+          "name": "取行李",
+          "icon": "📍",
+          "start": "14:00",
+          "end": "15:00",
+          "description": "检查孩子衣物和随身物品。",
+          "cost": 0,
+          "price": "公共区域或已计入其他预算",
+          "currency": "元/家庭",
+          "source_ids": [
+            "demo"
+          ]
+        },
+        {
+          "type": "spot",
+          "name": "返程",
+          "icon": "📍",
+          "start": "17:00",
+          "end": "20:00",
+          "description": "机场与车站不同，按实际交通另留时间。",
+          "cost": 0,
+          "price": "公共区域或已计入其他预算",
+          "currency": "元/家庭",
+          "source_ids": [
+            "demo"
+          ]
+        }
+      ]
+    }
+  ],
+  "foods": [
+    {
+      "name": "钟水饺",
+      "shop": "选择明码标价、近期评价稳定的门店",
+      "price": "20–35元/人（估算）",
+      "reason": "儿童份不放辣",
+      "source_ids": [
+        "demo"
+      ]
+    },
+    {
+      "name": "龙抄手",
+      "shop": "选择明码标价、近期评价稳定的门店",
+      "price": "20–35元/人（估算）",
+      "reason": "清汤更适合孩子",
+      "source_ids": [
+        "demo"
+      ]
+    },
+    {
+      "name": "担担面",
+      "shop": "选择明码标价、近期评价稳定的门店",
+      "price": "15–25元/人（估算）",
+      "reason": "辣椒单独放",
+      "source_ids": [
+        "demo"
+      ]
+    },
+    {
+      "name": "川菜小馆",
+      "shop": "选择明码标价、近期评价稳定的门店",
+      "price": "60–90元/人（估算）",
+      "reason": "番茄炒蛋与回锅肉搭配",
+      "source_ids": [
+        "demo"
+      ]
+    },
+    {
+      "name": "豆花",
+      "shop": "选择明码标价、近期评价稳定的门店",
+      "price": "10–20元/人（估算）",
+      "reason": "先尝小份",
+      "source_ids": [
+        "demo"
+      ]
+    }
+  ],
+  "avoid": [
+    {
+      "wrong": "把示例班次、费用当作已确认预订",
+      "right": "出发前核实实时票价和营业安排",
+      "source_ids": [
+        "demo"
+      ]
+    },
+    {
+      "wrong": "一天塞满跨城景点",
+      "right": "每半天保留一个核心安排与休息时间",
+      "source_ids": [
+        "demo"
+      ]
+    }
+  ],
+  "budget": {
+    "selected": "comfortable",
+    "profiles": {
+      "economy": {
+        "categories": {
+          "交通": 2700,
+          "住宿": 600,
+          "餐饮": 600,
+          "门票与机动": 600
+        },
+        "total": 4500
+      },
+      "comfortable": {
+        "categories": {
+          "交通": 2700,
+          "住宿": 600,
+          "餐饮": 600,
+          "门票与机动": 600
+        },
+        "total": 4500
+      }
+    }
+  },
+  "tips": [
+    "点击每张行程卡片右上角“编辑”调整时间与预算。",
+    "修改保存在当前浏览器；导出修改为JSON，日历和地图为原始行程快照。"
+  ]
+}

@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>北京到九寨沟5天双人休闲攻略</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #f5f5f5;
+  color: #333;
+  line-height: 1.7;
+}
+
+/* ===== 右侧快速导航 ===== */
+.quick-nav {
+  position: fixed;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  opacity: 0.65;
+  transition: opacity 0.3s ease;
+}
+.quick-nav:hover {
+  opacity: 1;
+}
+.quick-nav .nav-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 2px 0;
+}
+.quick-nav .nav-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #888;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+.quick-nav .nav-item:hover .nav-dot {
+  background: #555;
+}
+.quick-nav .nav-item.active .nav-dot {
+  background: #7c6ef0;
+}
+.quick-nav .nav-label {
+  font-size: 11px;
+  color: #666;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+.quick-nav .nav-item:hover .nav-label {
+  color: #333;
+}
+.quick-nav .nav-item.active .nav-label {
+  color: #7c6ef0;
+  font-weight: 500;
+}
+
+/* ===== 可折叠模块 ===== */
+.collapsible {
+  cursor: pointer;
+  user-select: none;
+}
+.collapsible .collapse-icon {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: .7em;
+  transition: transform 0.3s ease;
+  opacity: 0.5;
+}
+.collapsible.collapsed .collapse-icon {
+  transform: rotate(-90deg);
+}
+.collapse-content {
+  max-height: 5000px;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+}
+.collapse-content.collapsed {
+  max-height: 0;
+}
+
+/* Day卡片的折叠 */
+.day-card .day-header {
+  cursor: pointer;
+}
+.day-card .day-header::after {
+  content: '▼';
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: .7em;
+  opacity: 0.5;
+  transition: transform 0.3s ease;
+}
+.day-card.collapsed .day-header::after {
+  transform: translateY(-50%) rotate(-90deg);
+}
+.day-card .spots-wrapper {
+  transition: max-height 0.4s ease-out;
+  max-height: 10000px;
+  overflow: hidden;
+}
+.day-card.collapsed .spots-wrapper {
+  max-height: 0;
+}
+
+/* 时间表折叠 */
+.timeline-card .timeline-header {
+  cursor: pointer;
+  position: relative;
+}
+.timeline-card .timeline-header::after {
+  content: '▼';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: .7em;
+  opacity: 0.5;
+  transition: transform 0.3s ease;
+}
+.timeline-card.collapsed .timeline-header::after {
+  transform: translateY(-50%) rotate(-90deg);
+}
+.timeline-card .timeline-content {
+  transition: max-height 0.4s ease-out;
+  max-height: 5000px;
+  overflow: hidden;
+}
+.timeline-card.collapsed .timeline-content {
+  max-height: 0;
+}
+
+/* ===== Hero ===== */
+.hero {
+  position: relative;
+  height: 380px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: #f5f5f5;
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+.hero-inner { position: relative; z-index:1; }
+.hero h1 {
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 2px 20px rgba(0,0,0,.2);
+  margin-bottom: 6px;
+}
+.hero .subtitle {
+  font-size: 1.05em;
+  color: rgba(255,255,255,.9);
+  font-weight: 300;
+}
+.hero .tag-row {
+  margin-top: 14px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.hero .tag {
+  background: rgba(255,255,255,.2);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: .82em;
+}
+.hero .emojis {
+  font-size: 2.8em;
+  margin-bottom: 10px;
+}
+
+/* ===== 通用容器 ===== */
+.container {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 20px 16px 60px;
+}
+
+/* ===== 交通卡片 ===== */
+.transport-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+.transport-card h2 {
+  font-size: 1.2em;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.transport-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.t-item {
+  background: #f8f9ff;
+  border-radius: 12px;
+  padding: 14px;
+  position: relative;
+}
+.t-item.recommend {
+  background: linear-gradient(135deg, #e8f0ff, #f0e6ff);
+  border: 2px solid #7c6ef0;
+}
+.t-item .badge {
+  position: absolute;
+  top: -8px;
+  right: 10px;
+  background: #7c6ef0;
+  color: #fff;
+  font-size: .7em;
+  padding: 2px 10px;
+  border-radius: 10px;
+}
+.t-item .t-title {
+  font-weight: 700;
+  font-size: .95em;
+  margin-bottom: 4px;
+}
+.t-item .t-detail {
+  font-size: .82em;
+  color: #888;
+}
+.t-item .t-price {
+  font-size: 1.1em;
+  font-weight: 700;
+  color: #e05a3a;
+  margin-top: 6px;
+}
+
+/* ===== 天卡片 ===== */
+.day-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+.day-header {
+  padding: 20px 24px 16px;
+  color: #fff;
+  position: relative;
+}
+.day-header.d1 { background: linear-gradient(135deg, #f6a085, #f2719c); }
+.day-header.d2 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+.day-header.d3 { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+.day-header.d4 { background: linear-gradient(135deg, #fddb92, #d1fdff); color: #666; }
+.day-header.d5 { background: linear-gradient(135deg, #667eea, #764ba2); }
+.day-header .day-num {
+  font-size: 1.6em;
+  font-weight: 700;
+}
+.day-header .day-title {
+  font-size: 1.1em;
+  font-weight: 500;
+  margin-top: 2px;
+}
+.day-header .day-route {
+  font-size: .82em;
+  opacity: .85;
+  margin-top: 6px;
+}
+
+/* ===== 景点 ===== */
+.spot {
+  padding: 18px 24px;
+  border-bottom: 1px solid #f0f0f0;
+  position: relative;
+}
+.spot:last-child { border-bottom: none; }
+.spot-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.spot-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4em;
+  flex-shrink: 0;
+}
+.spot:nth-child(odd) .spot-icon { background: #fff0f0; }
+.spot:nth-child(even) .spot-icon { background: #f0f4ff; }
+.spot-name {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 1.05em;
+}
+.spot-title { min-width: 0; }
+.spot-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.spot-price {
+  display: inline-block;
+  background: #fff3e0;
+  color: #e65100;
+  font-size: .75em;
+  padding: 1px 8px;
+  border-radius: 8px;
+  margin-left: 6px;
+  font-weight: 500;
+}
+/* ===== 景点间交通提示 ===== */
+.spot-transit {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: linear-gradient(135deg, #e8f0ff, #f0e6ff);
+  color: #5b7fdb;
+  font-size: .72em;
+  padding: 2px 10px;
+  border-radius: 8px;
+  margin-left: 6px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.spot-transit .transit-icon {
+  font-size: .9em;
+}
+.spot-transit .transit-time {
+  color: #7c6ef0;
+  font-weight: 700;
+}
+.spot-desc {
+  font-size: .88em;
+  color: #666;
+  margin-top: 6px;
+  line-height: 1.6;
+}
+.spot-romance {
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: linear-gradient(90deg, #fff5f5, #fff0fb);
+  border-radius: 10px;
+  font-size: .84em;
+  color: #c06;
+  border-left: 3px solid #f2719c;
+}
+
+/* ===== 路线条 ===== */
+.route-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 24px;
+  background: linear-gradient(90deg, #e8f0ff, #f0e6ff);
+  font-size: .82em;
+  color: #5b7fdb;
+  overflow-x: auto;
+  flex-wrap: wrap;
+  border-left: 4px solid #7c6ef0;
+  font-weight: 500;
+}
+.route-bar .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #7c6ef0;
+  flex-shrink: 0;
+}
+.route-bar .r-item { white-space: nowrap; }
+
+/* ===== 高德API标签 ===== */
+.amap-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  font-size: .7em;
+  padding: 3px 10px;
+  border-radius: 8px;
+  margin-left: 6px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(102,126,234,.3);
+}
+
+/* ===== 距离标签 ===== */
+.dist-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: #f0f4ff;
+  color: #5b7fdb;
+  font-size: .72em;
+  padding: 2px 8px;
+  border-radius: 6px;
+  margin-left: 6px;
+  font-weight: 400;
+}
+
+/* ===== 估算标签（降级数据标识） ===== */
+/* 当路线距离/用时为估算值（API 不可用、超时或失败时）使用，明确告知用户非实测数据 */
+.estimate-tag {
+  display: inline-flex;
+  align-items: center;
+  background: #f5f5f5;
+  color: #999;
+  border: 1px dashed #ccc;
+  font-size: .7em;
+  padding: 1px 8px;
+  border-radius: 8px;
+  margin-left: 4px;
+  font-weight: 400;
+}
+
+/* ===== 避坑 ===== */
+.pitfall {
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: #fffbe6;
+  border-radius: 10px;
+  font-size: .82em;
+  color: #ad6800;
+  border-left: 3px solid #faad14;
+}
+
+/* ===== 避坑清单 ===== */
+.avoid-section {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+.avoid-section h2 {
+  font-size: 1.2em;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.avoid-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+.avoid-item {
+  display: flex;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #fff5f5;
+  font-size: .86em;
+}
+.avoid-item .a-num {
+  background: #ff4d4f;
+  color: #fff;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .75em;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.avoid-item .a-wrong {
+  color: #ff4d4f;
+  font-weight: 700;
+  text-decoration: line-through;
+}
+.avoid-item .a-right {
+  color: #52c41a;
+  font-weight: 500;
+}
+
+/* ===== 酒店推荐 ===== */
+.hotel-section {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+.hotel-section h2 {
+  font-size: 1.2em;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.hotel-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.hotel-item {
+  background: linear-gradient(135deg, #f8f9ff, #f0f4ff);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #e8ecff;
+}
+.hotel-item .h-name {
+  font-weight: 700;
+  font-size: .95em;
+  margin-bottom: 6px;
+  color: #333;
+}
+.hotel-item .h-price {
+  font-size: .82em;
+  color: #e05a3a;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.hotel-item .h-desc {
+  font-size: .8em;
+  color: #666;
+  line-height: 1.5;
+}
+.hotel-item .h-rec {
+  font-size: .78em;
+  color: #5b7fdb;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed #d0d8ff;
+}
+.hotel-item .h-stars {
+  color: #f7ba2a;
+  font-size: .85em;
+}
+
+/* 每日住宿提示 */
+.hotel-tip {
+  background: linear-gradient(90deg, #fff8f0, #fff5f0);
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin: 16px 0;
+  border-left: 4px solid #f2719c;
+  font-size: .88em;
+  color: #666;
+  line-height: 1.6;
+}
+.hotel-tip .ht-title {
+  font-weight: 700;
+  color: #f2719c;
+  font-size: 1.05em;
+  margin-bottom: 4px;
+}
+
+/* ===== 美食 ===== */
+.food-section {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+.food-section h2 {
+  font-size: 1.2em;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.food-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.food-item {
+  background: #fef9f0;
+  border-radius: 12px;
+  padding: 14px;
+}
+.food-item .f-name {
+  font-weight: 700;
+  font-size: .92em;
+}
+.food-item .f-shop {
+  font-size: .78em;
+  color: #999;
+  margin-top: 2px;
+}
+.food-item .f-price {
+  color: #e05a3a;
+  font-weight: 700;
+  font-size: .9em;
+  margin-top: 4px;
+}
+.food-item .f-note {
+  font-size: .78em;
+  color: #666;
+  margin-top: 2px;
+}
+
+/* ===== 预算 ===== */
+.budget-card {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  color: #fff;
+}
+.budget-card h2 {
+  font-size: 1.2em;
+  margin-bottom: 16px;
+}
+.budget-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: .9em;
+  border-bottom: 1px solid rgba(255,255,255,.15);
+}
+.budget-row:last-child { border: none; }
+.budget-total {
+  text-align: center;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 2px solid rgba(255,255,255,.3);
+  font-size: 1.3em;
+  font-weight: 700;
+}
+
+/* ===== 浪漫Tips ===== */
+.tips-card {
+  background: linear-gradient(135deg, #fff0f5, #fff5f0);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+.tips-card h2 {
+  font-size: 1.2em;
+  margin-bottom: 14px;
+}
+.tips-card .tip-item {
+  padding: 8px 0;
+  font-size: .9em;
+  display: flex;
+  gap: 8px;
+}
+
+.footer {
+  text-align: center;
+  padding: 30px 0 20px;
+  color: #bbb;
+  font-size: .82em;
+}
+
+/* ==================== 移动端优化 ==================== */
+@media (max-width: 768px) {
+  /* Hero区域 */
+  .hero {
+    height: auto;
+    min-height: 280px;
+    padding: 40px 16px 70px;
+  }
+  .hero h1 {
+    font-size: 1.5em;
+    padding: 0 8px;
+    word-break: break-word;
+  }
+  .hero .subtitle {
+    font-size: .85em;
+    padding: 0 8px;
+  }
+  .hero .emojis {
+    font-size: 2em;
+    margin-bottom: 8px;
+  }
+  .hero .tag-row {
+    gap: 6px;
+    padding: 0 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+  .hero .tag {
+    font-size: .72em;
+    padding: 3px 8px;
+    white-space: nowrap;
+  }
+
+  /* 容器 */
+  .container {
+    padding: 16px 12px 40px;
+  }
+
+  /* 交通卡片 */
+  .transport-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .transport-card {
+    padding: 16px;
+  }
+  .transport-card h2 {
+    font-size: 1.1em;
+  }
+
+  /* 天卡片 */
+  .day-header {
+    padding: 16px 16px 14px;
+  }
+  .day-header .day-num {
+    font-size: 1.3em;
+  }
+  .day-header .day-title {
+    font-size: .95em;
+  }
+  .day-header .day-route {
+    font-size: .78em;
+  }
+
+  /* 景点 */
+  .spot {
+    padding: 14px 16px;
+  }
+  .spot-head {
+    gap: 10px;
+  }
+  .spot-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 1.2em;
+  }
+  .spot-name {
+    font-size: .95em;
+  }
+  .spot-transit {
+    font-size: .68em;
+    padding: 2px 8px;
+  }
+  .spot-desc {
+    font-size: .82em;
+  }
+  .spot-romance {
+    font-size: .8em;
+    padding: 6px 10px;
+  }
+
+  /* 路线条 */
+  .route-bar {
+    padding: 8px 16px;
+    font-size: .78em;
+    gap: 3px;
+  }
+
+  /* 美食网格 */
+  .food-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .food-section {
+    padding: 16px;
+  }
+
+  /* 避坑清单 */
+  .avoid-section {
+    padding: 16px;
+  }
+  .avoid-item {
+    padding: 8px 12px;
+    font-size: .82em;
+  }
+
+  /* 预算 */
+  .budget-card {
+    padding: 16px;
+  }
+  .budget-card h2 {
+    font-size: 1.1em;
+  }
+
+  /* 浪漫Tips */
+  .tips-card {
+    padding: 16px;
+  }
+  .tips-card .tip-item {
+    font-size: .85em;
+  }
+
+  /* 酒店 */
+  .hotel-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .hotel-section {
+    padding: 16px;
+  }
+}
+
+/* 移动端触摸优化 */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 平滑滚动 */
+html {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* 超小屏幕进一步优化 */
+@media (max-width: 375px) {
+  .hero h1 {
+    font-size: 1.3em;
+  }
+  .hero {
+    min-height: 260px;
+    padding: 30px 12px 60px;
+  }
+  .hero .tag {
+    font-size: .68em;
+    padding: 2px 6px;
+  }
+  .day-header .day-num {
+    font-size: 1.1em;
+  }
+  .spot-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 1.1em;
+  }
+}
+
+/* 移动端隐藏右侧导航 */
+@media (max-width: 1024px) {
+  .quick-nav {
+    display: none;
+  }
+}
+
+/* ===== 每日住宿推荐（晚餐推荐下方） ===== */
+.hotel-rec-section {
+  background: linear-gradient(90deg, #fff8f0, #fff5f0);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 16px 24px;
+  border-left: 4px solid #f2719c;
+}
+.hotel-rec-section .hr-title {
+  font-weight: 700;
+  color: #f2719c;
+  font-size: 1em;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.hotel-rec-section .hr-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+.hotel-rec-section .hr-item {
+  background: #fff;
+  border-radius: 10px;
+  padding: 12px;
+  border: 1px solid #ffe0e0;
+}
+.hotel-rec-section .hr-item .hr-name {
+  font-weight: 700;
+  font-size: .9em;
+  margin-bottom: 4px;
+  color: #333;
+}
+.hotel-rec-section .hr-item .hr-price {
+  font-size: .82em;
+  color: #e05a3a;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.hotel-rec-section .hr-item .hr-desc {
+  font-size: .78em;
+  color: #666;
+  line-height: 1.5;
+}
+.hotel-rec-section .hr-tip {
+  font-size: .82em;
+  color: #f2719c;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed #f5c0c0;
+}
+
+/* ===== 酒店→景点路线条（Day2+ 开头） ===== */
+.hotel-route-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 24px;
+  background: linear-gradient(90deg, #fff0f5, #ffe8f5);
+  font-size: .82em;
+  color: #d4408c;
+  overflow-x: auto;
+  flex-wrap: wrap;
+  border-left: 4px solid #f2719c;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+.hotel-route-bar .hdot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f2719c;
+  flex-shrink: 0;
+}
+.hotel-route-bar .hroute-item {
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .hotel-rec-section {
+    margin: 12px 16px;
+    padding: 14px 16px;
+  }
+  .hotel-rec-section .hr-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .hotel-route-bar {
+    padding: 8px 16px;
+    font-size: .78em;
+  }
+}
+
+/* ===== 结构化攻略增强模块 ===== */
+.tool-card,
+.preferences-section,
+.weather-section,
+.quality-section,
+.sources-section {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+.tool-card { position: sticky; top: 8px; z-index: 90; padding: 12px 16px; }
+.toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.toolbar button {
+  border: 1px solid #d9def8;
+  background: #f8f9ff;
+  color: #5b63c8;
+  border-radius: 9px;
+  padding: 8px 12px;
+  min-height: 40px;
+  cursor: pointer;
+}
+.toolbar button:hover { background: #eef0ff; }
+#saveStatus { color: #888; font-size: .78em; margin-left: auto; }
+.preferences-section h2,
+.weather-section h2,
+.quality-section h2,
+.sources-section h2 { font-size: 1.1em; margin-bottom: 12px; }
+.meta-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.meta-chip {
+  display: inline-flex;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: #f3f4ff;
+  color: #5b63a8;
+  font-size: .82em;
+}
+.weather-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: .84em;
+}
+.weather-item:last-child { border-bottom: 0; }
+.weather-backup { grid-column: 1 / -1; color: #5b63a8; font-size: .9em; }
+.quality-section { border-left: 4px solid #faad14; }
+.quality-section.quality-ok { border-left-color: #52c41a; }
+.quality-summary { color: #777; font-size: .84em; margin-bottom: 8px; }
+.issue-list, .sources-section ul { padding-left: 20px; font-size: .82em; }
+.issue-list li, .sources-section li { padding: 4px 0; }
+.issue-error, .issue-conflict { color: #c33; }
+.issue-warning { color: #ad6800; }
+.issue-list code { color: #888; }
+.source-badge {
+  display: inline-block;
+  margin: 5px 5px 0 0;
+  padding: 2px 7px;
+  border-radius: 7px;
+  background: #f2f5f8;
+  color: #667;
+  font-size: .7rem;
+  text-decoration: none;
+}
+.source-badge:hover { background: #e6eaff; color: #4f58bd; }
+.source-type {
+  display: inline-block;
+  min-width: 58px;
+  color: #888;
+  text-transform: uppercase;
+  font-size: .72em;
+}
+.item-toggle { padding-top: 10px; }
+.item-check { width: 20px; height: 20px; accent-color: #7c6ef0; }
+.spot-main { flex: 1; min-width: 0; }
+.itinerary-item.completed { opacity: .58; }
+.itinerary-item.completed .spot-title { text-decoration: line-through; }
+.favorite-btn {
+  border: 0;
+  background: transparent;
+  color: #e45a85;
+  font-size: 1.25em;
+  cursor: pointer;
+  vertical-align: middle;
+}
+.favorite-btn.active { color: #e33b70; }
+.edit-btn {
+  border: 1px solid #dfe2f1;
+  border-radius: 7px;
+  padding: 3px 9px;
+  background: #fff;
+  color: #626aa3;
+  font: inherit;
+  font-size: .72em;
+  font-weight: 600;
+  cursor: pointer;
+}
+.edit-btn:hover,
+.edit-btn[aria-expanded="true"] {
+  border-color: #8d83e8;
+  background: #f3f1ff;
+  color: #6658cc;
+}
+.editable-schedule {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 5px;
+}
+.schedule-display { color: #666; }
+.item-edit-controls[hidden] { display: none !important; }
+.time-input,
+.cost-input {
+  border: 1px solid #dde1ef;
+  border-radius: 7px;
+  padding: 3px 6px;
+  background: #fff;
+  color: #555;
+  font: inherit;
+}
+.time-input { width: 92px; }
+.cost-input { width: 82px; }
+.cost-editor { display: block; margin-top: 7px; color: #888; font-size: .76em; }
+.budget-total small { font-size: .62em; font-weight: 400; }
+
+@media (max-width: 768px) {
+  .tool-card,
+  .preferences-section,
+  .weather-section,
+  .quality-section,
+  .sources-section { padding: 16px; }
+  .tool-card { position: static; }
+  #saveStatus { width: 100%; margin-left: 0; }
+  .weather-item { grid-template-columns: 1fr 1fr; }
+  .spot-transit { white-space: normal; margin-left: 0; }
+}
+
+@media print {
+  .quick-nav, .tool-card, .item-toggle, .favorite-btn, .edit-btn, .item-edit-controls { display: none !important; }
+  body { background: #fff; }
+  .container { max-width: none; padding: 0; }
+  .day-card, section { break-inside: avoid; box-shadow: none !important; }
+  .collapse-content, .spots-wrapper { max-height: none !important; }
+  .time-input, .cost-input { border: 0; appearance: none; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- Hero区域 -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="emojis">🏔️💧🍂</div>
+    <h1>北京到九寨沟5天双人休闲攻略</h1>
+    <div class="subtitle">慢慢走进翠海、叠瀑与藏羌秋色</div>
+    <div class="tag-row">
+      <span class="tag">5天</span><span class="tag">2人</span><span class="tag">双人</span><span class="tag">relaxed</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- 偏好、天气、质量检查、来源与本地工具 -->
+<section class="tool-card"><div class="toolbar"><button type="button" id="printGuide">🖨️ 打印/PDF</button><button type="button" id="exportState">💾 导出修改</button><button type="button" id="resetState">↺ 清除本地修改</button><span id="saveStatus">修改仅保存在本浏览器</span></div></section><section class="preferences-section"><h2>🎛️ 本次旅行偏好</h2><div class="meta-chips"><span class="meta-chip"><b>预算</b> 舒适型</span><span class="meta-chip"><b>节奏</b> relaxed</span><span class="meta-chip"><b>人群</b> 双人</span><span class="meta-chip"><b>兴趣</b> 自然风光、湖泊瀑布、摄影、藏羌文化、美食</span><span class="meta-chip"><b>交通偏好</b> transit、walk</span></div></section><section class="weather-section"><h2>🌦️ 天气与季节</h2><div><div class="weather-item"><b>2026-09-15</b><span>趋势为小雨，约15–23℃；以临近预报为准</span><span>15–23℃</span><a class="source-badge" href="https://www.tianqi.com/tianqi/jiuzhaigou/202609.html" target="_blank" rel="noopener noreferrer">九寨沟2026年9月天气趋势 · 2026-09-07</a><div class="weather-backup">室内备选：成都段改为四川博物院或成都博物馆，晚上早点休息</div></div><div class="weather-item"><b>2026-09-16</b><span>九寨沟9月多阵雨，早晚偏凉</span><span>10–20℃</span><a class="source-badge" href="https://www.tianqi.com/tianqi/jiuzhaigou/202609.html" target="_blank" rel="noopener noreferrer">九寨沟2026年9月天气趋势 · 2026-09-07</a><span class="source-badge">通用旅行知识，出发前建议核实 · 2026-09-07</span><div class="weather-backup">室内备选：抵达后不安排户外远行，改为酒店休息和沟口室内藏羌文化体验</div></div><div class="weather-item"><b>2026-09-17</b><span>高原天气多变，体感约8–20℃</span><span>8–20℃</span><a class="source-badge" href="https://www.tianqi.com/tianqi/jiuzhaigou/202609.html" target="_blank" rel="noopener noreferrer">九寨沟2026年9月天气趋势 · 2026-09-07</a><a class="source-badge" href="https://www.jiuzhai.com/news/notice/11290-2026-07-29-02-04-43" target="_blank" rel="noopener noreferrer">九寨沟景区全域恢复开放通告 · 2026-09-07</a><div class="weather-backup">室内备选：小雨穿雨衣照常游览；暴雨或地质预警时服从景区调度，缩短则查洼沟停留</div></div><div class="weather-item"><b>2026-09-18</b><span>高原天气多变，体感约8–20℃</span><span>8–20℃</span><a class="source-badge" href="https://www.tianqi.com/tianqi/jiuzhaigou/202609.html" target="_blank" rel="noopener noreferrer">九寨沟2026年9月天气趋势 · 2026-09-07</a><span class="source-badge">通用旅行知识，出发前建议核实 · 2026-09-07</span><div class="weather-backup">室内备选：优先观光车可达的五花海、珍珠滩瀑布和镜海，减少连续栈道步行</div></div><div class="weather-item"><b>2026-09-19</b><span>早晚凉、昼夜温差明显</span><span>9–21℃</span><a class="source-badge" href="https://www.tianqi.com/tianqi/jiuzhaigou/202609.html" target="_blank" rel="noopener noreferrer">九寨沟2026年9月天气趋势 · 2026-09-07</a><span class="source-badge">通用旅行知识，出发前建议核实 · 2026-09-07</span><div class="weather-backup">室内备选：预留交通机动时间，若道路受天气影响则优先改签较晚返京航班</div></div></div></section><section class="sources-section"><h2>🔎 信息来源与核实日期</h2><ul><li><span class="source-type">official</span><a class="source-badge" href="https://abazhou.gov.cn/abazhou/c101955/202603/15b3f5e33fb9453ab7064d6a0d93894d.shtml" target="_blank" rel="noopener noreferrer">九寨沟2026年旺季开放与票价 · 2026-09-07</a></li><li><span class="source-type">official</span><a class="source-badge" href="https://www.jiuzhai.com/intelligent-service/tickets" target="_blank" rel="noopener noreferrer">九寨沟景区官方票务信息 · 2026-09-07</a></li><li><span class="source-type">official</span><a class="source-badge" href="https://www.jiuzhai.com/news/notice/11290-2026-07-29-02-04-43" target="_blank" rel="noopener noreferrer">九寨沟景区全域恢复开放通告 · 2026-09-07</a></li><li><span class="source-type">official</span><a class="source-badge" href="https://www.jiuzhai.com/intelligent-service/way-of-play" target="_blank" rel="noopener noreferrer">九寨沟景区官方游玩方式 · 2026-09-07</a></li><li><span class="source-type">official</span><a class="source-badge" href="https://www.jiuzhai.com/intelligent-service/arrival-mode" target="_blank" rel="noopener noreferrer">九寨沟景区官方到达方式 · 2026-09-07</a></li><li><span class="source-type">official</span><a class="source-badge" href="https://songpan.gov.cn/spxrmzf/c100050/202604/912b4b0784b54860ae2e6eebe03da751.shtml" target="_blank" rel="noopener noreferrer">黄龙九寨站景区直通车接驳 · 2026-09-07</a></li><li><span class="source-type">search</span><a class="source-badge" href="https://train.qunar.com/train/tickets/chengdudong-to-huanglongjiuzhai/2026-09-13" target="_blank" rel="noopener noreferrer">成都东至黄龙九寨动车参考 · 2026-09-07</a></li><li><span class="source-type">search</span><a class="source-badge" href="https://m.ctrip.com/html5/flight/BJS-CTU-day-7.html" target="_blank" rel="noopener noreferrer">北京至成都航班与价格参考 · 2026-09-07</a></li><li><span class="source-type">search</span><a class="source-badge" href="https://www.tianqi.com/tianqi/jiuzhaigou/202609.html" target="_blank" rel="noopener noreferrer">九寨沟2026年9月天气趋势 · 2026-09-07</a></li><li><span class="source-type">search</span><a class="source-badge" href="https://www.sina.cn/gc/article/nipsvwy0550457.html" target="_blank" rel="noopener noreferrer">九寨沟藏羌美食消费参考 · 2026-09-07</a></li><li><span class="source-type">search</span><a class="source-badge" href="https://you.ctrip.com/food/ctripyouyoustar25/130752219.html" target="_blank" rel="noopener noreferrer">九寨沟藏餐与牦牛肉汤锅参考 · 2026-09-07</a></li><li><span class="source-type">estimate</span><span class="source-badge">住宿价格区间估算，预订时请按实时价格筛选 · 2026-09-07</span></li><li><span class="source-type">estimate</span><span class="source-badge">基于经纬度和公开接驳信息的路线估算 · 2026-09-07</span></li><li><span class="source-type">general</span><span class="source-badge">通用旅行知识，出发前建议核实 · 2026-09-07</span></li></ul></section>
+
+<!-- 交通信息 -->
+<section class="transport-card"><h2>🚄 到达与当地交通</h2><div class="transport-grid"><div class="t-item recommend"><span class="badge">推荐</span><div class="t-title">北京 → 成都</div><div class="t-detail">建议选择9月15日上午直飞成都的航班，落地后不继续赶长途；具体机场、行李额和价格以出票为准</div><div class="t-price">预算按双人往返约2200–2800元</div><a class="source-badge" href="https://m.ctrip.com/html5/flight/BJS-CTU-day-7.html" target="_blank" rel="noopener noreferrer">北京至成都航班与价格参考 · 2026-09-07</a></div><div class="t-item recommend"><span class="badge">推荐</span><div class="t-title">成都东 → 黄龙九寨站</div><div class="t-detail">优先早班动车，参考运行约1小时40分、二等座约143元/人；往返车次以12306为准</div><div class="t-price">双人往返约572元</div><a class="source-badge" href="https://train.qunar.com/train/tickets/chengdudong-to-huanglongjiuzhai/2026-09-13" target="_blank" rel="noopener noreferrer">成都东至黄龙九寨动车参考 · 2026-09-07</a><a class="source-badge" href="https://www.jiuzhai.com/intelligent-service/arrival-mode" target="_blank" rel="noopener noreferrer">九寨沟景区官方到达方式 · 2026-09-07</a></div><div class="t-item recommend"><span class="badge">推荐</span><div class="t-title">黄龙九寨站 ↔ 九寨沟沟口</div><div class="t-detail">使用景区直通车，单程约2小时；高峰期会动态增开，必须与动车到站时间匹配</div><div class="t-price">参考约51元/人/程</div><a class="source-badge" href="https://songpan.gov.cn/spxrmzf/c100050/202604/912b4b0784b54860ae2e6eebe03da751.shtml" target="_blank" rel="noopener noreferrer">黄龙九寨站景区直通车接驳 · 2026-09-07</a><a class="source-badge" href="https://www.jiuzhai.com/intelligent-service/arrival-mode" target="_blank" rel="noopener noreferrer">九寨沟景区官方到达方式 · 2026-09-07</a></div></div></section>
+
+<!-- 酒店推荐 -->
+<section class="hotel-section"><h2>🏨 住宿推荐</h2><div class="hotel-grid"><div class="hotel-item"><div class="h-name">九寨沟沟口—彭丰村（首选）</div><div class="h-price">约280–450元/晚</div><div class="h-desc">连续两天进沟最省时间，餐饮选择也最多</div><div class="h-rec">尽量选择提供早饭、步行或短途接驳可到游客中心的酒店</div><span class="source-badge">住宿价格区间估算，预订时请按实时价格筛选 · 2026-09-07</span><a class="source-badge" href="https://www.sina.cn/gc/article/nipsvwy0550457.html" target="_blank" rel="noopener noreferrer">九寨沟藏羌美食消费参考 · 2026-09-07</a></div><div class="hotel-item"><div class="h-name">漳扎镇—边边街</div><div class="h-price">约220–380元/晚</div><div class="h-desc">牦牛肉汤锅、藏餐和小吃集中，晚上更有烟火气</div><div class="h-rec">到景区入口通常需短程出租车，订房前确认早晨叫车条件</div><span class="source-badge">住宿价格区间估算，预订时请按实时价格筛选 · 2026-09-07</span><a class="source-badge" href="https://www.sina.cn/gc/article/nipsvwy0550457.html" target="_blank" rel="noopener noreferrer">九寨沟藏羌美食消费参考 · 2026-09-07</a></div><div class="hotel-item"><div class="h-name">成都东站商圈</div><div class="h-price">约250–400元/晚</div><div class="h-desc">第一晚方便次日乘早班动车，减少跨城通勤压力</div><div class="h-rec">选择可步行或一站地铁到成都东站的酒店</div><span class="source-badge">住宿价格区间估算，预订时请按实时价格筛选 · 2026-09-07</span></div></div></section>
+
+<!-- 每日行程 -->
+<section class="day-card" data-day="1"><div class="day-header d1"><div class="day-num">Day 1 · 2026-09-15</div><div class="day-title">北京飞成都 · 放慢节奏适应旅途</div><div class="day-route">北京直飞成都 → 成都清淡川菜午餐 → 人民公园与鹤鸣茶社周边 → 入住成都东站附近酒店</div></div><div class="route-bar"><span class="dot"></span>北京直飞成都 → 成都清淡川菜午餐 → 人民公园与鹤鸣茶社周边 → 入住成都东站附近酒店</div><article class="spot itinerary-item" data-item-key="day-1-item-1" data-coords=""><div class="spot-head"><label class="item-toggle" title="标记完成"><input type="checkbox" class="item-check" data-key="day-1-item-1"></label><div class="spot-icon">✈️</div><div class="spot-main"><div class="spot-name"><span class="spot-title">北京直飞成都<span class="spot-price">单程参考约550–800元/人</span></span><span class="spot-actions"><button type="button" class="favorite-btn" data-key="day-1-item-1" title="收藏">♡</button><button type="button" class="edit-btn" data-key="day-1-item-1" aria-expanded="false">编辑</button></span></div><div class="editable-schedule"><span class="schedule-display">07:00–10:10</span><span class="item-edit-controls" hidden><input type="time" class="time-input start-time" data-key="day-1-item-1" value="07:00" aria-label="开始时间">–<input type="time" class="time-input end-time" data-key="day-1-item-1" value="10:10" aria-label="结束时间"></span><span class="spot-transit"></span></div><div class="spot-desc">优先选早班直飞，落地后先吃饭休息，不在同一天继续赶九寨沟。</div><a class="source-badge" href="https://m.ctrip.com/html5/flight/BJS-CTU-day-7.html" target="_blank" rel="noopener noreferrer">北京至成都航班与价格参考 · 2026-09-07</a><label class="cost-editor item-edit-controls" hidden>预算 <input type="number" min="0" step="1" class="cost-input" data-key="day-1-item-1" value="1300"> 元/2人</label></div></div></article><article class="spot itinerary-item" data-item-key="day-1-item-2" data-coords="104.08,30.657"><div class="spot-head"><label class="item-toggle" title="标记完成"><input type="checkbox" class="item-check" data-key="day-1-item-2"></label><div class="spot-icon">🍚</div><div class="spot-main"><div class="spot-name"><span class="spot-title">成都清淡川菜午餐<span class="spot-price">约60–90元/人</span></span><span class="spot-actions"><button type="button" class="favorite-btn" data-key="day-1-item-2" title="收藏">♡</button><button type="button" class="edit-btn" data-key="day-1-item-2" aria-expanded="false">编辑</button></span></div><div class="editable-schedule"><span class="schedule-display">12:00–13:20</span><span class="item-edit-controls" hidden><input type="time" class="time-input start-time" data-key="day-1-item-2" value="12:00" aria-label="开始时间">–<input type="time" class="time-input end-time" data-key="day-1-item-2" value="13:20" aria-label="结束时间"></span><span class="spot-transit"></span></div><div class="spot-desc">第一天少吃过辣、少饮酒，为第二天进入高原做准备。</div><span class="source-badge">通用旅行知识，出发前建议核实 · 2026-09-07</span><label class="cost-editor item-edit-controls" hidden>预算 <input type="number" min="0" step="1" class="cost-input" data-key="day-1-item-2" value="160"> 元/2人</label></div></div></article><article class="spot itinerary-item" data-item-key="day-1-item-3" data-coords="104.055,30.6598"><div class="spot-head"><label class="item-toggle" title="标记完成"><input type="checkbox" class="item-check" data-key="day-1-item-3"></label><div class="spot-icon">🍵</div><div class="spot-main"><div class="spot-name"><span class="spot-title">人民公园与鹤鸣茶社周边<span class="spot-price">公园免费，茶饮约30–60元/人</span></span><span class="spot-actions"><button type="button" class="favorite-btn" data-key="day-1-item-3" title="收藏">♡</button><button type="button" class="edit-btn" data-key="day-1-item-3" aria-expanded="false">编辑</button></span></div><div class="editable-schedule"><span class="schedule-display">14:30–16:30</span><span class="item-edit-controls" hidden><input type="time" class="time-input start-time" data-key="day-1-item-3" value="14:30" aria-label="开始时间">–<input type="time" class="time-input end-time" data-key="day-1-item-3" value="16:30" aria-label="结束时间"></span><span class="spot-transit">公共交通 3.3km / 9分钟 <span class="estimate-tag">估算</span></span></div><div class="spot-desc">喝茶、散步，保持低强度；下雨则改成都博物馆或四川博物院。</div><span class="source-badge">通用旅行知识，出发前建议核实 · 2026-09-07</span><label class="cost-editor item-edit-controls" hidden>预算 <input type="number" min="0" step="1" class="cost-input" data-key="day-1-item-3" value="100"> 元/2人</label></div></div></article><article class="spot itinerary-item" data-item-key="day-1-item-4" data-coords="104.1407,30.6291"><div class="spot-head"><label class="item-toggle" title="标记完成"><input type="checkbox" class="item-check" data-key="day-1-item-4"></label><div class="spot-icon">🏨</div><div class="spot-main"><div class="spot-name"><span class="spot-title">入住成都东站附近酒店<span class="spot-price">约250–400元/晚</span></span><span class="spot-actions"><button type="button" class="favorite-btn" data-key="day-1-item-4" title="收藏">♡</button><button type="button" class="edit-btn" data-key="day-1-item-4" aria-expanded="false">编辑</button></span></div><div class="editable-schedule"><span class="schedule-display">18:30–20:00</span><span class="item-edit-controls" hidden><input type="time" class="time-input start-time" data-key="day-1-item-4" value="18:30" aria-label="开始时间">–<input type="time" class="time-input end-time" data-key="day-1-item-4" value="20:00" aria-label="结束时间"></span><span class="spot-transit">公共交通 12.0km / 33分钟 <span class="estimate-tag">估算</span></span></div><div class="spot-desc">整理第二天车票、身份证和轻便背包，尽量22:00前休息。</div><span class="source-badge">住宿价格区间估算，预订时请按实时价格筛选 · 2026-09-07</span><label class="cost-editor item-edit-controls" hidden>预算 <input type="number" min="0" step="1" class="cost-input" data-key="day-1-item-4" value="320"> 元/晚</label></div></div></article></section><section class="day-card" data-day="2"><div class="day-header d2"><div class="day-num">Day 2 · 2026-09-16</div><div class="day-title">动车入川西 · 沟口休整</div><div class="day-route">成都东站乘动车 → 景区直通车前往九寨沟沟口 → 沟口酒店入住与午休 → 边边街与漳扎镇轻松散步 → 牦牛肉汤锅晚餐</div></div><div class="route-bar"><span class="dot"></span>成都东站乘动车 → 景区直通车前往九寨沟沟口 → 沟口酒店入住与午休 → 边边街与漳扎镇轻松散步 → 牦牛肉汤锅晚餐</div><article class="spot itinerary-item" data-item-key="day-2-item-1" data-coords="103.7,32.68"><div class="spot-head"><label class="item-toggle" title="标记完成"><input type="checkbox" class="item-check" data-key="day-2-item-1"></label><div class="spot-icon">🚄</div><div class="spot-main"><div class="spot-name"><span class="spot-title">成都东站乘动车<span class="spot-price">参考143元/人</span></span><span class="spot-actions"><button type="button" class="favorite-btn" data-key="day-2-item-1" title="收藏">♡</button><button type="button" class="edit-btn" data-key="day-2-item-1" aria-expanded="false">编辑</button></span></div><div class="editable-schedule"><span class="schedule-display">06:45–08:30</span><span class="item-edit-controls" hidden><input type="time" class="time-input start-time" data-key="day-2-item-1" value="06:45" aria-label="开始时间">–<input type="time" class="time-input end-time" data-key="day-2-item-1" value="08:30" aria-label="结束时间"></span><span class="spot-transit"></span></div><div class="spot-desc">参考早班动车前往黄龙九寨站，提前45分钟到站。</div><a class="source-badge" href="https://train.qunar.com/train/tickets/chengdudong-to-huanglongjiuzhai/2026-09-13" target="_blank" rel="noopener noreferrer">成都东至黄龙九寨动车参考 · 2026-09-07</a><label class="cost-editor item-edit-controls" hidden>预算 <input type="number" min="0" step="1" class="cost-input" data-key="day-2-item-1" value="286"> 元/2人</label></div></div></article><article class="spot itinerary-item" data-item-key="day-2-item-2" data-coords="103.9186,33.26"><div class="spot-head"><label class="item-toggle" title="标记完成"><input type="checkbox" class="item-check" data-key="day-2-item-2"></label><div class="spot-icon">🚌</div><div class="spot-main"><div class="spot-name"><span class="spot-title">景区直通车前往九寨沟沟口<span class="spot-price">参考51元/人</span></span><span class="spot-actions"><button type="button" class="favorite-btn" data-key="day-2-item-2" title="收藏">♡</button><button type="button" class="edit-btn" data-key="day-2-item-2" aria-expanded="false">编辑</button></span></div><div class="editable-schedule"><span class="schedule-display">09:00–11:15</span><span class="item-edit-controls" hidden><input type="time" class="time-input start-time" data-key="day-2-item-2" value="09:00" aria-label="开始时间">–<input type="time" class="time-input end-time" data-key="day-2-item-2" value="11:15" aria-label="结束时间"></span><span class="spot-transit">步行 0.3km / 15分钟 <span class="estimate-tag">估算</span></span></div><div class="spot-desc">按动车抵达时间购买直通车，弯道路段不要空腹，也不建议一直看手机。</div><a class="source-badge" href="https://songpan.gov.cn/spxrmzf/c100050/202604/912b4b0784b54860ae2e6eebe03da751.shtml" target="_blank" rel="noopener noreferrer">黄龙九寨站景区直通车接驳 · 2026-09-07</a><a class="source-badge" href="https://www.jiuzhai.com/intelligent-service/arrival-mode" target="_blank" rel="noopener noreferrer">九寨沟景区官方到达方式 · 2026-09-07</a><label class="cost-editor item-edit-controls" hidden>预算 <input type="number" min="0" step="1" class="cost-input" data-key="day-2-item-2" value="102"> 元/2人</label></div></div></article><article class="spot itinerary-item" data-item-key="day-2-item-3" data-coords="103.918,33.266"><div class="spot-head"><label class="item-toggle" title="标记完成"><input type="checkbox" class="item-check" data-key="day-2-item-3"></label><div class="spot-icon">🛏️</div><div class="spot-main"><div class="spot-name"><span class="spot-title">沟口酒店入住与午休<span class="spot-price">3晚合计约850–1100元</span></span><span class="spot-actions"><button type="button" class="favorite-btn" data-key="day-2-item-3" title="收藏">♡</button><button type="button" class="edit-btn" data-key="day-2-item-3" aria-expanded="false">编辑</button></span></div><div class="editable-schedule"><span class="schedule-display">12:00–15:00</span><span class="item-edit-controls" hidden><input type="time" class="time-input start-time" data-key="day-2-item-3" value="12:00" aria-label="开始时间">–<input type="time" class="time-input end-time" data-key="day-2-item-3" value="15:00" aria-label="结束时间"></span><span class="spot-transit">步行 0.8km / 10分钟 <span class="estimate-tag">估算</span></span></div><div class="spot-desc">当天不进景区，吃完午饭睡一会儿，让身体适应海拔和温差。</div><span class="source-badge">住宿价格区间估算，预订时请按实时价格筛选 · 2026-09-07</span><label class="cost-editor item-edit-controls" hidden>预算 <input type="number" min="0" step="1" class="cost-input" data-key="day-2-item-3" value="960"> 元/3晚</label></div></div></article><article class="spot itinerary-item" data-item-key="day-2-item-4" data-coords="103.9,33.275"><div class="spot-head"><label class="item-toggle" title="标记完成"><input type="checkbox" class="item-check" data-key="day-2-item-4"></label><div class="spot-icon">🏘️</div><div class="spot-main"><div class="spot-name"><span class="spot-title">边边街与漳扎镇轻松散步<span class="spot-price">免费逛街</span></span><span class="spot-actions"><button type="button" class="favorite-btn" data-key="day-2-item-4" title="收藏">♡</button><button type="button" class="edit-btn" data-key="day-2-item-4" aria-expanded="false">编辑</button></span></div><div class="editable-schedule"><span class="schedule-display">16:30–18:00</span><span class="item-edit-controls" hidden><input type="time" class="time-input start-time" data-key="day-2-item-4" value="16:30" aria-label="开始时间">–<input type="time" class="time-input end-time" data-key="day-2-item-4" value="18:00" aria-label="结束时间"></span><span class="spot-transit">公共交通 2.6km / 7分钟 <span class="estimate-tag">估算</span></span></div><div class="spot-desc">只做短距离散步，购买第二天饮用水和便携零食，不安排演出赶场。</div><a class="source-badge" href="https://www.sina.cn/gc/article/nipsvwy0550457.html" target="_blank" rel="noopener noreferrer">九寨沟藏羌美食消费参考 · 2026-09-07</a><span class="source-badge">通用旅行知识，出发前建议核实 · 2026-09-07</span><label class="cost-editor item-edit-controls" hidden>预算 <input type="number" min="0" step="1" class="cost-input" data-key="day-2-item-4" value="80"> 元/补给</label></div></div></article><article class="spot itinerary-item" data-item-key="day-2-item-5" data-coords="103.901,33.2755"><div class="spot-head"><label class="item-toggle" title="标记完成"><input type="checkbox" class="item-check" data-key="day-2-item-5"></label><div class="spot-icon">🍲</div><div class="spot-main"><div class="spot-name"><span class="spot-title">牦牛肉汤锅晚餐<span class="spot-price">约70–100元/人</span></span><span class="spot-actions"><button type="button" class="favorite-btn" data-key="day-2-item-5" title="收藏">♡</button><button type="button" class="edit-btn" data-key="day-2-item-5" aria-expanded="false">编辑</button></span></div><div class="editable-schedule"><span class="schedule-display">18:20–19:40</span><span class="item-edit-controls" hidden><input type="time" class="time-input start-time" data-key="day-2-item-5" value="18:20" aria-label="开始时间">–<input type="time" class="time-input end-time" data-key="day-2-item-5" value="19:40" aria-label="结束时间"></span><span class="spot-transit">步行 0.1km / 2分钟 <span class="estimate-tag">估算</span></span></div><div class="spot-desc">选清汤或菌汤锅，两人点小份牦牛肉、青稞饼和一份蔬菜即可。</div><a class="source-badge" href="https://www.sina.cn/gc/article/nipsvwy0550457.html" target="_blank" rel="noopener noreferrer">九寨沟藏羌美食消费参考 · 2026-09-07</a><a class="source-badge" href="https://you.ctrip.com/food/ctripyouyoustar25/130752219.html" target="_blank" rel="noopener noreferrer">九寨沟藏餐与牦牛肉汤锅参考 · 2026-09-07</a><label class="cost-editor item-edit-controls" hidden>预算 <input type="number" min="0" step="1" class="cost-input" data-key="day-2-item-5" value="180"> 元/2人</label></div></div></article></section><section class="day-card" data-day="3"><div class="day-header d3"><div class="day-num">Day 3 · 2026-09-17</div><div class="day-title">则查洼沟＋树正沟 · 初见九寨</div><div class="day-route">景区入园与观光车 → 长海 → 五彩池 → 诺日朗中心简餐与休息 → 犀牛海—树正群海</div></div><div class="route-bar"><span class="dot"></span>景区入园与观光车 → 长海 → 五彩池 → 诺日朗中心简餐与休息 → 犀牛海—树正群海</div><article class="spot itinerary-item" data-item-key="day-3-item-1" data-coords="103.9186,33.26"><div class="spot-head"><label class="item-toggle" title="标记完成"><input type="checkbox" class="item-check" data-key="day-3-item-1"></label><div class="spot-icon">🎫</div><div class="spot-main"><div class="spot-name"><span class="spot-title">景区入园与观光车<span class="spot-price">门票190＋观光车90元/人</span></span><span class="spot-actions"><button type="button" class="favorite-btn" data-key="day-3-item-1" title="收藏">♡</button><button type="button" class="edit-btn" data-key="day-3-item-1" aria-expanded="false">编辑</button></span></div><div class="editable-schedule"><span class="schedule-display">08:00–08:40</span><span class="item-edit-controls" hidden><input type="time" class="time-input start-time" data-key="day-3-item-1" value="08:00" aria-label="开始时间">–<input type="time" class="time-input end-time" data-key="day-3-item-1" value="08:40" aria-label="结束时间"></span><span class="spot-transit"></span></div><div class="spot-desc">带身份证按预约时段入园，先乘观光车到则查洼沟方向。</div><a class="source-badge" href="https://abazhou.gov.cn/abazhou/c101955/202603/15b3f5e33fb9453ab7064d6a0d93894d.shtml" target="_blank" rel="noopener noreferrer">九寨沟2026年旺季开放与票价 · 2026-09-07</a><a class="source-badge" href="https://www.jiuzhai.com/intelligent-service/tickets" target="_blank" rel="noopener noreferrer">九寨沟景区官方票务信息 · 2026-09-07</a><label class="cost-editor item-edit-controls" hidden>预算 <input type="number" min="0" step="1" class="cost-input" data-key="day-3-item-1" value="560"> 元/2人</label></div></div></article><article class="spot itinerary-item" data-item-key="day-3-item-2" data-coords="103.9175,32.9364"><div class="spot-head"><label class="item-toggle" title="标记完成"><input type="checkbox" class="item-check" data-key="day-3-item-2"></label><div class="spot-icon">🏔️</div><div class="spot-main"><div class="spot-name"><span class="spot-title">长海<span class="spot-price">已含景区票</span></span><span class="spot-actions"><button type="button" class="favorite-btn" data-key="day-3-item-2" title="收藏">♡</button><button type="button" class="edit-btn" data-key="day-3-item-2" aria-expanded="false">编辑</button></span></div><div class="editable-schedule"><span class="schedule-display">09:10–10:10</span><span class="item-edit-controls" hidden><input type="time" class="time-input start-time" data-key="day-3-item-2" value="09:10" aria-label="开始时间">–<input type="time" class="time-input end-time" data-key="day-3-item-2" value="10:10" aria-label="结束时间"></span><span class="spot-transit">公共交通 18.0km / 25分钟 <span class="estimate-tag">估算</span></span></div><div class="spot-desc">先看九寨沟海拔最高、面积最大的海子，放慢脚步，不跑跳。</div><a class="source-badge" href="https://www.jiuzhai.com/intelligent-service/way-of-play" target="_blank" rel="noopener noreferrer">九寨沟景区官方游玩方式 · 2026-09-07</a><label class="cost-editor item-edit-controls" hidden>预算 <input type="number" min="0" step="1" class="cost-input" data-key="day-3-item-2" value="0"> 元</label></div></div><div class="spot-romance">💕 在长海观景台留一张两人与雪山湖面的合照。</div><div class="pitfall">⚠️ 海拔较高，头晕、胸闷时立刻休息并减少停留。</div></article><article class="spot itinerary-item" data-item-key="day-3-item-3" data-coords="103.9273,32.964"><div class="spot-head"><label class="item-toggle" title="标记完成"><input type="checkbox" class="item-check" data-key="day-3-item-3"></label><div class="spot-icon">💎</div><div class="spot-main"><div class="spot-name"><span class="spot-title">五彩池<span class="spot-price">已含景区票</span></span><span class="spot-actions"><button type="button" class="favorite-btn" data-key="day-3-item-3" title="收藏">♡</button><button type="button" class="edit-btn" data-key="day-3-item-3" aria-expanded="false">编辑</button></span></div><div class="editable-schedule"><span class="schedule-display">10:40–11:40</span><span class="item-edit-controls" hidden><input type="time" class="time-input start-time" data-key="day-3-item-3" value="10:40" aria-label="开始时间">–<input type="time" class="time-input end-time" data-key="day-3-item-3" value="11:40" aria-label="结束时间"></span><span class="spot-transit">步行 0.8km / 25分钟 <span class="estimate-tag">估算</span></span></div><div class="spot-desc">沿开放栈道观赏水色，雨天注意台阶，不靠近水边拍照。</div><a class="source-badge" href="https://www.jiuzhai.com/intelligent-service/way-of-play" target="_blank" rel="noopener noreferrer">九寨沟景区官方游玩方式 · 2026-09-07</a><label class="cost-editor item-edit-controls" hidden>预算 <input type="number" min="0" step="1" class="cost-input" data-key="day-3-item-3" value="0"> 元</label></div></div></article><article class="spot itinerary-item" data-item-key="day-3-item-4" data-coords="103.877,33.1638"><div class="spot-head"><label class="item-toggle" title="标记完成"><input type="checkbox" class="item-check" data-key="day-3-item-4"></label><div class="spot-icon">🥪</div><div class="spot-main"><div class="spot-name"><span class="spot-title">诺日朗中心简餐与休息<span class="spot-price">约40–60元/人</span></span><span class="spot-actions"><button type="button" class="favorite-btn" data-key="day-3-item-4" title="收藏">♡</button><button type="button" class="edit-btn" data-key="day-3-item-4" aria-expanded="false">编辑</button></span></div><div class="editable-schedule"><span class="schedule-display">12:20–13:20</span><span class="item-edit-controls" hidden><input type="time" class="time-input start-time" data-key="day-3-item-4" value="12:20" aria-label="开始时间">–<input type="time" class="time-input end-time" data-key="day-3-item-4" value="13:20" aria-label="结束时间"></span><span class="spot-transit">公共交通 18.0km / 30分钟 <span class="estimate-tag">估算</span></span></div><div class="spot-desc">以自带面包、能量棒和热饮为主，垃圾全部带走或分类投放。</div><a class="source-badge" href="https://www.jiuzhai.com/intelligent-service/way-of-play" target="_blank" rel="noopener noreferrer">九寨沟景区官方游玩方式 · 2026-09-07</a><span class="source-badge">通用旅行知识，出发前建议核实 · 2026-09-07</span><label class="cost-editor item-edit-controls" hidden>预算 <input type="number" min="0" step="1" class="cost-input" data-key="day-3-item-4" value="100"> 元/2人</label></div></div></article><article class="spot itinerary-item" data-item-key="day-3-item-5" data-coords="103.9,33.205"><div class="spot-head"><label class="item-toggle" title="标记完成"><input type="checkbox" class="item-check" data-key="day-3-item-5"></label><div class="spot-icon">🌲</div><div class="spot-main"><div class="spot-name"><span class="spot-title">犀牛海—树正群海<span class="spot-price">已含景区票</span></span><span class="spot-actions"><button type="button" class="favorite-btn" data-key="day-3-item-5" title="收藏">♡</button><button type="button" class="edit-btn" data-key="day-3-item-5" aria-expanded="false">编辑</button></span></div><div class="editable-schedule"><span class="schedule-display">13:50–16:20</span><span class="item-edit-controls" hidden><input type="time" class="time-input start-time" data-key="day-3-item-5" value="13:50" aria-label="开始时间">–<input type="time" class="time-input end-time" data-key="day-3-item-5" value="16:20" aria-label="结束时间"></span><span class="spot-transit">公共交通 6.0km / 20分钟 <span class="estimate-tag">估算</span></span></div><div class="spot-desc">观光车与短程栈道结合，按体力选择犀牛海、老虎海、树正瀑布和群海。</div><a class="source-badge" href="https://www.jiuzhai.com/intelligent-service/way-of-play" target="_blank" rel="noopener noreferrer">九寨沟景区官方游玩方式 · 2026-09-07</a><label class="cost-editor item-edit-controls" hidden>预算 <input type="number" min="0" step="1" class="cost-input" data-key="day-3-item-5" value="0"> 元</label></div></div><div class="spot-romance">💕 傍晚树正群海光线柔和，找不挡路的位置慢慢看水色。</div><div class="pitfall">⚠️ 不要为了多看一个点错过末班观光车，16:30左右开始向沟口移动。</div></article></section><section class="day-card" data-day="4"><div class="day-header d4"><div class="day-num">Day 4 · 2026-09-18</div><div class="day-title">日则沟精华 · 把最好看的留给第二天</div><div class="day-route">二次入园与日则沟观光车 → 箭竹海—熊猫海 → 五花海 → 诺日朗中心午休 → 珍珠滩瀑布—镜海</div></div><div class="route-bar"><span class="dot"></span>二次入园与日则沟观光车 → 箭竹海—熊猫海 → 五花海 → 诺日朗中心午休 → 珍珠滩瀑布—镜海</div><article class="spot itinerary-item" data-item-key="day-4-item-1" data-coords="103.9186,33.26"><div class="spot-head"><label class="item-toggle" title="标记完成"><input type="checkbox" class="item-check" data-key="day-4-item-1"></label><div class="spot-icon">🚌</div><div class="spot-main"><div class="spot-name"><span class="spot-title">二次入园与日则沟观光车<span class="spot-price">门票190＋观光车90元/人</span></span><span class="spot-actions"><button type="button" class="favorite-btn" data-key="day-4-item-1" title="收藏">♡</button><button type="button" class="edit-btn" data-key="day-4-item-1" aria-expanded="false">编辑</button></span></div><div class="editable-schedule"><span class="schedule-display">08:00–09:00</span><span class="item-edit-controls" hidden><input type="time" class="time-input start-time" data-key="day-4-item-1" value="08:00" aria-label="开始时间">–<input type="time" class="time-input end-time" data-key="day-4-item-1" value="09:00" aria-label="结束时间"></span><span class="spot-transit"></span></div><div class="spot-desc">第二天再次实名购票入园，直奔日则沟，减少在入口停留。</div><a class="source-badge" href="https://www.jiuzhai.com/intelligent-service/tickets" target="_blank" rel="noopener noreferrer">九寨沟景区官方票务信息 · 2026-09-07</a><a class="source-badge" href="https://www.jiuzhai.com/intelligent-service/way-of-play" target="_blank" rel="noopener noreferrer">九寨沟景区官方游玩方式 · 2026-09-07</a><label class="cost-editor item-edit-controls" hidden>预算 <input type="number" min="0" step="1" class="cost-input" data-key="day-4-item-1" value="560"> 元/2人</label></div></div></article><article class="spot itinerary-item" data-item-key="day-4-item-2" data-coords="103.8778,33.133"><div class="spot-head"><label class="item-toggle" title="标记完成"><input type="checkbox" class="item-check" data-key="day-4-item-2"></label><div class="spot-icon">🎋</div><div class="spot-main"><div class="spot-name"><span class="spot-title">箭竹海—熊猫海<span class="spot-price">已含景区票</span></span><span class="spot-actions"><button type="button" class="favorite-btn" data-key="day-4-item-2" title="收藏">♡</button><button type="button" class="edit-btn" data-key="day-4-item-2" aria-expanded="false">编辑</button></span></div><div class="editable-schedule"><span class="schedule-display">09:20–10:45</span><span class="item-edit-controls" hidden><input type="time" class="time-input start-time" data-key="day-4-item-2" value="09:20" aria-label="开始时间">–<input type="time" class="time-input end-time" data-key="day-4-item-2" value="10:45" aria-label="结束时间"></span><span class="spot-transit">公共交通 20.0km / 15分钟 <span class="estimate-tag">估算</span></span></div><div class="spot-desc">根据当天开放站点乘车和步行，保留体力给五花海及珍珠滩。</div><a class="source-badge" href="https://www.jiuzhai.com/intelligent-service/way-of-play" target="_blank" rel="noopener noreferrer">九寨沟景区官方游玩方式 · 2026-09-07</a><label class="cost-editor item-edit-controls" hidden>预算 <input type="number" min="0" step="1" class="cost-input" data-key="day-4-item-2" value="0"> 元</label></div></div></article><article class="spot itinerary-item" data-item-key="day-4-item-3" data-coords="103.883,33.157"><div class="spot-head"><label class="item-toggle" title="标记完成"><input type="checkbox" class="item-check" data-key="day-4-item-3"></label><div class="spot-icon">🩵</div><div class="spot-main"><div class="spot-name"><span class="spot-title">五花海<span class="spot-price">已含景区票</span></span><span class="spot-actions"><button type="button" class="favorite-btn" data-key="day-4-item-3" title="收藏">♡</button><button type="button" class="edit-btn" data-key="day-4-item-3" aria-expanded="false">编辑</button></span></div><div class="editable-schedule"><span class="schedule-display">11:10–12:20</span><span class="item-edit-controls" hidden><input type="time" class="time-input start-time" data-key="day-4-item-3" value="11:10" aria-label="开始时间">–<input type="time" class="time-input end-time" data-key="day-4-item-3" value="12:20" aria-label="结束时间"></span><span class="spot-transit">步行 1.2km / 20分钟 <span class="estimate-tag">估算</span></span></div><div class="spot-desc">九寨沟水色最丰富的代表性景点之一，不追同一个网红机位。</div><a class="source-badge" href="https://www.jiuzhai.com/intelligent-service/way-of-play" target="_blank" rel="noopener noreferrer">九寨沟景区官方游玩方式 · 2026-09-07</a><label class="cost-editor item-edit-controls" hidden>预算 <input type="number" min="0" step="1" class="cost-input" data-key="day-4-item-3" value="0"> 元</label></div></div><div class="spot-romance">💕 两个人各选一种最喜欢的湖水颜色，回程时交换照片。</div></article><article class="spot itinerary-item" data-item-key="day-4-item-4" data-coords="103.877,33.1638"><div class="spot-head"><label class="item-toggle" title="标记完成"><input type="checkbox" class="item-check" data-key="day-4-item-4"></label><div class="spot-icon">☕</div><div class="spot-main"><div class="spot-name"><span class="spot-title">诺日朗中心午休<span class="spot-price">约40–60元/人</span></span><span class="spot-actions"><button type="button" class="favorite-btn" data-key="day-4-item-4" title="收藏">♡</button><button type="button" class="edit-btn" data-key="day-4-item-4" aria-expanded="false">编辑</button></span></div><div class="editable-schedule"><span class="schedule-display">12:50–13:50</span><span class="item-edit-controls" hidden><input type="time" class="time-input start-time" data-key="day-4-item-4" value="12:50" aria-label="开始时间">–<input type="time" class="time-input end-time" data-key="day-4-item-4" value="13:50" aria-label="结束时间"></span><span class="spot-transit">公共交通 3.5km / 20分钟 <span class="estimate-tag">估算</span></span></div><div class="spot-desc">完整休息一小时，补水和热量，不用赶着把所有站点打卡。</div><span class="source-badge">通用旅行知识，出发前建议核实 · 2026-09-07</span><label class="cost-editor item-edit-controls" hidden>预算 <input type="number" min="0" step="1" class="cost-input" data-key="day-4-item-4" value="100"> 元/2人</label></div></div></article><article class="spot itinerary-item" data-item-key="day-4-item-5" data-coords="103.8835,33.1755"><div class="spot-head"><label class="item-toggle" title="标记完成"><input type="checkbox" class="item-check" data-key="day-4-item-5"></label><div class="spot-icon">💦</div><div class="spot-main"><div class="spot-name"><span class="spot-title">珍珠滩瀑布—镜海<span class="spot-price">已含景区票</span></span><span class="spot-actions"><button type="button" class="favorite-btn" data-key="day-4-item-5" title="收藏">♡</button><button type="button" class="edit-btn" data-key="day-4-item-5" aria-expanded="false">编辑</button></span></div><div class="editable-schedule"><span class="schedule-display">14:10–16:10</span><span class="item-edit-controls" hidden><input type="time" class="time-input start-time" data-key="day-4-item-5" value="14:10" aria-label="开始时间">–<input type="time" class="time-input end-time" data-key="day-4-item-5" value="16:10" aria-label="结束时间"></span><span class="spot-transit">步行 1.0km / 15分钟 <span class="estimate-tag">估算</span></span></div><div class="spot-desc">下午以瀑布和湖面为主，小雨时水景更有层次；雨大则减少栈道步行。</div><a class="source-badge" href="https://www.jiuzhai.com/intelligent-service/way-of-play" target="_blank" rel="noopener noreferrer">九寨沟景区官方游玩方式 · 2026-09-07</a><a class="source-badge" href="https://www.jiuzhai.com/news/notice/11290-2026-07-29-02-04-43" target="_blank" rel="noopener noreferrer">九寨沟景区全域恢复开放通告 · 2026-09-07</a><label class="cost-editor item-edit-controls" hidden>预算 <input type="number" min="0" step="1" class="cost-input" data-key="day-4-item-5" value="0"> 元</label></div></div><div class="spot-romance">💕 珍珠滩水雾大，准备一块干净镜头布，互相拍自然抓拍。</div><div class="pitfall">⚠️ 观光车停靠会按客流调整，现场以调度员指引为准。</div></article></section><section class="day-card" data-day="5"><div class="day-header d5"><div class="day-num">Day 5 · 2026-09-19</div><div class="day-title">返程日 · 留足高原交通机动</div><div class="day-route">沟口直通车前往黄龙九寨站 → 动车返回成都东 → 前往成都机场并办理登机 → 成都飞回北京</div></div><div class="route-bar"><span class="dot"></span>沟口直通车前往黄龙九寨站 → 动车返回成都东 → 前往成都机场并办理登机 → 成都飞回北京</div><article class="spot itinerary-item" data-item-key="day-5-item-1" data-coords="103.7,32.68"><div class="spot-head"><label class="item-toggle" title="标记完成"><input type="checkbox" class="item-check" data-key="day-5-item-1"></label><div class="spot-icon">🚌</div><div class="spot-main"><div class="spot-name"><span class="spot-title">沟口直通车前往黄龙九寨站<span class="spot-price">参考51元/人</span></span><span class="spot-actions"><button type="button" class="favorite-btn" data-key="day-5-item-1" title="收藏">♡</button><button type="button" class="edit-btn" data-key="day-5-item-1" aria-expanded="false">编辑</button></span></div><div class="editable-schedule"><span class="schedule-display">06:30–08:45</span><span class="item-edit-controls" hidden><input type="time" class="time-input start-time" data-key="day-5-item-1" value="06:30" aria-label="开始时间">–<input type="time" class="time-input end-time" data-key="day-5-item-1" value="08:45" aria-label="结束时间"></span><span class="spot-transit"></span></div><div class="spot-desc">选择与返程动车匹配的官方接驳，至少预留30分钟进站时间。</div><a class="source-badge" href="https://songpan.gov.cn/spxrmzf/c100050/202604/912b4b0784b54860ae2e6eebe03da751.shtml" target="_blank" rel="noopener noreferrer">黄龙九寨站景区直通车接驳 · 2026-09-07</a><a class="source-badge" href="https://www.jiuzhai.com/intelligent-service/arrival-mode" target="_blank" rel="noopener noreferrer">九寨沟景区官方到达方式 · 2026-09-07</a><label class="cost-editor item-edit-controls" hidden>预算 <input type="number" min="0" step="1" class="cost-input" data-key="day-5-item-1" value="102"> 元/2人</label></div></div></article><article class="spot itinerary-item" data-item-key="day-5-item-2" data-coords="104.1407,30.6291"><div class="spot-head"><label class="item-toggle" title="标记完成"><input type="checkbox" class="item-check" data-key="day-5-item-2"></label><div class="spot-icon">🚄</div><div class="spot-main"><div class="spot-name"><span class="spot-title">动车返回成都东<span class="spot-price">参考143元/人</span></span><span class="spot-actions"><button type="button" class="favorite-btn" data-key="day-5-item-2" title="收藏">♡</button><button type="button" class="edit-btn" data-key="day-5-item-2" aria-expanded="false">编辑</button></span></div><div class="editable-schedule"><span class="schedule-display">09:30–11:20</span><span class="item-edit-controls" hidden><input type="time" class="time-input start-time" data-key="day-5-item-2" value="09:30" aria-label="开始时间">–<input type="time" class="time-input end-time" data-key="day-5-item-2" value="11:20" aria-label="结束时间"></span><span class="spot-transit">步行 0.3km / 20分钟 <span class="estimate-tag">估算</span></span></div><div class="spot-desc">返程车次以12306为准，不购买与接驳车时间过近的班次。</div><a class="source-badge" href="https://train.qunar.com/train/tickets/chengdudong-to-huanglongjiuzhai/2026-09-13" target="_blank" rel="noopener noreferrer">成都东至黄龙九寨动车参考 · 2026-09-07</a><label class="cost-editor item-edit-controls" hidden>预算 <input type="number" min="0" step="1" class="cost-input" data-key="day-5-item-2" value="286"> 元/2人</label></div></div></article><article class="spot itinerary-item" data-item-key="day-5-item-3" data-coords=""><div class="spot-head"><label class="item-toggle" title="标记完成"><input type="checkbox" class="item-check" data-key="day-5-item-3"></label><div class="spot-icon">🧳</div><div class="spot-main"><div class="spot-name"><span class="spot-title">前往成都机场并办理登机<span class="spot-price">地铁或机场专线约20–40元/人</span></span><span class="spot-actions"><button type="button" class="favorite-btn" data-key="day-5-item-3" title="收藏">♡</button><button type="button" class="edit-btn" data-key="day-5-item-3" aria-expanded="false">编辑</button></span></div><div class="editable-schedule"><span class="schedule-display">12:00–15:00</span><span class="item-edit-controls" hidden><input type="time" class="time-input start-time" data-key="day-5-item-3" value="12:00" aria-label="开始时间">–<input type="time" class="time-input end-time" data-key="day-5-item-3" value="15:00" aria-label="结束时间"></span><span class="spot-transit"></span></div><div class="spot-desc">若从天府机场起飞，成都东站至机场距离较远，不建议购买15:30以前航班。</div><span class="source-badge">通用旅行知识，出发前建议核实 · 2026-09-07</span><label class="cost-editor item-edit-controls" hidden>预算 <input type="number" min="0" step="1" class="cost-input" data-key="day-5-item-3" value="60"> 元/2人</label></div></div></article><article class="spot itinerary-item" data-item-key="day-5-item-4" data-coords=""><div class="spot-head"><label class="item-toggle" title="标记完成"><input type="checkbox" class="item-check" data-key="day-5-item-4"></label><div class="spot-icon">✈️</div><div class="spot-main"><div class="spot-name"><span class="spot-title">成都飞回北京<span class="spot-price">单程预算约550–800元/人</span></span><span class="spot-actions"><button type="button" class="favorite-btn" data-key="day-5-item-4" title="收藏">♡</button><button type="button" class="edit-btn" data-key="day-5-item-4" aria-expanded="false">编辑</button></span></div><div class="editable-schedule"><span class="schedule-display">16:00–19:00</span><span class="item-edit-controls" hidden><input type="time" class="time-input start-time" data-key="day-5-item-4" value="16:00" aria-label="开始时间">–<input type="time" class="time-input end-time" data-key="day-5-item-4" value="19:00" aria-label="结束时间"></span><span class="spot-transit"></span></div><div class="spot-desc">优先选可免费改签或退票条件清晰的航班，应对高原道路和动车延误。</div><a class="source-badge" href="https://m.ctrip.com/html5/flight/BJS-CTU-day-7.html" target="_blank" rel="noopener noreferrer">北京至成都航班与价格参考 · 2026-09-07</a><label class="cost-editor item-edit-controls" hidden>预算 <input type="number" min="0" step="1" class="cost-input" data-key="day-5-item-4" value="1300"> 元/2人</label></div></div></article></section>
+
+<!-- 美食推荐 -->
+<section class="food-section"><h2>🍜 美食推荐</h2><div class="food-grid"><div class="food-item"><div class="f-name">牦牛肉汤锅</div><div class="f-shop">沟口或边边街明码标价的本地餐馆</div><div class="f-price">约70–100元/人</div><div class="f-note">高原晚餐最稳妥，菌汤或清汤比重辣锅更适合初到高原</div><a class="source-badge" href="https://www.sina.cn/gc/article/nipsvwy0550457.html" target="_blank" rel="noopener noreferrer">九寨沟藏羌美食消费参考 · 2026-09-07</a><a class="source-badge" href="https://you.ctrip.com/food/ctripyouyoustar25/130752219.html" target="_blank" rel="noopener noreferrer">九寨沟藏餐与牦牛肉汤锅参考 · 2026-09-07</a></div><div class="food-item"><div class="f-name">藏式土火锅</div><div class="f-shop">漳扎镇藏餐厅</div><div class="f-price">约80–120元/人</div><div class="f-note">牦牛肉、菌菇和蔬菜一锅分享，适合两个人暖身</div><a class="source-badge" href="https://www.sina.cn/gc/article/nipsvwy0550457.html" target="_blank" rel="noopener noreferrer">九寨沟藏羌美食消费参考 · 2026-09-07</a></div><div class="food-item"><div class="f-name">青稞饼＋酥油茶</div><div class="f-shop">沟口藏式早餐店</div><div class="f-price">约20–40元/人</div><div class="f-note">份量不大，适合作为进沟前的热早餐</div><a class="source-badge" href="https://www.sina.cn/gc/article/nipsvwy0550457.html" target="_blank" rel="noopener noreferrer">九寨沟藏羌美食消费参考 · 2026-09-07</a></div><div class="food-item"><div class="f-name">牦牛酸奶</div><div class="f-shop">正规藏餐厅或包装完整的门店</div><div class="f-price">约15–30元/份</div><div class="f-note">酸味较明显，可加少量糖或蜂蜜，两人分享一份先试口味</div><a class="source-badge" href="https://you.ctrip.com/food/ctripyouyoustar25/130752219.html" target="_blank" rel="noopener noreferrer">九寨沟藏餐与牦牛肉汤锅参考 · 2026-09-07</a></div><div class="food-item"><div class="f-name">洋芋糍粑</div><div class="f-shop">漳扎镇川北小馆</div><div class="f-price">约15–30元/份</div><div class="f-note">软糯顶饱，是比油炸小吃更温和的当地碳水</div><a class="source-badge" href="https://www.sina.cn/gc/article/nipsvwy0550457.html" target="_blank" rel="noopener noreferrer">九寨沟藏羌美食消费参考 · 2026-09-07</a></div><div class="food-item"><div class="f-name">菌菇牦牛肉粉</div><div class="f-shop">沟口早餐或简餐店</div><div class="f-price">约25–40元/人</div><div class="f-note">热汤补水，适合返程早晨或进沟前食用</div><a class="source-badge" href="https://www.sina.cn/gc/article/nipsvwy0550457.html" target="_blank" rel="noopener noreferrer">九寨沟藏羌美食消费参考 · 2026-09-07</a></div></div></section>
+
+<!-- 避坑清单 -->
+<section class="avoid-section"><h2>⚠️ 避坑清单</h2><div class="avoid-list"><div class="avoid-item"><div class="a-num">1</div><div><span class="a-wrong">相信低价票或所谓快速入园通道</span> → <span class="a-right">只通过九寨沟官方微信公众号或阿坝旅游网实名预约</span><a class="source-badge" href="https://www.jiuzhai.com/intelligent-service/tickets" target="_blank" rel="noopener noreferrer">九寨沟景区官方票务信息 · 2026-09-07</a></div></div><div class="avoid-item"><div class="a-num">2</div><div><span class="a-wrong">第一天到高原就暴走、跑跳或饮酒</span> → <span class="a-right">抵达沟口先午休，少饮酒，多补水，有不适及时休息</span><a class="source-badge" href="https://abazhou.gov.cn/abazhou/c101955/202603/15b3f5e33fb9453ab7064d6a0d93894d.shtml" target="_blank" rel="noopener noreferrer">九寨沟2026年旺季开放与票价 · 2026-09-07</a><span class="source-badge">通用旅行知识，出发前建议核实 · 2026-09-07</span></div></div><div class="avoid-item"><div class="a-num">3</div><div><span class="a-wrong">一天硬塞完三条沟的所有景点</span> → <span class="a-right">按官方两日思路拆分则查洼沟、树正沟和日则沟</span><a class="source-badge" href="https://www.jiuzhai.com/intelligent-service/way-of-play" target="_blank" rel="noopener noreferrer">九寨沟景区官方游玩方式 · 2026-09-07</a></div></div><div class="avoid-item"><div class="a-num">4</div><div><span class="a-wrong">为了拍照下滩踩水、翻越栏杆或飞无人机</span> → <span class="a-right">只走开放栈道，遵守禁飞和生态保护规定</span><a class="source-badge" href="https://abazhou.gov.cn/abazhou/c101955/202603/15b3f5e33fb9453ab7064d6a0d93894d.shtml" target="_blank" rel="noopener noreferrer">九寨沟2026年旺季开放与票价 · 2026-09-07</a></div></div><div class="avoid-item"><div class="a-num">5</div><div><span class="a-wrong">把动车到站和接驳发车时间卡得太紧</span> → <span class="a-right">往返均留30–60分钟机动，并购买退改条件清晰的返京航班</span><a class="source-badge" href="https://songpan.gov.cn/spxrmzf/c100050/202604/912b4b0784b54860ae2e6eebe03da751.shtml" target="_blank" rel="noopener noreferrer">黄龙九寨站景区直通车接驳 · 2026-09-07</a><span class="source-badge">通用旅行知识，出发前建议核实 · 2026-09-07</span></div></div></div></section>
+
+<!-- 预算估算 -->
+<section class="budget-card"><h2>💰 预算估算 · comfortable</h2><div><div class="budget-row"><span>双人往返机票</span><span>2800</span></div><div class="budget-row"><span>成都—黄龙九寨动车</span><span>572</span></div><div class="budget-row"><span>景区接驳</span><span>408</span></div><div class="budget-row"><span>住宿4晚</span><span>1300</span></div><div class="budget-row"><span>九寨沟两日门票与观光车</span><span>1120</span></div><div class="budget-row"><span>餐饮</span><span>900</span></div><div class="budget-row"><span>当地交通</span><span>380</span></div><div class="budget-row"><span>保险、补给与机动</span><span>400</span></div><div class="budget-total">计划预算：<span id="baseBudget">7880</span> <span class="currency-label">CNY</span><br><small>本地编辑合计：<span id="liveBudget">0</span> <span class="currency-label">CNY</span></small></div></div></section>
+
+<!-- 浪漫Tips -->
+<section class="tips-card"><h2>🧳 出行 Tips</h2><div><div class="tip-item"><span>✓</span><span>门票按两次入园预算，每天均需单独实名购买门票和观光车票。</span></div><div class="tip-item"><span>✓</span><span>随身带轻薄羽绒或抓绒、冲锋衣、折叠雨衣、防滑运动鞋和镜头布。</span></div><div class="tip-item"><span>✓</span><span>景区内午餐选择有限，两人各带一瓶水、能量棒和便携主食即可，不要背得太重。</span></div><div class="tip-item"><span>✓</span><span>返程日不要买过早的成都航班，黄龙九寨站到成都后还要前往机场。</span></div><div class="tip-item"><span>✓</span><span>若机票价格明显超过预算，可改为北京西—成都卧铺/高铁组合，但总行程会增加一天。</span></div><div class="tip-item"><span>✓</span><span>当前行程处于秋季，出发前请再次核实临近天气。</span></div><div class="tip-item"><span>✓</span><span>早晚偏凉，建议携带薄外套并关注景区季节性开放时间。</span></div><div class="tip-item"><span>✓</span><span>2026-09-15可能有降雨，为户外景点准备室内备选并防滑。</span></div><div class="tip-item"><span>✓</span><span>2026-09-16可能有降雨，为户外景点准备室内备选并防滑。</span></div></div></section>
+
+<div class="footer">
+  高原天气和交通会变化，请在出发前再次核实门票、车次与接驳班次。
+</div>
+
+</div><!-- /container -->
+
+<!-- 右侧快速导航 -->
+<div class="quick-nav" id="quickNav">
+  <!-- 由JS动态生成 -->
+</div>
+
+<script>
+const GUIDE_DATA = {"schema_version": "1.0", "meta": {"title": "北京到九寨沟5天双人休闲攻略", "subtitle": "慢慢走进翠海、叠瀑与藏羌秋色", "destination": "九寨沟", "origin": "北京", "language": "zh-CN", "start_date": "2026-09-15", "days": 5, "travelers": 2, "currency": "CNY", "timezone": "Asia/Shanghai", "destination_coords": [103.9186, 33.26], "budget_total": 8000, "emojis": "🏔️💧🍂", "footer": "高原天气和交通会变化，请在出发前再次核实门票、车次与接驳班次。"}, "preferences": {"budget_level": "舒适型", "pace": "relaxed", "group_type": "双人", "interests": ["自然风光", "湖泊瀑布", "摄影", "藏羌文化", "美食"], "dietary": [], "accessibility": [], "transport": ["transit", "walk"], "earliest_start": "06:30", "latest_end": "21:00"}, "sources": [{"id": "jiuzhai-2026-policy", "title": "九寨沟2026年旺季开放与票价", "url": "https://abazhou.gov.cn/abazhou/c101955/202603/15b3f5e33fb9453ab7064d6a0d93894d.shtml", "type": "official", "checked_at": "2026-09-07"}, {"id": "jiuzhai-ticket-official", "title": "九寨沟景区官方票务信息", "url": "https://www.jiuzhai.com/intelligent-service/tickets", "type": "official", "checked_at": "2026-09-07"}, {"id": "jiuzhai-open-official", "title": "九寨沟景区全域恢复开放通告", "url": "https://www.jiuzhai.com/news/notice/11290-2026-07-29-02-04-43", "type": "official", "checked_at": "2026-09-07"}, {"id": "jiuzhai-route-official", "title": "九寨沟景区官方游玩方式", "url": "https://www.jiuzhai.com/intelligent-service/way-of-play", "type": "official", "checked_at": "2026-09-07"}, {"id": "arrival-official", "title": "九寨沟景区官方到达方式", "url": "https://www.jiuzhai.com/intelligent-service/arrival-mode", "type": "official", "checked_at": "2026-09-07"}, {"id": "station-shuttle-government", "title": "黄龙九寨站景区直通车接驳", "url": "https://songpan.gov.cn/spxrmzf/c100050/202604/912b4b0784b54860ae2e6eebe03da751.shtml", "type": "official", "checked_at": "2026-09-07"}, {"id": "chengdu-train", "title": "成都东至黄龙九寨动车参考", "url": "https://train.qunar.com/train/tickets/chengdudong-to-huanglongjiuzhai/2026-09-13", "type": "search", "checked_at": "2026-09-07"}, {"id": "beijing-flight", "title": "北京至成都航班与价格参考", "url": "https://m.ctrip.com/html5/flight/BJS-CTU-day-7.html", "type": "search", "checked_at": "2026-09-07"}, {"id": "weather-september", "title": "九寨沟2026年9月天气趋势", "url": "https://www.tianqi.com/tianqi/jiuzhaigou/202609.html", "type": "search", "checked_at": "2026-09-07"}, {"id": "food-guide", "title": "九寨沟藏羌美食消费参考", "url": "https://www.sina.cn/gc/article/nipsvwy0550457.html", "type": "search", "checked_at": "2026-09-07"}, {"id": "restaurant-review", "title": "九寨沟藏餐与牦牛肉汤锅参考", "url": "https://you.ctrip.com/food/ctripyouyoustar25/130752219.html", "type": "search", "checked_at": "2026-09-07"}, {"id": "hotel-estimate", "title": "住宿价格区间估算，预订时请按实时价格筛选", "type": "estimate", "checked_at": "2026-09-07"}, {"id": "route-estimate", "title": "基于经纬度和公开接驳信息的路线估算", "type": "estimate", "checked_at": "2026-09-07"}, {"id": "general-knowledge", "title": "通用旅行知识，出发前建议核实", "type": "general", "checked_at": "2026-09-07"}], "weather": [{"date": "2026-09-15", "condition": "趋势为小雨，约15–23℃；以临近预报为准", "temp_low": 15, "temp_high": 23, "backup_plan": "成都段改为四川博物院或成都博物馆，晚上早点休息", "source_ids": ["weather-september"]}, {"date": "2026-09-16", "condition": "九寨沟9月多阵雨，早晚偏凉", "temp_low": 10, "temp_high": 20, "backup_plan": "抵达后不安排户外远行，改为酒店休息和沟口室内藏羌文化体验", "source_ids": ["weather-september", "general-knowledge"]}, {"date": "2026-09-17", "condition": "高原天气多变，体感约8–20℃", "temp_low": 8, "temp_high": 20, "backup_plan": "小雨穿雨衣照常游览；暴雨或地质预警时服从景区调度，缩短则查洼沟停留", "source_ids": ["weather-september", "jiuzhai-open-official"]}, {"date": "2026-09-18", "condition": "高原天气多变，体感约8–20℃", "temp_low": 8, "temp_high": 20, "backup_plan": "优先观光车可达的五花海、珍珠滩瀑布和镜海，减少连续栈道步行", "source_ids": ["weather-september", "general-knowledge"]}, {"date": "2026-09-19", "condition": "早晚凉、昼夜温差明显", "temp_low": 9, "temp_high": 21, "backup_plan": "预留交通机动时间，若道路受天气影响则优先改签较晚返京航班", "source_ids": ["weather-september", "general-knowledge"]}], "transport": [{"mode": "flight", "title": "北京 → 成都", "detail": "建议选择9月15日上午直飞成都的航班，落地后不继续赶长途；具体机场、行李额和价格以出票为准", "price": "预算按双人往返约2200–2800元", "recommended": true, "source_ids": ["beijing-flight"]}, {"mode": "train", "title": "成都东 → 黄龙九寨站", "detail": "优先早班动车，参考运行约1小时40分、二等座约143元/人；往返车次以12306为准", "price": "双人往返约572元", "recommended": true, "source_ids": ["chengdu-train", "arrival-official"]}, {"mode": "bus", "title": "黄龙九寨站 ↔ 九寨沟沟口", "detail": "使用景区直通车，单程约2小时；高峰期会动态增开，必须与动车到站时间匹配", "price": "参考约51元/人/程", "recommended": true, "source_ids": ["station-shuttle-government", "arrival-official"]}], "hotels": [{"area": "九寨沟沟口—彭丰村（首选）", "price": "约280–450元/晚", "reason": "连续两天进沟最省时间，餐饮选择也最多", "connection": "尽量选择提供早饭、步行或短途接驳可到游客中心的酒店", "source_ids": ["hotel-estimate", "food-guide"]}, {"area": "漳扎镇—边边街", "price": "约220–380元/晚", "reason": "牦牛肉汤锅、藏餐和小吃集中，晚上更有烟火气", "connection": "到景区入口通常需短程出租车，订房前确认早晨叫车条件", "source_ids": ["hotel-estimate", "food-guide"]}, {"area": "成都东站商圈", "price": "约250–400元/晚", "reason": "第一晚方便次日乘早班动车，减少跨城通勤压力", "connection": "选择可步行或一站地铁到成都东站的酒店", "source_ids": ["hotel-estimate"]}], "days": [{"day": 1, "date": "2026-09-15", "title": "北京飞成都 · 放慢节奏适应旅途", "items": [{"type": "transport", "name": "北京直飞成都", "icon": "✈️", "start": "07:00", "end": "10:10", "description": "优先选早班直飞，落地后先吃饭休息，不在同一天继续赶九寨沟。", "price": "单程参考约550–800元/人", "cost": 1300, "currency": "元/2人", "source_ids": ["beijing-flight"]}, {"type": "meal", "name": "成都清淡川菜午餐", "icon": "🍚", "start": "12:00", "end": "13:20", "description": "第一天少吃过辣、少饮酒，为第二天进入高原做准备。", "price": "约60–90元/人", "cost": 160, "currency": "元/2人", "coords": [104.08, 30.657], "source_ids": ["general-knowledge"]}, {"type": "spot", "name": "人民公园与鹤鸣茶社周边", "icon": "🍵", "start": "14:30", "end": "16:30", "description": "喝茶、散步，保持低强度；下雨则改成都博物馆或四川博物院。", "price": "公园免费，茶饮约30–60元/人", "cost": 100, "currency": "元/2人", "coords": [104.055, 30.6598], "transport_mode": "transit", "source_ids": ["general-knowledge"], "route_from_previous": {"mode": "transit", "distance_km": 3.3, "duration_min": 9, "estimated": true, "method": "haversine_x_1.35"}}, {"type": "hotel", "name": "入住成都东站附近酒店", "icon": "🏨", "start": "18:30", "end": "20:00", "description": "整理第二天车票、身份证和轻便背包，尽量22:00前休息。", "price": "约250–400元/晚", "cost": 320, "currency": "元/晚", "coords": [104.1407, 30.6291], "transport_mode": "transit", "source_ids": ["hotel-estimate"], "route_from_previous": {"mode": "transit", "distance_km": 12.0, "duration_min": 33, "estimated": true, "method": "haversine_x_1.35"}}]}, {"day": 2, "date": "2026-09-16", "title": "动车入川西 · 沟口休整", "items": [{"type": "transport", "name": "成都东站乘动车", "icon": "🚄", "start": "06:45", "end": "08:30", "description": "参考早班动车前往黄龙九寨站，提前45分钟到站。", "price": "参考143元/人", "cost": 286, "currency": "元/2人", "coords": [103.7, 32.68], "source_ids": ["chengdu-train"]}, {"type": "transport", "name": "景区直通车前往九寨沟沟口", "icon": "🚌", "start": "09:00", "end": "11:15", "description": "按动车抵达时间购买直通车，弯道路段不要空腹，也不建议一直看手机。", "price": "参考51元/人", "cost": 102, "currency": "元/2人", "coords": [103.9186, 33.26], "route_from_previous": {"mode": "walk", "distance_km": 0.3, "duration_min": 15, "estimated": true, "method": "station_transfer"}, "source_ids": ["station-shuttle-government", "arrival-official"]}, {"type": "hotel", "name": "沟口酒店入住与午休", "icon": "🛏️", "start": "12:00", "end": "15:00", "description": "当天不进景区，吃完午饭睡一会儿，让身体适应海拔和温差。", "price": "3晚合计约850–1100元", "cost": 960, "currency": "元/3晚", "coords": [103.918, 33.266], "transport_mode": "walk", "source_ids": ["hotel-estimate"], "route_from_previous": {"mode": "walk", "distance_km": 0.8, "duration_min": 10, "estimated": true, "method": "haversine_x_1.15"}}, {"type": "spot", "name": "边边街与漳扎镇轻松散步", "icon": "🏘️", "start": "16:30", "end": "18:00", "description": "只做短距离散步，购买第二天饮用水和便携零食，不安排演出赶场。", "price": "免费逛街", "cost": 80, "currency": "元/补给", "coords": [103.9, 33.275], "transport_mode": "transit", "source_ids": ["food-guide", "general-knowledge"], "route_from_previous": {"mode": "transit", "distance_km": 2.6, "duration_min": 7, "estimated": true, "method": "haversine_x_1.35"}}, {"type": "meal", "name": "牦牛肉汤锅晚餐", "icon": "🍲", "start": "18:20", "end": "19:40", "description": "选清汤或菌汤锅，两人点小份牦牛肉、青稞饼和一份蔬菜即可。", "price": "约70–100元/人", "cost": 180, "currency": "元/2人", "coords": [103.901, 33.2755], "transport_mode": "walk", "source_ids": ["food-guide", "restaurant-review"], "route_from_previous": {"mode": "walk", "distance_km": 0.1, "duration_min": 2, "estimated": true, "method": "haversine_x_1.15"}}]}, {"day": 3, "date": "2026-09-17", "title": "则查洼沟＋树正沟 · 初见九寨", "items": [{"type": "spot", "name": "景区入园与观光车", "icon": "🎫", "start": "08:00", "end": "08:40", "description": "带身份证按预约时段入园，先乘观光车到则查洼沟方向。", "price": "门票190＋观光车90元/人", "cost": 560, "currency": "元/2人", "coords": [103.9186, 33.26], "opening_hours": {"open": "08:00", "close": "18:00"}, "source_ids": ["jiuzhai-2026-policy", "jiuzhai-ticket-official"]}, {"type": "spot", "name": "长海", "icon": "🏔️", "start": "09:10", "end": "10:10", "description": "先看九寨沟海拔最高、面积最大的海子，放慢脚步，不跑跳。", "price": "已含景区票", "cost": 0, "currency": "元", "coords": [103.9175, 32.9364], "transport_mode": "transit", "route_from_previous": {"mode": "transit", "distance_km": 18.0, "duration_min": 25, "estimated": true, "method": "scenic_shuttle"}, "romance": "在长海观景台留一张两人与雪山湖面的合照。", "pitfall": "海拔较高，头晕、胸闷时立刻休息并减少停留。", "source_ids": ["jiuzhai-route-official"]}, {"type": "spot", "name": "五彩池", "icon": "💎", "start": "10:40", "end": "11:40", "description": "沿开放栈道观赏水色，雨天注意台阶，不靠近水边拍照。", "price": "已含景区票", "cost": 0, "currency": "元", "coords": [103.9273, 32.964], "transport_mode": "walk", "route_from_previous": {"mode": "walk", "distance_km": 0.8, "duration_min": 25, "estimated": true, "method": "scenic_boardwalk"}, "source_ids": ["jiuzhai-route-official"]}, {"type": "meal", "name": "诺日朗中心简餐与休息", "icon": "🥪", "start": "12:20", "end": "13:20", "description": "以自带面包、能量棒和热饮为主，垃圾全部带走或分类投放。", "price": "约40–60元/人", "cost": 100, "currency": "元/2人", "coords": [103.877, 33.1638], "transport_mode": "transit", "route_from_previous": {"mode": "transit", "distance_km": 18.0, "duration_min": 30, "estimated": true, "method": "scenic_shuttle"}, "source_ids": ["jiuzhai-route-official", "general-knowledge"]}, {"type": "spot", "name": "犀牛海—树正群海", "icon": "🌲", "start": "13:50", "end": "16:20", "description": "观光车与短程栈道结合，按体力选择犀牛海、老虎海、树正瀑布和群海。", "price": "已含景区票", "cost": 0, "currency": "元", "coords": [103.9, 33.205], "transport_mode": "transit", "route_from_previous": {"mode": "transit", "distance_km": 6.0, "duration_min": 20, "estimated": true, "method": "scenic_shuttle"}, "romance": "傍晚树正群海光线柔和，找不挡路的位置慢慢看水色。", "pitfall": "不要为了多看一个点错过末班观光车，16:30左右开始向沟口移动。", "source_ids": ["jiuzhai-route-official"]}]}, {"day": 4, "date": "2026-09-18", "title": "日则沟精华 · 把最好看的留给第二天", "items": [{"type": "spot", "name": "二次入园与日则沟观光车", "icon": "🚌", "start": "08:00", "end": "09:00", "description": "第二天再次实名购票入园，直奔日则沟，减少在入口停留。", "price": "门票190＋观光车90元/人", "cost": 560, "currency": "元/2人", "coords": [103.9186, 33.26], "opening_hours": {"open": "08:00", "close": "18:00"}, "source_ids": ["jiuzhai-ticket-official", "jiuzhai-route-official"]}, {"type": "spot", "name": "箭竹海—熊猫海", "icon": "🎋", "start": "09:20", "end": "10:45", "description": "根据当天开放站点乘车和步行，保留体力给五花海及珍珠滩。", "price": "已含景区票", "cost": 0, "currency": "元", "coords": [103.8778, 33.133], "transport_mode": "transit", "route_from_previous": {"mode": "transit", "distance_km": 20.0, "duration_min": 15, "estimated": true, "method": "scenic_shuttle"}, "source_ids": ["jiuzhai-route-official"]}, {"type": "spot", "name": "五花海", "icon": "🩵", "start": "11:10", "end": "12:20", "description": "九寨沟水色最丰富的代表性景点之一，不追同一个网红机位。", "price": "已含景区票", "cost": 0, "currency": "元", "coords": [103.883, 33.157], "transport_mode": "walk", "route_from_previous": {"mode": "walk", "distance_km": 1.2, "duration_min": 20, "estimated": true, "method": "scenic_boardwalk"}, "romance": "两个人各选一种最喜欢的湖水颜色，回程时交换照片。", "source_ids": ["jiuzhai-route-official"]}, {"type": "meal", "name": "诺日朗中心午休", "icon": "☕", "start": "12:50", "end": "13:50", "description": "完整休息一小时，补水和热量，不用赶着把所有站点打卡。", "price": "约40–60元/人", "cost": 100, "currency": "元/2人", "coords": [103.877, 33.1638], "transport_mode": "transit", "route_from_previous": {"mode": "transit", "distance_km": 3.5, "duration_min": 20, "estimated": true, "method": "scenic_shuttle"}, "source_ids": ["general-knowledge"]}, {"type": "spot", "name": "珍珠滩瀑布—镜海", "icon": "💦", "start": "14:10", "end": "16:10", "description": "下午以瀑布和湖面为主，小雨时水景更有层次；雨大则减少栈道步行。", "price": "已含景区票", "cost": 0, "currency": "元", "coords": [103.8835, 33.1755], "transport_mode": "walk", "route_from_previous": {"mode": "walk", "distance_km": 1.0, "duration_min": 15, "estimated": true, "method": "scenic_boardwalk"}, "romance": "珍珠滩水雾大，准备一块干净镜头布，互相拍自然抓拍。", "pitfall": "观光车停靠会按客流调整，现场以调度员指引为准。", "source_ids": ["jiuzhai-route-official", "jiuzhai-open-official"]}]}, {"day": 5, "date": "2026-09-19", "title": "返程日 · 留足高原交通机动", "items": [{"type": "transport", "name": "沟口直通车前往黄龙九寨站", "icon": "🚌", "start": "06:30", "end": "08:45", "description": "选择与返程动车匹配的官方接驳，至少预留30分钟进站时间。", "price": "参考51元/人", "cost": 102, "currency": "元/2人", "coords": [103.7, 32.68], "source_ids": ["station-shuttle-government", "arrival-official"]}, {"type": "transport", "name": "动车返回成都东", "icon": "🚄", "start": "09:30", "end": "11:20", "description": "返程车次以12306为准，不购买与接驳车时间过近的班次。", "price": "参考143元/人", "cost": 286, "currency": "元/2人", "coords": [104.1407, 30.6291], "route_from_previous": {"mode": "walk", "distance_km": 0.3, "duration_min": 20, "estimated": true, "method": "station_transfer"}, "source_ids": ["chengdu-train"]}, {"type": "transport", "name": "前往成都机场并办理登机", "icon": "🧳", "start": "12:00", "end": "15:00", "description": "若从天府机场起飞，成都东站至机场距离较远，不建议购买15:30以前航班。", "price": "地铁或机场专线约20–40元/人", "cost": 60, "currency": "元/2人", "source_ids": ["general-knowledge"]}, {"type": "transport", "name": "成都飞回北京", "icon": "✈️", "start": "16:00", "end": "19:00", "description": "优先选可免费改签或退票条件清晰的航班，应对高原道路和动车延误。", "price": "单程预算约550–800元/人", "cost": 1300, "currency": "元/2人", "source_ids": ["beijing-flight"]}]}], "foods": [{"name": "牦牛肉汤锅", "shop": "沟口或边边街明码标价的本地餐馆", "price": "约70–100元/人", "reason": "高原晚餐最稳妥，菌汤或清汤比重辣锅更适合初到高原", "source_ids": ["food-guide", "restaurant-review"]}, {"name": "藏式土火锅", "shop": "漳扎镇藏餐厅", "price": "约80–120元/人", "reason": "牦牛肉、菌菇和蔬菜一锅分享，适合两个人暖身", "source_ids": ["food-guide"]}, {"name": "青稞饼＋酥油茶", "shop": "沟口藏式早餐店", "price": "约20–40元/人", "reason": "份量不大，适合作为进沟前的热早餐", "source_ids": ["food-guide"]}, {"name": "牦牛酸奶", "shop": "正规藏餐厅或包装完整的门店", "price": "约15–30元/份", "reason": "酸味较明显，可加少量糖或蜂蜜，两人分享一份先试口味", "source_ids": ["restaurant-review"]}, {"name": "洋芋糍粑", "shop": "漳扎镇川北小馆", "price": "约15–30元/份", "reason": "软糯顶饱，是比油炸小吃更温和的当地碳水", "source_ids": ["food-guide"]}, {"name": "菌菇牦牛肉粉", "shop": "沟口早餐或简餐店", "price": "约25–40元/人", "reason": "热汤补水，适合返程早晨或进沟前食用", "source_ids": ["food-guide"]}], "avoid": [{"wrong": "相信低价票或所谓快速入园通道", "right": "只通过九寨沟官方微信公众号或阿坝旅游网实名预约", "source_ids": ["jiuzhai-ticket-official"]}, {"wrong": "第一天到高原就暴走、跑跳或饮酒", "right": "抵达沟口先午休，少饮酒，多补水，有不适及时休息", "source_ids": ["jiuzhai-2026-policy", "general-knowledge"]}, {"wrong": "一天硬塞完三条沟的所有景点", "right": "按官方两日思路拆分则查洼沟、树正沟和日则沟", "source_ids": ["jiuzhai-route-official"]}, {"wrong": "为了拍照下滩踩水、翻越栏杆或飞无人机", "right": "只走开放栈道，遵守禁飞和生态保护规定", "source_ids": ["jiuzhai-2026-policy"]}, {"wrong": "把动车到站和接驳发车时间卡得太紧", "right": "往返均留30–60分钟机动，并购买退改条件清晰的返京航班", "source_ids": ["station-shuttle-government", "general-knowledge"]}], "budget": {"selected": "comfortable", "profiles": {"economy": {"categories": {"双人往返机票": 2200, "成都—黄龙九寨动车": 572, "景区接驳": 408, "住宿4晚": 1000, "九寨沟两日门票与观光车": 1120, "餐饮": 700, "当地交通": 300, "保险与机动": 250}, "total": 6550}, "comfortable": {"categories": {"双人往返机票": 2800, "成都—黄龙九寨动车": 572, "景区接驳": 408, "住宿4晚": 1300, "九寨沟两日门票与观光车": 1120, "餐饮": 900, "当地交通": 380, "保险、补给与机动": 400}, "total": 7880}}}, "tips": ["门票按两次入园预算，每天均需单独实名购买门票和观光车票。", "随身带轻薄羽绒或抓绒、冲锋衣、折叠雨衣、防滑运动鞋和镜头布。", "景区内午餐选择有限，两人各带一瓶水、能量棒和便携主食即可，不要背得太重。", "返程日不要买过早的成都航班，黄龙九寨站到成都后还要前往机场。", "若机票价格明显超过预算，可改为北京西—成都卧铺/高铁组合，但总行程会增加一天。"], "season_tips": ["当前行程处于秋季，出发前请再次核实临近天气。", "早晚偏凉，建议携带薄外套并关注景区季节性开放时间。", "2026-09-15可能有降雨，为户外景点准备室内备选并防滑。", "2026-09-16可能有降雨，为户外景点准备室内备选并防滑。"]};
+
+// ===== 快速导航生成 =====
+(function() {
+  const sections = [];
+  // 收集所有可导航区域
+  document.querySelectorAll('.preferences-section, .weather-section, .quality-section, .transport-card, .timeline-card, .day-card, .avoid-section, .budget-card, .tips-card, .hotel-section, .food-section, .sources-section').forEach((el, i) => {
+    const id = el.id || ('section-' + i);
+    el.id = id;
+    let label = '';
+    if (el.classList.contains('preferences-section')) {
+      label = '偏好';
+    } else if (el.classList.contains('weather-section')) {
+      label = '天气';
+    } else if (el.classList.contains('quality-section')) {
+      label = '检查';
+    } else if (el.classList.contains('transport-card')) {
+      label = '交通';
+    } else if (el.classList.contains('timeline-card')) {
+      label = '时间表';
+    } else if (el.classList.contains('day-card')) {
+      const dayNum = el.querySelector('.day-num');
+      label = dayNum ? dayNum.textContent.split('·')[0].trim() : 'Day ' + (i+1);
+    } else if (el.classList.contains('avoid-section')) {
+      label = '避坑';
+    } else if (el.classList.contains('budget-card')) {
+      label = '预算';
+    } else if (el.classList.contains('tips-card')) {
+      label = 'Tips';
+    } else if (el.classList.contains('hotel-section')) {
+      label = '酒店';
+    } else if (el.classList.contains('food-section')) {
+      label = '美食';
+    } else if (el.classList.contains('sources-section')) {
+      label = '来源';
+    }
+    sections.push({ id, label, el });
+  });
+
+  // 生成导航项
+  const nav = document.getElementById('quickNav');
+  sections.forEach(s => {
+    const item = document.createElement('div');
+    item.className = 'nav-item';
+    item.innerHTML = '<span class="nav-dot"></span><span class="nav-label">' + s.label + '</span>';
+    item.onclick = () => {
+      s.el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+    nav.appendChild(item);
+  });
+
+  // 滚动时高亮当前区域
+  const items = nav.querySelectorAll('.nav-item');
+  window.addEventListener('scroll', () => {
+    let current = 0;
+    sections.forEach((s, i) => {
+      const rect = s.el.getBoundingClientRect();
+      if (rect.top < window.innerHeight / 2) current = i;
+    });
+    items.forEach((item, i) => item.classList.toggle('active', i === current));
+  });
+})();
+
+// ===== 折叠功能 =====
+(function() {
+  // Day卡片折叠 - 动态包装内容
+  document.querySelectorAll('.day-card').forEach(card => {
+    const header = card.querySelector('.day-header');
+    const wrapper = document.createElement('div');
+    wrapper.className = 'spots-wrapper';
+    let sibling = header.nextElementSibling;
+    while (sibling) {
+      const next = sibling.nextElementSibling;
+      wrapper.appendChild(sibling);
+      sibling = next;
+    }
+    card.appendChild(wrapper);
+  });
+
+  document.querySelectorAll('.day-card .day-header').forEach(header => {
+    header.addEventListener('click', function() {
+      const card = this.closest('.day-card');
+      card.classList.toggle('collapsed');
+    });
+  });
+
+  // 时间表折叠 - 动态包装内容
+  document.querySelectorAll('.timeline-card').forEach(card => {
+    const header = card.querySelector('h2');
+    if (header) {
+      header.classList.add('timeline-header');
+      const wrapper = document.createElement('div');
+      wrapper.className = 'timeline-content';
+      let sibling = header.nextElementSibling;
+      while (sibling) {
+        const next = sibling.nextElementSibling;
+        wrapper.appendChild(sibling);
+        sibling = next;
+      }
+      card.appendChild(wrapper);
+    }
+  });
+
+  document.querySelectorAll('.timeline-card .timeline-header').forEach(header => {
+    header.addEventListener('click', function() {
+      const card = this.closest('.timeline-card');
+      card.classList.toggle('collapsed');
+    });
+  });
+
+  // 其他模块折叠（点击标题）
+  document.querySelectorAll('.avoid-section h2, .budget-card h2, .tips-card h2, .hotel-section h2, .food-section h2').forEach(h2 => {
+    h2.classList.add('collapsible');
+    h2.innerHTML += '<span class="collapse-icon">▼</span>';
+    h2.addEventListener('click', function() {
+      const content = this.nextElementSibling;
+      if (content) {
+        content.classList.toggle('collapsed');
+        this.classList.toggle('collapsed');
+      }
+    });
+  });
+})();
+
+// ===== 本地编辑、时间顺延、预算与导出 =====
+(function() {
+  const destination = (GUIDE_DATA.meta && GUIDE_DATA.meta.destination) || 'trip';
+  const startDate = (GUIDE_DATA.meta && GUIDE_DATA.meta.start_date) || '';
+  const storageKey = 'travel-guide-state:' + destination + ':' + startDate;
+  let state = { completed: {}, favorites: {}, times: {}, costs: {} };
+  const status = document.getElementById('saveStatus');
+
+  function loadState() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(storageKey) || 'null');
+      if (saved && typeof saved === 'object') state = Object.assign(state, saved);
+    } catch (error) {
+      if (status) status.textContent = '本地修改读取失败，已使用初始数据';
+    }
+  }
+
+  function saveState() {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(state));
+      if (status) status.textContent = '已自动保存到本浏览器';
+    } catch (error) {
+      if (status) status.textContent = '浏览器禁止本地保存';
+    }
+  }
+
+  function timeToMinutes(value) {
+    const parts = String(value || '').split(':').map(Number);
+    return parts.length === 2 ? parts[0] * 60 + parts[1] : 0;
+  }
+
+  function minutesToTime(value) {
+    const minutes = ((value % 1440) + 1440) % 1440;
+    return String(Math.floor(minutes / 60)).padStart(2, '0') + ':' + String(minutes % 60).padStart(2, '0');
+  }
+
+  function updateBudget() {
+    const total = Array.from(document.querySelectorAll('.cost-input')).reduce((sum, input) => sum + (Number(input.value) || 0), 0);
+    const target = document.getElementById('liveBudget');
+    if (target) target.textContent = total.toLocaleString();
+  }
+
+  function updateScheduleDisplay(item) {
+    const start = item.querySelector('.start-time');
+    const end = item.querySelector('.end-time');
+    const display = item.querySelector('.schedule-display');
+    if (start && end && display) display.textContent = start.value + '–' + end.value;
+  }
+
+  function restoreElements() {
+    document.querySelectorAll('.item-check').forEach(input => {
+      input.checked = Boolean(state.completed[input.dataset.key]);
+      input.closest('.itinerary-item').classList.toggle('completed', input.checked);
+    });
+    document.querySelectorAll('.favorite-btn').forEach(button => {
+      const active = Boolean(state.favorites[button.dataset.key]);
+      button.classList.toggle('active', active);
+      button.textContent = active ? '♥' : '♡';
+    });
+    document.querySelectorAll('.time-input').forEach(input => {
+      input.dataset.original = input.value;
+      const saved = state.times[input.dataset.key];
+      if (saved) input.value = input.classList.contains('start-time') ? saved.start : saved.end;
+    });
+    document.querySelectorAll('.cost-input').forEach(input => {
+      if (Object.prototype.hasOwnProperty.call(state.costs, input.dataset.key)) input.value = state.costs[input.dataset.key];
+    });
+    document.querySelectorAll('.itinerary-item').forEach(updateScheduleDisplay);
+    updateBudget();
+  }
+
+  function shiftFollowingItems(input) {
+    if (!input.classList.contains('start-time')) return;
+    const day = input.closest('.day-card');
+    const items = Array.from(day.querySelectorAll('.itinerary-item'));
+    const current = input.closest('.itinerary-item');
+    const currentIndex = items.indexOf(current);
+    const previousValue = input.dataset.previous || input.dataset.original;
+    const delta = timeToMinutes(input.value) - timeToMinutes(previousValue);
+    input.dataset.previous = input.value;
+    if (!delta) return;
+    items.slice(currentIndex + 1).forEach(item => {
+      item.querySelectorAll('.time-input').forEach(timeInput => {
+        timeInput.value = minutesToTime(timeToMinutes(timeInput.value) + delta);
+        const key = timeInput.dataset.key;
+        state.times[key] = state.times[key] || {};
+        state.times[key][timeInput.classList.contains('start-time') ? 'start' : 'end'] = timeInput.value;
+      });
+      updateScheduleDisplay(item);
+    });
+  }
+
+  loadState();
+  restoreElements();
+
+  document.querySelectorAll('.item-check').forEach(input => input.addEventListener('change', () => {
+    state.completed[input.dataset.key] = input.checked;
+    input.closest('.itinerary-item').classList.toggle('completed', input.checked);
+    saveState();
+  }));
+
+  document.querySelectorAll('.favorite-btn').forEach(button => button.addEventListener('click', () => {
+    state.favorites[button.dataset.key] = !state.favorites[button.dataset.key];
+    button.classList.toggle('active', state.favorites[button.dataset.key]);
+    button.textContent = state.favorites[button.dataset.key] ? '♥' : '♡';
+    saveState();
+  }));
+
+  document.querySelectorAll('.edit-btn').forEach(button => button.addEventListener('click', () => {
+    const item = button.closest('.itinerary-item');
+    const editing = !item.classList.contains('editing');
+    item.classList.toggle('editing', editing);
+    button.setAttribute('aria-expanded', String(editing));
+    button.textContent = editing ? '完成' : '编辑';
+    item.querySelectorAll('.item-edit-controls').forEach(control => { control.hidden = !editing; });
+    item.querySelector('.schedule-display').hidden = editing;
+    if (editing) item.querySelector('.start-time').focus();
+  }));
+
+  document.querySelectorAll('.time-input').forEach(input => input.addEventListener('change', () => {
+    shiftFollowingItems(input);
+    const key = input.dataset.key;
+    state.times[key] = state.times[key] || {};
+    state.times[key][input.classList.contains('start-time') ? 'start' : 'end'] = input.value;
+    updateScheduleDisplay(input.closest('.itinerary-item'));
+    saveState();
+  }));
+
+  document.querySelectorAll('.cost-input').forEach(input => input.addEventListener('input', () => {
+    state.costs[input.dataset.key] = Number(input.value) || 0;
+    updateBudget();
+    saveState();
+  }));
+
+  const printButton = document.getElementById('printGuide');
+  if (printButton) printButton.addEventListener('click', () => window.print());
+
+  const exportButton = document.getElementById('exportState');
+  if (exportButton) exportButton.addEventListener('click', () => {
+    const payload = JSON.stringify({ guide: GUIDE_DATA.meta, local_changes: state }, null, 2);
+    const blob = new Blob([payload], { type: 'application/json;charset=utf-8' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = destination + '-local-changes.json';
+    link.click();
+    URL.revokeObjectURL(link.href);
+  });
+
+  const resetButton = document.getElementById('resetState');
+  if (resetButton) resetButton.addEventListener('click', () => {
+    if (!window.confirm('确定清除这份攻略在本浏览器中的修改吗？')) return;
+    localStorage.removeItem(storageKey);
+    window.location.reload();
+  });
+})();
+</script>
+
+</body>
+</html>

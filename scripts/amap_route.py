@@ -5,10 +5,18 @@
 """
 
 import argparse
-import requests
 import json
-import sys
 import os
+import sys
+from urllib.parse import urlencode
+from urllib.request import urlopen
+
+
+def request_json(url, params):
+    """Send a GET request with the Python standard library and decode JSON."""
+    request_url = "{}?{}".format(url, urlencode(params))
+    with urlopen(request_url, timeout=10) as response:
+        return json.loads(response.read().decode("utf-8"))
 
 def get_amap_key():
     """获取高德API key"""
@@ -26,8 +34,7 @@ def geocode(address, city=None, key=None):
         params["city"] = city
     
     try:
-        resp = requests.get(url, params=params, timeout=10)
-        data = resp.json()
+        data = request_json(url, params)
         
         if data.get("status") == "1" and data.get("geocodes"):
             location = data["geocodes"][0]["location"]
@@ -51,8 +58,7 @@ def get_driving_route(origin, destination, key):
     }
     
     try:
-        resp = requests.get(url, params=params, timeout=10)
-        data = resp.json()
+        data = request_json(url, params)
         
         if data.get("status") == "1" and data.get("route"):
             path = data["route"]["paths"][0]

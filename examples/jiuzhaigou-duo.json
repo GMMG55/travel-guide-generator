@@ -1,0 +1,752 @@
+{
+  "schema_version": "1.0",
+  "meta": {
+    "title": "北京到九寨沟5天双人休闲攻略",
+    "subtitle": "慢慢走进翠海、叠瀑与藏羌秋色",
+    "destination": "九寨沟",
+    "origin": "北京",
+    "language": "zh-CN",
+    "start_date": "2026-09-15",
+    "days": 5,
+    "travelers": 2,
+    "currency": "CNY",
+    "timezone": "Asia/Shanghai",
+    "destination_coords": [103.9186, 33.2600],
+    "budget_total": 8000,
+    "emojis": "🏔️💧🍂",
+    "footer": "高原天气和交通会变化，请在出发前再次核实门票、车次与接驳班次。"
+  },
+  "preferences": {
+    "budget_level": "舒适型",
+    "pace": "relaxed",
+    "group_type": "双人",
+    "interests": ["自然风光", "湖泊瀑布", "摄影", "藏羌文化", "美食"],
+    "dietary": [],
+    "accessibility": [],
+    "transport": ["transit", "walk"],
+    "earliest_start": "06:30",
+    "latest_end": "21:00"
+  },
+  "sources": [
+    {
+      "id": "jiuzhai-2026-policy",
+      "title": "九寨沟2026年旺季开放与票价",
+      "url": "https://abazhou.gov.cn/abazhou/c101955/202603/15b3f5e33fb9453ab7064d6a0d93894d.shtml",
+      "type": "official",
+      "checked_at": "2026-09-07"
+    },
+    {
+      "id": "jiuzhai-ticket-official",
+      "title": "九寨沟景区官方票务信息",
+      "url": "https://www.jiuzhai.com/intelligent-service/tickets",
+      "type": "official",
+      "checked_at": "2026-09-07"
+    },
+    {
+      "id": "jiuzhai-open-official",
+      "title": "九寨沟景区全域恢复开放通告",
+      "url": "https://www.jiuzhai.com/news/notice/11290-2026-07-29-02-04-43",
+      "type": "official",
+      "checked_at": "2026-09-07"
+    },
+    {
+      "id": "jiuzhai-route-official",
+      "title": "九寨沟景区官方游玩方式",
+      "url": "https://www.jiuzhai.com/intelligent-service/way-of-play",
+      "type": "official",
+      "checked_at": "2026-09-07"
+    },
+    {
+      "id": "arrival-official",
+      "title": "九寨沟景区官方到达方式",
+      "url": "https://www.jiuzhai.com/intelligent-service/arrival-mode",
+      "type": "official",
+      "checked_at": "2026-09-07"
+    },
+    {
+      "id": "station-shuttle-government",
+      "title": "黄龙九寨站景区直通车接驳",
+      "url": "https://songpan.gov.cn/spxrmzf/c100050/202604/912b4b0784b54860ae2e6eebe03da751.shtml",
+      "type": "official",
+      "checked_at": "2026-09-07"
+    },
+    {
+      "id": "chengdu-train",
+      "title": "成都东至黄龙九寨动车参考",
+      "url": "https://train.qunar.com/train/tickets/chengdudong-to-huanglongjiuzhai/2026-09-13",
+      "type": "search",
+      "checked_at": "2026-09-07"
+    },
+    {
+      "id": "beijing-flight",
+      "title": "北京至成都航班与价格参考",
+      "url": "https://m.ctrip.com/html5/flight/BJS-CTU-day-7.html",
+      "type": "search",
+      "checked_at": "2026-09-07"
+    },
+    {
+      "id": "weather-september",
+      "title": "九寨沟2026年9月天气趋势",
+      "url": "https://www.tianqi.com/tianqi/jiuzhaigou/202609.html",
+      "type": "search",
+      "checked_at": "2026-09-07"
+    },
+    {
+      "id": "food-guide",
+      "title": "九寨沟藏羌美食消费参考",
+      "url": "https://www.sina.cn/gc/article/nipsvwy0550457.html",
+      "type": "search",
+      "checked_at": "2026-09-07"
+    },
+    {
+      "id": "restaurant-review",
+      "title": "九寨沟藏餐与牦牛肉汤锅参考",
+      "url": "https://you.ctrip.com/food/ctripyouyoustar25/130752219.html",
+      "type": "search",
+      "checked_at": "2026-09-07"
+    },
+    {
+      "id": "hotel-estimate",
+      "title": "住宿价格区间估算，预订时请按实时价格筛选",
+      "type": "estimate",
+      "checked_at": "2026-09-07"
+    },
+    {
+      "id": "route-estimate",
+      "title": "基于经纬度和公开接驳信息的路线估算",
+      "type": "estimate",
+      "checked_at": "2026-09-07"
+    },
+    {
+      "id": "general-knowledge",
+      "title": "通用旅行知识，出发前建议核实",
+      "type": "general",
+      "checked_at": "2026-09-07"
+    }
+  ],
+  "weather": [
+    {
+      "date": "2026-09-15",
+      "condition": "趋势为小雨，约15–23℃；以临近预报为准",
+      "temp_low": 15,
+      "temp_high": 23,
+      "backup_plan": "成都段改为四川博物院或成都博物馆，晚上早点休息",
+      "source_ids": ["weather-september"]
+    },
+    {
+      "date": "2026-09-16",
+      "condition": "九寨沟9月多阵雨，早晚偏凉",
+      "temp_low": 10,
+      "temp_high": 20,
+      "backup_plan": "抵达后不安排户外远行，改为酒店休息和沟口室内藏羌文化体验",
+      "source_ids": ["weather-september", "general-knowledge"]
+    },
+    {
+      "date": "2026-09-17",
+      "condition": "高原天气多变，体感约8–20℃",
+      "temp_low": 8,
+      "temp_high": 20,
+      "backup_plan": "小雨穿雨衣照常游览；暴雨或地质预警时服从景区调度，缩短则查洼沟停留",
+      "source_ids": ["weather-september", "jiuzhai-open-official"]
+    },
+    {
+      "date": "2026-09-18",
+      "condition": "高原天气多变，体感约8–20℃",
+      "temp_low": 8,
+      "temp_high": 20,
+      "backup_plan": "优先观光车可达的五花海、珍珠滩瀑布和镜海，减少连续栈道步行",
+      "source_ids": ["weather-september", "general-knowledge"]
+    },
+    {
+      "date": "2026-09-19",
+      "condition": "早晚凉、昼夜温差明显",
+      "temp_low": 9,
+      "temp_high": 21,
+      "backup_plan": "预留交通机动时间，若道路受天气影响则优先改签较晚返京航班",
+      "source_ids": ["weather-september", "general-knowledge"]
+    }
+  ],
+  "transport": [
+    {
+      "mode": "flight",
+      "title": "北京 → 成都",
+      "detail": "建议选择9月15日上午直飞成都的航班，落地后不继续赶长途；具体机场、行李额和价格以出票为准",
+      "price": "预算按双人往返约2200–2800元",
+      "recommended": true,
+      "source_ids": ["beijing-flight"]
+    },
+    {
+      "mode": "train",
+      "title": "成都东 → 黄龙九寨站",
+      "detail": "优先早班动车，参考运行约1小时40分、二等座约143元/人；往返车次以12306为准",
+      "price": "双人往返约572元",
+      "recommended": true,
+      "source_ids": ["chengdu-train", "arrival-official"]
+    },
+    {
+      "mode": "bus",
+      "title": "黄龙九寨站 ↔ 九寨沟沟口",
+      "detail": "使用景区直通车，单程约2小时；高峰期会动态增开，必须与动车到站时间匹配",
+      "price": "参考约51元/人/程",
+      "recommended": true,
+      "source_ids": ["station-shuttle-government", "arrival-official"]
+    }
+  ],
+  "hotels": [
+    {
+      "area": "九寨沟沟口—彭丰村（首选）",
+      "price": "约280–450元/晚",
+      "reason": "连续两天进沟最省时间，餐饮选择也最多",
+      "connection": "尽量选择提供早饭、步行或短途接驳可到游客中心的酒店",
+      "source_ids": ["hotel-estimate", "food-guide"]
+    },
+    {
+      "area": "漳扎镇—边边街",
+      "price": "约220–380元/晚",
+      "reason": "牦牛肉汤锅、藏餐和小吃集中，晚上更有烟火气",
+      "connection": "到景区入口通常需短程出租车，订房前确认早晨叫车条件",
+      "source_ids": ["hotel-estimate", "food-guide"]
+    },
+    {
+      "area": "成都东站商圈",
+      "price": "约250–400元/晚",
+      "reason": "第一晚方便次日乘早班动车，减少跨城通勤压力",
+      "connection": "选择可步行或一站地铁到成都东站的酒店",
+      "source_ids": ["hotel-estimate"]
+    }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "date": "2026-09-15",
+      "title": "北京飞成都 · 放慢节奏适应旅途",
+      "items": [
+        {
+          "type": "transport",
+          "name": "北京直飞成都",
+          "icon": "✈️",
+          "start": "07:00",
+          "end": "10:10",
+          "description": "优先选早班直飞，落地后先吃饭休息，不在同一天继续赶九寨沟。",
+          "price": "单程参考约550–800元/人",
+          "cost": 1300,
+          "currency": "元/2人",
+          "source_ids": ["beijing-flight"]
+        },
+        {
+          "type": "meal",
+          "name": "成都清淡川菜午餐",
+          "icon": "🍚",
+          "start": "12:00",
+          "end": "13:20",
+          "description": "第一天少吃过辣、少饮酒，为第二天进入高原做准备。",
+          "price": "约60–90元/人",
+          "cost": 160,
+          "currency": "元/2人",
+          "coords": [104.0800, 30.6570],
+          "source_ids": ["general-knowledge"]
+        },
+        {
+          "type": "spot",
+          "name": "人民公园与鹤鸣茶社周边",
+          "icon": "🍵",
+          "start": "14:30",
+          "end": "16:30",
+          "description": "喝茶、散步，保持低强度；下雨则改成都博物馆或四川博物院。",
+          "price": "公园免费，茶饮约30–60元/人",
+          "cost": 100,
+          "currency": "元/2人",
+          "coords": [104.0550, 30.6598],
+          "transport_mode": "transit",
+          "source_ids": ["general-knowledge"]
+        },
+        {
+          "type": "hotel",
+          "name": "入住成都东站附近酒店",
+          "icon": "🏨",
+          "start": "18:30",
+          "end": "20:00",
+          "description": "整理第二天车票、身份证和轻便背包，尽量22:00前休息。",
+          "price": "约250–400元/晚",
+          "cost": 320,
+          "currency": "元/晚",
+          "coords": [104.1407, 30.6291],
+          "transport_mode": "transit",
+          "source_ids": ["hotel-estimate"]
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2026-09-16",
+      "title": "动车入川西 · 沟口休整",
+      "items": [
+        {
+          "type": "transport",
+          "name": "成都东站乘动车",
+          "icon": "🚄",
+          "start": "06:45",
+          "end": "08:30",
+          "description": "参考早班动车前往黄龙九寨站，提前45分钟到站。",
+          "price": "参考143元/人",
+          "cost": 286,
+          "currency": "元/2人",
+          "coords": [103.7000, 32.6800],
+          "source_ids": ["chengdu-train"]
+        },
+        {
+          "type": "transport",
+          "name": "景区直通车前往九寨沟沟口",
+          "icon": "🚌",
+          "start": "09:00",
+          "end": "11:15",
+          "description": "按动车抵达时间购买直通车，弯道路段不要空腹，也不建议一直看手机。",
+          "price": "参考51元/人",
+          "cost": 102,
+          "currency": "元/2人",
+          "coords": [103.9186, 33.2600],
+          "route_from_previous": {
+            "mode": "walk",
+            "distance_km": 0.3,
+            "duration_min": 15,
+            "estimated": true,
+            "method": "station_transfer"
+          },
+          "source_ids": ["station-shuttle-government", "arrival-official"]
+        },
+        {
+          "type": "hotel",
+          "name": "沟口酒店入住与午休",
+          "icon": "🛏️",
+          "start": "12:00",
+          "end": "15:00",
+          "description": "当天不进景区，吃完午饭睡一会儿，让身体适应海拔和温差。",
+          "price": "3晚合计约850–1100元",
+          "cost": 960,
+          "currency": "元/3晚",
+          "coords": [103.9180, 33.2660],
+          "transport_mode": "walk",
+          "source_ids": ["hotel-estimate"]
+        },
+        {
+          "type": "spot",
+          "name": "边边街与漳扎镇轻松散步",
+          "icon": "🏘️",
+          "start": "16:30",
+          "end": "18:00",
+          "description": "只做短距离散步，购买第二天饮用水和便携零食，不安排演出赶场。",
+          "price": "免费逛街",
+          "cost": 80,
+          "currency": "元/补给",
+          "coords": [103.9000, 33.2750],
+          "transport_mode": "transit",
+          "source_ids": ["food-guide", "general-knowledge"]
+        },
+        {
+          "type": "meal",
+          "name": "牦牛肉汤锅晚餐",
+          "icon": "🍲",
+          "start": "18:20",
+          "end": "19:40",
+          "description": "选清汤或菌汤锅，两人点小份牦牛肉、青稞饼和一份蔬菜即可。",
+          "price": "约70–100元/人",
+          "cost": 180,
+          "currency": "元/2人",
+          "coords": [103.9010, 33.2755],
+          "transport_mode": "walk",
+          "source_ids": ["food-guide", "restaurant-review"]
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2026-09-17",
+      "title": "则查洼沟＋树正沟 · 初见九寨",
+      "items": [
+        {
+          "type": "spot",
+          "name": "景区入园与观光车",
+          "icon": "🎫",
+          "start": "08:00",
+          "end": "08:40",
+          "description": "带身份证按预约时段入园，先乘观光车到则查洼沟方向。",
+          "price": "门票190＋观光车90元/人",
+          "cost": 560,
+          "currency": "元/2人",
+          "coords": [103.9186, 33.2600],
+          "opening_hours": {"open": "08:00", "close": "18:00"},
+          "source_ids": ["jiuzhai-2026-policy", "jiuzhai-ticket-official"]
+        },
+        {
+          "type": "spot",
+          "name": "长海",
+          "icon": "🏔️",
+          "start": "09:10",
+          "end": "10:10",
+          "description": "先看九寨沟海拔最高、面积最大的海子，放慢脚步，不跑跳。",
+          "price": "已含景区票",
+          "cost": 0,
+          "currency": "元",
+          "coords": [103.9175, 32.9364],
+          "transport_mode": "transit",
+          "route_from_previous": {
+            "mode": "transit",
+            "distance_km": 18.0,
+            "duration_min": 25,
+            "estimated": true,
+            "method": "scenic_shuttle"
+          },
+          "romance": "在长海观景台留一张两人与雪山湖面的合照。",
+          "pitfall": "海拔较高，头晕、胸闷时立刻休息并减少停留。",
+          "source_ids": ["jiuzhai-route-official"]
+        },
+        {
+          "type": "spot",
+          "name": "五彩池",
+          "icon": "💎",
+          "start": "10:40",
+          "end": "11:40",
+          "description": "沿开放栈道观赏水色，雨天注意台阶，不靠近水边拍照。",
+          "price": "已含景区票",
+          "cost": 0,
+          "currency": "元",
+          "coords": [103.9273, 32.9640],
+          "transport_mode": "walk",
+          "route_from_previous": {
+            "mode": "walk",
+            "distance_km": 0.8,
+            "duration_min": 25,
+            "estimated": true,
+            "method": "scenic_boardwalk"
+          },
+          "source_ids": ["jiuzhai-route-official"]
+        },
+        {
+          "type": "meal",
+          "name": "诺日朗中心简餐与休息",
+          "icon": "🥪",
+          "start": "12:20",
+          "end": "13:20",
+          "description": "以自带面包、能量棒和热饮为主，垃圾全部带走或分类投放。",
+          "price": "约40–60元/人",
+          "cost": 100,
+          "currency": "元/2人",
+          "coords": [103.8770, 33.1638],
+          "transport_mode": "transit",
+          "route_from_previous": {
+            "mode": "transit",
+            "distance_km": 18.0,
+            "duration_min": 30,
+            "estimated": true,
+            "method": "scenic_shuttle"
+          },
+          "source_ids": ["jiuzhai-route-official", "general-knowledge"]
+        },
+        {
+          "type": "spot",
+          "name": "犀牛海—树正群海",
+          "icon": "🌲",
+          "start": "13:50",
+          "end": "16:20",
+          "description": "观光车与短程栈道结合，按体力选择犀牛海、老虎海、树正瀑布和群海。",
+          "price": "已含景区票",
+          "cost": 0,
+          "currency": "元",
+          "coords": [103.9000, 33.2050],
+          "transport_mode": "transit",
+          "route_from_previous": {
+            "mode": "transit",
+            "distance_km": 6.0,
+            "duration_min": 20,
+            "estimated": true,
+            "method": "scenic_shuttle"
+          },
+          "romance": "傍晚树正群海光线柔和，找不挡路的位置慢慢看水色。",
+          "pitfall": "不要为了多看一个点错过末班观光车，16:30左右开始向沟口移动。",
+          "source_ids": ["jiuzhai-route-official"]
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2026-09-18",
+      "title": "日则沟精华 · 把最好看的留给第二天",
+      "items": [
+        {
+          "type": "spot",
+          "name": "二次入园与日则沟观光车",
+          "icon": "🚌",
+          "start": "08:00",
+          "end": "09:00",
+          "description": "第二天再次实名购票入园，直奔日则沟，减少在入口停留。",
+          "price": "门票190＋观光车90元/人",
+          "cost": 560,
+          "currency": "元/2人",
+          "coords": [103.9186, 33.2600],
+          "opening_hours": {"open": "08:00", "close": "18:00"},
+          "source_ids": ["jiuzhai-ticket-official", "jiuzhai-route-official"]
+        },
+        {
+          "type": "spot",
+          "name": "箭竹海—熊猫海",
+          "icon": "🎋",
+          "start": "09:20",
+          "end": "10:45",
+          "description": "根据当天开放站点乘车和步行，保留体力给五花海及珍珠滩。",
+          "price": "已含景区票",
+          "cost": 0,
+          "currency": "元",
+          "coords": [103.8778, 33.1330],
+          "transport_mode": "transit",
+          "route_from_previous": {
+            "mode": "transit",
+            "distance_km": 20.0,
+            "duration_min": 15,
+            "estimated": true,
+            "method": "scenic_shuttle"
+          },
+          "source_ids": ["jiuzhai-route-official"]
+        },
+        {
+          "type": "spot",
+          "name": "五花海",
+          "icon": "🩵",
+          "start": "11:10",
+          "end": "12:20",
+          "description": "九寨沟水色最丰富的代表性景点之一，不追同一个网红机位。",
+          "price": "已含景区票",
+          "cost": 0,
+          "currency": "元",
+          "coords": [103.8830, 33.1570],
+          "transport_mode": "walk",
+          "route_from_previous": {
+            "mode": "walk",
+            "distance_km": 1.2,
+            "duration_min": 20,
+            "estimated": true,
+            "method": "scenic_boardwalk"
+          },
+          "romance": "两个人各选一种最喜欢的湖水颜色，回程时交换照片。",
+          "source_ids": ["jiuzhai-route-official"]
+        },
+        {
+          "type": "meal",
+          "name": "诺日朗中心午休",
+          "icon": "☕",
+          "start": "12:50",
+          "end": "13:50",
+          "description": "完整休息一小时，补水和热量，不用赶着把所有站点打卡。",
+          "price": "约40–60元/人",
+          "cost": 100,
+          "currency": "元/2人",
+          "coords": [103.8770, 33.1638],
+          "transport_mode": "transit",
+          "route_from_previous": {
+            "mode": "transit",
+            "distance_km": 3.5,
+            "duration_min": 20,
+            "estimated": true,
+            "method": "scenic_shuttle"
+          },
+          "source_ids": ["general-knowledge"]
+        },
+        {
+          "type": "spot",
+          "name": "珍珠滩瀑布—镜海",
+          "icon": "💦",
+          "start": "14:10",
+          "end": "16:10",
+          "description": "下午以瀑布和湖面为主，小雨时水景更有层次；雨大则减少栈道步行。",
+          "price": "已含景区票",
+          "cost": 0,
+          "currency": "元",
+          "coords": [103.8835, 33.1755],
+          "transport_mode": "walk",
+          "route_from_previous": {
+            "mode": "walk",
+            "distance_km": 1.0,
+            "duration_min": 15,
+            "estimated": true,
+            "method": "scenic_boardwalk"
+          },
+          "romance": "珍珠滩水雾大，准备一块干净镜头布，互相拍自然抓拍。",
+          "pitfall": "观光车停靠会按客流调整，现场以调度员指引为准。",
+          "source_ids": ["jiuzhai-route-official", "jiuzhai-open-official"]
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2026-09-19",
+      "title": "返程日 · 留足高原交通机动",
+      "items": [
+        {
+          "type": "transport",
+          "name": "沟口直通车前往黄龙九寨站",
+          "icon": "🚌",
+          "start": "06:30",
+          "end": "08:45",
+          "description": "选择与返程动车匹配的官方接驳，至少预留30分钟进站时间。",
+          "price": "参考51元/人",
+          "cost": 102,
+          "currency": "元/2人",
+          "coords": [103.7000, 32.6800],
+          "source_ids": ["station-shuttle-government", "arrival-official"]
+        },
+        {
+          "type": "transport",
+          "name": "动车返回成都东",
+          "icon": "🚄",
+          "start": "09:30",
+          "end": "11:20",
+          "description": "返程车次以12306为准，不购买与接驳车时间过近的班次。",
+          "price": "参考143元/人",
+          "cost": 286,
+          "currency": "元/2人",
+          "coords": [104.1407, 30.6291],
+          "route_from_previous": {
+            "mode": "walk",
+            "distance_km": 0.3,
+            "duration_min": 20,
+            "estimated": true,
+            "method": "station_transfer"
+          },
+          "source_ids": ["chengdu-train"]
+        },
+        {
+          "type": "transport",
+          "name": "前往成都机场并办理登机",
+          "icon": "🧳",
+          "start": "12:00",
+          "end": "15:00",
+          "description": "若从天府机场起飞，成都东站至机场距离较远，不建议购买15:30以前航班。",
+          "price": "地铁或机场专线约20–40元/人",
+          "cost": 60,
+          "currency": "元/2人",
+          "source_ids": ["general-knowledge"]
+        },
+        {
+          "type": "transport",
+          "name": "成都飞回北京",
+          "icon": "✈️",
+          "start": "16:00",
+          "end": "19:00",
+          "description": "优先选可免费改签或退票条件清晰的航班，应对高原道路和动车延误。",
+          "price": "单程预算约550–800元/人",
+          "cost": 1300,
+          "currency": "元/2人",
+          "source_ids": ["beijing-flight"]
+        }
+      ]
+    }
+  ],
+  "foods": [
+    {
+      "name": "牦牛肉汤锅",
+      "shop": "沟口或边边街明码标价的本地餐馆",
+      "price": "约70–100元/人",
+      "reason": "高原晚餐最稳妥，菌汤或清汤比重辣锅更适合初到高原",
+      "source_ids": ["food-guide", "restaurant-review"]
+    },
+    {
+      "name": "藏式土火锅",
+      "shop": "漳扎镇藏餐厅",
+      "price": "约80–120元/人",
+      "reason": "牦牛肉、菌菇和蔬菜一锅分享，适合两个人暖身",
+      "source_ids": ["food-guide"]
+    },
+    {
+      "name": "青稞饼＋酥油茶",
+      "shop": "沟口藏式早餐店",
+      "price": "约20–40元/人",
+      "reason": "份量不大，适合作为进沟前的热早餐",
+      "source_ids": ["food-guide"]
+    },
+    {
+      "name": "牦牛酸奶",
+      "shop": "正规藏餐厅或包装完整的门店",
+      "price": "约15–30元/份",
+      "reason": "酸味较明显，可加少量糖或蜂蜜，两人分享一份先试口味",
+      "source_ids": ["restaurant-review"]
+    },
+    {
+      "name": "洋芋糍粑",
+      "shop": "漳扎镇川北小馆",
+      "price": "约15–30元/份",
+      "reason": "软糯顶饱，是比油炸小吃更温和的当地碳水",
+      "source_ids": ["food-guide"]
+    },
+    {
+      "name": "菌菇牦牛肉粉",
+      "shop": "沟口早餐或简餐店",
+      "price": "约25–40元/人",
+      "reason": "热汤补水，适合返程早晨或进沟前食用",
+      "source_ids": ["food-guide"]
+    }
+  ],
+  "avoid": [
+    {
+      "wrong": "相信低价票或所谓快速入园通道",
+      "right": "只通过九寨沟官方微信公众号或阿坝旅游网实名预约",
+      "source_ids": ["jiuzhai-ticket-official"]
+    },
+    {
+      "wrong": "第一天到高原就暴走、跑跳或饮酒",
+      "right": "抵达沟口先午休，少饮酒，多补水，有不适及时休息",
+      "source_ids": ["jiuzhai-2026-policy", "general-knowledge"]
+    },
+    {
+      "wrong": "一天硬塞完三条沟的所有景点",
+      "right": "按官方两日思路拆分则查洼沟、树正沟和日则沟",
+      "source_ids": ["jiuzhai-route-official"]
+    },
+    {
+      "wrong": "为了拍照下滩踩水、翻越栏杆或飞无人机",
+      "right": "只走开放栈道，遵守禁飞和生态保护规定",
+      "source_ids": ["jiuzhai-2026-policy"]
+    },
+    {
+      "wrong": "把动车到站和接驳发车时间卡得太紧",
+      "right": "往返均留30–60分钟机动，并购买退改条件清晰的返京航班",
+      "source_ids": ["station-shuttle-government", "general-knowledge"]
+    }
+  ],
+  "budget": {
+    "selected": "comfortable",
+    "profiles": {
+      "economy": {
+        "categories": {
+          "双人往返机票": 2200,
+          "成都—黄龙九寨动车": 572,
+          "景区接驳": 408,
+          "住宿4晚": 1000,
+          "九寨沟两日门票与观光车": 1120,
+          "餐饮": 700,
+          "当地交通": 300,
+          "保险与机动": 250
+        },
+        "total": 6550
+      },
+      "comfortable": {
+        "categories": {
+          "双人往返机票": 2800,
+          "成都—黄龙九寨动车": 572,
+          "景区接驳": 408,
+          "住宿4晚": 1300,
+          "九寨沟两日门票与观光车": 1120,
+          "餐饮": 900,
+          "当地交通": 380,
+          "保险、补给与机动": 400
+        },
+        "total": 7880
+      }
+    }
+  },
+  "tips": [
+    "门票按两次入园预算，每天均需单独实名购买门票和观光车票。",
+    "随身带轻薄羽绒或抓绒、冲锋衣、折叠雨衣、防滑运动鞋和镜头布。",
+    "景区内午餐选择有限，两人各带一瓶水、能量棒和便携主食即可，不要背得太重。",
+    "返程日不要买过早的成都航班，黄龙九寨站到成都后还要前往机场。",
+    "若机票价格明显超过预算，可改为北京西—成都卧铺/高铁组合，但总行程会增加一天。"
+  ]
+}

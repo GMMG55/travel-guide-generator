@@ -10,6 +10,21 @@ from scripts import amap_route
 
 
 class AmapRouteTests(unittest.TestCase):
+    @patch("scripts.amap_route.urlopen")
+    def test_request_json_uses_encoded_query_and_timeout(self, mock_urlopen):
+        response = mock_urlopen.return_value.__enter__.return_value
+        response.read.return_value = b'{"status":"1"}'
+
+        result = amap_route.request_json(
+            "https://restapi.amap.com/test",
+            {"address": "青岛站", "output": "json"},
+        )
+
+        self.assertEqual(result, {"status": "1"})
+        request_url = mock_urlopen.call_args.args[0]
+        self.assertIn("address=%E9%9D%92%E5%B2%9B%E7%AB%99", request_url)
+        self.assertEqual(mock_urlopen.call_args.kwargs["timeout"], 10)
+
     def test_get_amap_key_returns_none_when_unconfigured(self):
         with patch.dict(os.environ, {}, clear=True):
             self.assertIsNone(amap_route.get_amap_key())

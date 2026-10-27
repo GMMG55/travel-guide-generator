@@ -1,0 +1,365 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          104.08,
+          30.657
+        ]
+      },
+      "properties": {
+        "name": "成都清淡川菜午餐",
+        "day": 1,
+        "date": "2026-09-15",
+        "start": "12:00",
+        "end": "13:20",
+        "type": "meal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          104.055,
+          30.6598
+        ]
+      },
+      "properties": {
+        "name": "人民公园与鹤鸣茶社周边",
+        "day": 1,
+        "date": "2026-09-15",
+        "start": "14:30",
+        "end": "16:30",
+        "type": "spot"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          104.1407,
+          30.6291
+        ]
+      },
+      "properties": {
+        "name": "入住成都东站附近酒店",
+        "day": 1,
+        "date": "2026-09-15",
+        "start": "18:30",
+        "end": "20:00",
+        "type": "hotel"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.7,
+          32.68
+        ]
+      },
+      "properties": {
+        "name": "成都东站乘动车",
+        "day": 2,
+        "date": "2026-09-16",
+        "start": "06:45",
+        "end": "08:30",
+        "type": "transport"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.9186,
+          33.26
+        ]
+      },
+      "properties": {
+        "name": "景区直通车前往九寨沟沟口",
+        "day": 2,
+        "date": "2026-09-16",
+        "start": "09:00",
+        "end": "11:15",
+        "type": "transport"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.918,
+          33.266
+        ]
+      },
+      "properties": {
+        "name": "沟口酒店入住与午休",
+        "day": 2,
+        "date": "2026-09-16",
+        "start": "12:00",
+        "end": "15:00",
+        "type": "hotel"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.9,
+          33.275
+        ]
+      },
+      "properties": {
+        "name": "边边街与漳扎镇轻松散步",
+        "day": 2,
+        "date": "2026-09-16",
+        "start": "16:30",
+        "end": "18:00",
+        "type": "spot"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.901,
+          33.2755
+        ]
+      },
+      "properties": {
+        "name": "牦牛肉汤锅晚餐",
+        "day": 2,
+        "date": "2026-09-16",
+        "start": "18:20",
+        "end": "19:40",
+        "type": "meal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.9186,
+          33.26
+        ]
+      },
+      "properties": {
+        "name": "景区入园与观光车",
+        "day": 3,
+        "date": "2026-09-17",
+        "start": "08:00",
+        "end": "08:40",
+        "type": "spot"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.9175,
+          32.9364
+        ]
+      },
+      "properties": {
+        "name": "长海",
+        "day": 3,
+        "date": "2026-09-17",
+        "start": "09:10",
+        "end": "10:10",
+        "type": "spot"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.9273,
+          32.964
+        ]
+      },
+      "properties": {
+        "name": "五彩池",
+        "day": 3,
+        "date": "2026-09-17",
+        "start": "10:40",
+        "end": "11:40",
+        "type": "spot"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.877,
+          33.1638
+        ]
+      },
+      "properties": {
+        "name": "诺日朗中心简餐与休息",
+        "day": 3,
+        "date": "2026-09-17",
+        "start": "12:20",
+        "end": "13:20",
+        "type": "meal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.9,
+          33.205
+        ]
+      },
+      "properties": {
+        "name": "犀牛海—树正群海",
+        "day": 3,
+        "date": "2026-09-17",
+        "start": "13:50",
+        "end": "16:20",
+        "type": "spot"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.9186,
+          33.26
+        ]
+      },
+      "properties": {
+        "name": "二次入园与日则沟观光车",
+        "day": 4,
+        "date": "2026-09-18",
+        "start": "08:00",
+        "end": "09:00",
+        "type": "spot"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.8778,
+          33.133
+        ]
+      },
+      "properties": {
+        "name": "箭竹海—熊猫海",
+        "day": 4,
+        "date": "2026-09-18",
+        "start": "09:20",
+        "end": "10:45",
+        "type": "spot"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.883,
+          33.157
+        ]
+      },
+      "properties": {
+        "name": "五花海",
+        "day": 4,
+        "date": "2026-09-18",
+        "start": "11:10",
+        "end": "12:20",
+        "type": "spot"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.877,
+          33.1638
+        ]
+      },
+      "properties": {
+        "name": "诺日朗中心午休",
+        "day": 4,
+        "date": "2026-09-18",
+        "start": "12:50",
+        "end": "13:50",
+        "type": "meal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.8835,
+          33.1755
+        ]
+      },
+      "properties": {
+        "name": "珍珠滩瀑布—镜海",
+        "day": 4,
+        "date": "2026-09-18",
+        "start": "14:10",
+        "end": "16:10",
+        "type": "spot"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.7,
+          32.68
+        ]
+      },
+      "properties": {
+        "name": "沟口直通车前往黄龙九寨站",
+        "day": 5,
+        "date": "2026-09-19",
+        "start": "06:30",
+        "end": "08:45",
+        "type": "transport"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          104.1407,
+          30.6291
+        ]
+      },
+      "properties": {
+        "name": "动车返回成都东",
+        "day": 5,
+        "date": "2026-09-19",
+        "start": "09:30",
+        "end": "11:20",
+        "type": "transport"
+      }
+    }
+  ]
+}
