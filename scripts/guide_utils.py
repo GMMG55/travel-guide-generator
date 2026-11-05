@@ -12,13 +12,27 @@ def load_json(path):
     return json.loads(Path(path).read_text(encoding="utf-8"))
 
 
-def write_json(path, data):
+def ensure_outputs_available(paths, force=False):
+    if not force:
+        for path in paths:
+            if Path(path).exists() or Path(path).is_symlink():
+                raise FileExistsError("输出文件已存在：{}；使用 --force 才能覆盖".format(path))
+
+
+def write_text(path, content, force=False, newline=None):
+    output = Path(path)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    with output.open("w" if force else "x", encoding="utf-8", newline=newline) as stream:
+        stream.write(content)
+
+
+def write_json(path, data, force=False):
     """Write deterministic, human-readable UTF-8 JSON."""
     output = Path(path)
     output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(
+    write_text(output,
         json.dumps(data, ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8",
+        force=force,
     )
 
 

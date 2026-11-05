@@ -6,10 +6,10 @@ import json
 from pathlib import Path
 
 try:
-    from .guide_utils import json_for_script, load_json, source_badges, source_index, text
+    from .guide_utils import json_for_script, load_json, source_badges, source_index, text, write_text
     from .validate_guide import validate_guide
 except ImportError:
-    from guide_utils import json_for_script, load_json, source_badges, source_index, text
+    from guide_utils import json_for_script, load_json, source_badges, source_index, text, write_text
     from validate_guide import validate_guide
 
 
@@ -20,6 +20,12 @@ MODE_LABELS = {
     "drive": "驾车",
 }
 
+DISPLAY_LABELS = {
+    "relaxed": "轻松慢游", "balanced": "节奏适中", "intensive": "紧凑行程",
+    "economy": "经济型", "comfortable": "舒适型", "premium": "品质型",
+    **MODE_LABELS,
+}
+
 
 def render_tags(guide):
     meta = guide.get("meta", {})
@@ -28,7 +34,7 @@ def render_tags(guide):
         "{}天".format(meta.get("days", len(guide.get("days", [])))),
         "{}人".format(meta.get("travelers", 1)),
         preferences.get("group_type", "自由行"),
-        preferences.get("pace", "balanced"),
+        DISPLAY_LABELS.get(preferences.get("pace", "balanced"), preferences.get("pace", "balanced")),
     ]
     return "".join('<span class="tag">{}</span>'.format(text(tag)) for tag in tags if tag)
 
@@ -111,7 +117,7 @@ def render_day_item(item, day_index, item_index, sources):
         '<span class="item-edit-controls" hidden><input type="time" class="time-input start-time" '
         'data-key="{key}" value="{start}" aria-label="开始时间">–'
         '<input type="time" class="time-input end-time" data-key="{key}" value="{end}" aria-label="结束时间"></span>'
-        '<span class="spot-transit">{route}</span></div>'
+        '{route}</div>'
         '<div class="spot-desc">{description}</div>{sources}'
         '<label class="cost-editor item-edit-controls" hidden>预算 <input type="number" min="0" step="1" class="cost-input" '
         'data-key="{key}" value="{cost}"> {currency}</label>'
@@ -124,7 +130,7 @@ def render_day_item(item, day_index, item_index, sources):
         price=text(item.get("price", "待核实")),
         start=text(item.get("start", "09:00")),
         end=text(item.get("end", "10:00")),
-        route=render_route(route),
+        route='<span class="spot-transit">{}</span>'.format(render_route(route)) if route else "",
         description=text(item.get("description", "")),
         sources=source_html,
         cost=text(item.get("cost", 0)),
@@ -146,7 +152,7 @@ def render_days(guide, sources):
         cards.append(
             '<section class="day-card" data-day="{day}"><div class="day-header d{color}">'
             '<div class="day-num">Day {day} · {date}</div><div class="day-title">{title}</div>'
-            '<div class="day-route">{route}</div></div><div class="route-bar">'
+            '</div><div class="route-bar">'
             '<span class="dot"></span>{route}</div>{items}</section>'.format(
                 day=text(day.get("day", day_index + 1)),
                 date=text(day.get("date", "")),
@@ -212,9 +218,9 @@ def render_budget(guide):
     return (
         '<section class="budget-card"><h2>💰 预算估算 · {}</h2><div>{}'
         '<div class="budget-total">计划预算：<span id="baseBudget">{}</span> '
-        '<span class="currency-label">{}</span><br><small>本地编辑合计：'
+        '<span class="currency-label">{}</span><br><small>已列行程小计（不含未列项目）：'
         '<span id="liveBudget">0</span> <span class="currency-label">{}</span></small></div></div></section>'
-    ).format(text(selected), rows, text(total), text(guide.get("meta", {}).get("currency", "CNY")), text(guide.get("meta", {}).get("currency", "CNY")))
+    ).format(text(DISPLAY_LABELS.get(selected, selected)), rows, text(total), text(guide.get("meta", {}).get("currency", "CNY")), text(guide.get("meta", {}).get("currency", "CNY")))
 
 
 def render_tips(guide):
@@ -241,16 +247,18 @@ def render_meta_sections(guide, report, sources):
     for key, label in labels.items():
         value = preferences.get(key)
         if value:
-            display = "、".join(str(item) for item in value) if isinstance(value, list) else value
+            display = "、".join(DISPLAY_LABELS.get(str(item), str(item)) for item in value) if isinstance(value, list) else DISPLAY_LABELS.get(str(value), value)
             preference_parts.append('<span class="meta-chip"><b>{}</b> {}</span>'.format(text(label), text(display)))
     weather_rows = []
     for weather in guide.get("weather", []):
+        temperature = "出发前查临近预报"
+        if weather.get("temp_low") is not None and weather.get("temp_high") is not None:
+            temperature = "{}–{}℃".format(weather["temp_low"], weather["temp_high"])
         weather_rows.append(
-            '<div class="weather-item"><b>{}</b><span>{}</span><span>{}–{}℃</span>{}{}</div>'.format(
+            '<div class="weather-item"><b>{}</b><span>{}</span><span>{}</span>{}{}</div>'.format(
                 text(weather.get("date", "")),
                 text(weather.get("condition", "待核实")),
-                text(weather.get("temp_low", "?")),
-                text(weather.get("temp_high", "?")),
+                text(temperature),
                 source_badges(weather.get("source_ids"), sources),
                 '<div class="weather-backup">室内备选：{}</div>'.format(text(weather["backup_plan"])) if weather.get("backup_plan") else "",
             )
@@ -264,7 +272,7 @@ def render_meta_sections(guide, report, sources):
     )
     source_rows = "".join(
         '<li><span class="source-type">{}</span>{}</li>'.format(
-            text(source.get("type", "search")),
+            text({"estimate": "预算估算", "official": "官方信息", "general": "旅行建议", "search": "检索来源", "user": "用户提供"}.get(source.get("type"), "参考信息")),
             source_badges([source_id], sources),
         )
         for source_id, source in sources.items()
@@ -320,14 +328,14 @@ def render_html(guide, template_text, report=None):
     return output
 
 
-def render_file(guide, output_path, template_path=None, allow_invalid=False):
+def render_file(guide, output_path, template_path=None, allow_invalid=False, force=False):
     report = validate_guide(guide)
     if not report["valid"] and not allow_invalid:
         raise ValueError("攻略校验失败，使用 --allow-invalid 可强制渲染")
     template = Path(template_path or Path(__file__).parents[1] / "assets" / "template.html")
     output = Path(output_path)
     output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(render_html(guide, template.read_text(encoding="utf-8"), report), encoding="utf-8")
+    write_text(output, render_html(guide, template.read_text(encoding="utf-8"), report), force)
     return report
 
 
@@ -337,9 +345,10 @@ def main():
     parser.add_argument("--output", required=True, help="输出 HTML 文件")
     parser.add_argument("--template", help="自定义 HTML 模板")
     parser.add_argument("--allow-invalid", action="store_true")
+    parser.add_argument("--force", action="store_true", help="覆盖已存在的输出文件")
     args = parser.parse_args()
     try:
-        report = render_file(load_json(args.input), args.output, args.template, args.allow_invalid)
+        report = render_file(load_json(args.input), args.output, args.template, args.allow_invalid, args.force)
         print(json.dumps({"status": "ok", "output": args.output, "report": report}, ensure_ascii=False, indent=2))
     except (OSError, ValueError, json.JSONDecodeError) as error:
         print(json.dumps({"status": "error", "message": str(error)}, ensure_ascii=False))

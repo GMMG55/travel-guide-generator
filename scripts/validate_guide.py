@@ -76,6 +76,9 @@ def validate_days(guide, source_ids, errors, warnings, conflicts):
         )
     for day_index, day in enumerate(days):
         day_path = "days[{}]".format(day_index)
+        number = day.get("day")
+        if not isinstance(number, int) or isinstance(number, bool) or number < 1:
+            errors.append(issue("error", "DAY_NUMBER", "day 必须为正整数", day_path + ".day"))
         try:
             day_date = parse_iso_date(day.get("date"))
         except (TypeError, ValueError):

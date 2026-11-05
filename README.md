@@ -4,7 +4,11 @@
 
 [Claude 安装与使用](references/claude-setup.md) · [三个完整案例](examples/README.md) · [反馈问题](https://github.com/GMMG55/travel-guide-generator/issues)
 
-![实际生成的青岛攻略桌面截图](assets/screenshots/qingdao-desktop.png)
+**青岛3天2晚 · 两人预算4000元：封面、偏好、雨天备选、交通、住宿与首日行程**
+
+[![青岛攻略完整模块长图：封面、旅行偏好、三天雨天备选、三种交通安排、三个住宿区域和完整首日行程](assets/screenshots/qingdao-overview.png)](examples/qingdao-couple.html)
+
+[查看完整攻略长图](assets/screenshots/qingdao-full.png) · [下载 HTML 交互体验](examples/qingdao-couple.html)
 
 **安装**（运行后选择 Claude Code、Codex 等环境）：
 
@@ -120,6 +124,8 @@ python scripts/build_guide.py examples/sample-guide.json --output-base examples/
 python scripts/validate_guide.py examples/sample-guide.json --strict
 ```
 
+输出文件默认不会覆盖已有文件；确认需要替换时，可在构建命令后添加 `--force`。
+
 完整字段格式见 `references/guide-schema.json`。生成后的 HTML 无需服务端，可离线打开；浏览器“打印”可保存为 PDF。
 
 ---
@@ -128,9 +134,22 @@ python scripts/validate_guide.py examples/sample-guide.json --strict
 
 查看 [青岛情侣、成都亲子和九寨沟双人案例](examples/README.md)，下载对应 HTML 后即可离线体验；案例不是当前出行建议。
 
-![手机上的行程卡片](assets/screenshots/qingdao-mobile.png)
+**完整首日行程**
 
-![点击编辑后显示时间和预算输入框](assets/screenshots/qingdao-edit.png)
+![完整首日行程，包含抵达、午餐、街区漫步和海边晚餐](assets/screenshots/qingdao-desktop.png)
+
+| 修改自己的安排 | 看清全程费用 |
+| --- | --- |
+| ![午餐卡片完整编辑状态](assets/screenshots/qingdao-edit.png) | ![完整双人预算明细](assets/screenshots/qingdao-budget.png) |
+
+<details>
+<summary>展开查看手机端完整首日行程</summary>
+
+<img src="assets/screenshots/qingdao-mobile.png" alt="手机端完整首日行程，无顶部或底部截断" width="390">
+
+</details>
+
+示例为2026年9月的历史演示，费用均为双人预算估算；未展示虚构的实时天气。截图由实际 HTML 页面生成，可点击图片查看原尺寸。
 
 生成的攻略 HTML 包含以下模块：
 
@@ -172,8 +191,8 @@ python scripts/validate_guide.py examples/sample-guide.json --strict
 # 临时生效（推荐，仅当前会话有效）
 export AMAP_KEY="你的高德API Key"
 
-# 或运行脚本时临时传入：
-python scripts/amap_route.py --key "你的高德API Key" --origin "A" --destination "B" --city "城市"
+# 配置后运行，不要将密钥放进命令参数：
+python scripts/amap_route.py --origin "A" --destination "B" --city "城市"
 ```
 
 > 如需持久化，写入 shell 配置文件（`~/.zshrc` / `~/.bashrc`）或使用系统密钥管理器注入，**不要通过对话让 AI 写入系统环境变量**。一旦 Key 泄露，立即在高德控制台删除并重新生成。
@@ -272,6 +291,11 @@ Fork → Branch → PR，我们会尽快审核 🙌
 ---
 
 ## 📝 更新日志 | Changelog
+
+### v2.0.2（2026-11-05）
+- 🔒 加固页面渲染、安装包文件范围、密钥错误脱敏和日历导出
+- 💾 生成文件默认不覆盖已有文件，支持显式强制覆盖
+- 🖼️ 更新青岛示例和 README 截图，展示更多行程模块
 
 ### v2.0.1（2026-09-01）
 - 🔒 移除第三方 HTTP 运行时依赖，改用 Python 标准库请求高德 API

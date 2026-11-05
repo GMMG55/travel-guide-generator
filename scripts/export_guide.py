@@ -3,12 +3,13 @@
 
 import argparse
 import json
+import re
 from pathlib import Path
 
 try:
-    from .guide_utils import load_json, write_json
+    from .guide_utils import ensure_outputs_available, load_json, write_json, write_text
 except ImportError:
-    from guide_utils import load_json, write_json
+    from guide_utils import ensure_outputs_available, load_json, write_json, write_text
 
 
 def markdown_text(guide):
@@ -52,6 +53,8 @@ def markdown_text(guide):
 def ics_escape(value):
     return (
         str(value)
+        .replace("\r\n", "\n")
+        .replace("\r", "\n")
         .replace("\\", "\\\\")
         .replace(";", "\\;")
         .replace(",", "\\,")
@@ -62,6 +65,8 @@ def ics_escape(value):
 def ics_text(guide):
     meta = guide.get("meta", {})
     timezone = meta.get("timezone", "Asia/Shanghai")
+    if not isinstance(timezone, str) or not re.fullmatch(r"[A-Za-z0-9_+./-]+", timezone):
+        raise ValueError("时区格式无效")
     lines = [
         "BEGIN:VCALENDAR",
         "VERSION:2.0",
@@ -114,16 +119,19 @@ def geojson_data(guide):
     return {"type": "FeatureCollection", "features": features}
 
 
-def export_all(guide, output_base):
+def export_all(guide, output_base, force=False):
     base = Path(output_base)
     base.parent.mkdir(parents=True, exist_ok=True)
     markdown_path = base.with_suffix(".md")
     calendar_path = base.with_suffix(".ics")
     geojson_path = base.with_suffix(".geojson")
-    markdown_path.write_text(markdown_text(guide), encoding="utf-8")
-    with calendar_path.open("w", encoding="utf-8", newline="") as calendar_file:
-        calendar_file.write(ics_text(guide))
-    write_json(geojson_path, geojson_data(guide))
+    ensure_outputs_available([markdown_path, calendar_path, geojson_path], force)
+    markdown = markdown_text(guide)
+    calendar = ics_text(guide)
+    geographic = geojson_data(guide)
+    write_text(markdown_path, markdown, force)
+    write_text(calendar_path, calendar, force, newline="")
+    write_json(geojson_path, geographic, force)
     return [str(markdown_path), str(calendar_path), str(geojson_path)]
 
 
@@ -131,12 +139,13 @@ def main():
     parser = argparse.ArgumentParser(description="导出旅游攻略")
     parser.add_argument("input", help="攻略 JSON 文件")
     parser.add_argument("--output-base", help="输出基础路径（不含扩展名）")
+    parser.add_argument("--force", action="store_true", help="覆盖已存在的输出文件")
     args = parser.parse_args()
     guide = load_json(args.input)
     output_base = args.output_base or str(Path(args.input).with_suffix(""))
     print(
         json.dumps(
-            {"status": "ok", "files": export_all(guide, output_base)},
+            {"status": "ok", "files": export_all(guide, output_base, force=args.force)},
             ensure_ascii=False,
             indent=2,
         )

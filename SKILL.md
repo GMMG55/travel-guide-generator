@@ -222,6 +222,8 @@ description: 旅游攻略生成器 - 当用户提出旅游规划需求时自动�
 python scripts/build_guide.py guide.json --output-base 目的地攻略
 ```
 
+输出文件已存在时，默认选择新的输出名称；仅在用户确认需要替换已有文件时使用 `--force`。
+
 > 工作流中任一步失败都**不能中断整篇攻略**，必须按下方「可靠性与容错」降级处理。
 
 ## 可靠性与容错（失败必须降级，不能让攻略生成失败）
@@ -308,7 +310,7 @@ export AMAP_KEY="你的key"
 echo 'export AMAP_KEY="你的key"' >> ~/.zshrc   # 或 ~/.bashrc
 ```
 
-> 也可在运行脚本时临时用 `--key` 参数传入（仅本次运行有效），适合不想配置环境变量的场景。
+> 为避免密钥出现在命令历史或进程参数中，请使用当前会话的环境变量，不要使用 `--key` 传入真实密钥。
 >
 > **密钥管理建议**：优先使用系统密钥管理器（如 macOS Keychain、Windows Credential Manager、云厂商 Secrets Manager）在运行时注入 `AMAP_KEY`；一旦怀疑泄露，立即在高德控制台删除并重新生成该 Key。
 
@@ -423,7 +425,7 @@ python scripts/validate_guide.py examples/sample-guide.json --strict
 计算两点间驾车距离和用时。
 
 ```python
-python scripts/amap_route.py --origin "威海公园" --destination "火炬八街" --key YOUR_AMAP_KEY
+python scripts/amap_route.py --origin "威海公园" --destination "火炬八街"
 ```
 
 输出示例：

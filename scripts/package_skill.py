@@ -5,18 +5,22 @@ import argparse
 from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile
 
+RUNTIME_FILES = (
+    "SKILL.md", "examples/sample-guide.json", "assets/template.html",
+    "references/claude-setup.md", "references/daily-itinerary-spec.md",
+    "references/design-spec.md", "references/guide-schema.json",
+    "scripts/amap_route.py", "scripts/build_guide.py", "scripts/export_guide.py",
+    "scripts/guide_utils.py", "scripts/package_skill.py", "scripts/render_guide.py", "scripts/route_estimator.py",
+    "scripts/search_guide.py", "scripts/season_advisor.py", "scripts/validate_guide.py",
+)
 
 def package_skill(root, output):
     root = Path(root).resolve()
     output = Path(output).resolve()
-    paths = [root / "SKILL.md", root / "examples" / "sample-guide.json"]
-    for folder in ("scripts", "references", "assets"):
-        for path in sorted((root / folder).rglob("*")):
-            if path.is_file() and not path.is_symlink() and "__pycache__" not in path.parts:
-                if path.suffix in {".py", ".md", ".json", ".html", ".css", ".js"}:
-                    paths.append(path)
-    if not paths[0].is_file():
-        raise ValueError("SKILL.md is required")
+    paths = [root / name for name in RUNTIME_FILES]
+    for path in paths:
+        if not path.is_file() or path.is_symlink() or root not in path.resolve().parents:
+            raise ValueError("Missing or unsafe runtime file: {}".format(path))
     if output.exists():
         raise FileExistsError("Output already exists; choose another --output path")
     output.parent.mkdir(parents=True, exist_ok=True)

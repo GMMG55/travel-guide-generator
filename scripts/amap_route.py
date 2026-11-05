@@ -7,6 +7,7 @@
 import argparse
 import json
 import os
+import re
 import sys
 from urllib.parse import urlencode
 from urllib.request import urlopen
@@ -21,6 +22,12 @@ def request_json(url, params):
 def get_amap_key():
     """获取高德API key"""
     return os.environ.get('AMAP_KEY')
+
+def safe_error(error, key):
+    message = str(error)
+    if key:
+        message = message.replace(str(key), '[REDACTED]')
+    return re.sub(r'(?i)(key=)[^&\s]+', r'\1[REDACTED]', message)
 
 def geocode(address, city=None, key=None):
     """地址转经纬度"""
@@ -43,7 +50,7 @@ def geocode(address, city=None, key=None):
         else:
             return None
     except Exception as e:
-        print(f"地理编码错误: {e}", file=sys.stderr)
+        print(f"地理编码错误: {safe_error(e, key)}", file=sys.stderr)
         return None
 
 def get_driving_route(origin, destination, key):
@@ -105,7 +112,7 @@ def get_driving_route(origin, destination, key):
         else:
             return None
     except Exception as e:
-        print(f"路线规划错误: {e}", file=sys.stderr)
+        print(f"路线规划错误: {safe_error(e, key)}", file=sys.stderr)
         return None
 
 def get_multi_point_route(locations, key):
@@ -209,7 +216,7 @@ def main():
             fail_json("路线规划失败（API 不可用、配额耗尽或返回错误）")
     except Exception as e:
         # 顶层兜底：任何意外异常都转为结构化错误，绝不抛出 traceback 中断流程
-        fail_json(f"路线规划异常: {e}")
+        fail_json(f"路线规划异常: {safe_error(e, args.key or get_amap_key())}")
 
 if __name__ == "__main__":
     main()

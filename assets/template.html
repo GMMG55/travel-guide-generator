@@ -1208,7 +1208,12 @@ const GUIDE_DATA = {{GUIDE_DATA}};
   sections.forEach(s => {
     const item = document.createElement('div');
     item.className = 'nav-item';
-    item.innerHTML = '<span class="nav-dot"></span><span class="nav-label">' + s.label + '</span>';
+    const dot = document.createElement('span');
+    dot.className = 'nav-dot';
+    const label = document.createElement('span');
+    label.className = 'nav-label';
+    label.textContent = s.label;
+    item.append(dot, label);
     item.onclick = () => {
       s.el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
@@ -1277,7 +1282,10 @@ const GUIDE_DATA = {{GUIDE_DATA}};
   // 其他模块折叠（点击标题）
   document.querySelectorAll('.avoid-section h2, .budget-card h2, .tips-card h2, .hotel-section h2, .food-section h2').forEach(h2 => {
     h2.classList.add('collapsible');
-    h2.innerHTML += '<span class="collapse-icon">▼</span>';
+    const icon = document.createElement('span');
+    icon.className = 'collapse-icon';
+    icon.textContent = '▼';
+    h2.appendChild(icon);
     h2.addEventListener('click', function() {
       const content = this.nextElementSibling;
       if (content) {
